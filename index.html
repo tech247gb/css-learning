@@ -3,43 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CSS Design Learning Guide</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<title>Design-Independent Developer — Workshop Guide</title>
 <style>
   :root {
-    --bg:        #f5f4f0;
+    --bg:        #f7f6f2;
     --surface:   #ffffff;
     --surface2:  #f0eeea;
-    --border:    #e2dfd8;
-    --border2:   #ccc9c0;
-    --text:      #1a1916;
-    --muted:     #6b6860;
-    --subtle:    #9b9890;
+    --surface3:  #e8e5de;
+    --border:    #e0ddd5;
+    --border2:   #c8c5bc;
+    --text:      #1c1b18;
+    --muted:     #6a6760;
+    --subtle:    #9a9790;
 
-    --blue:      #2563eb;
-    --blue-bg:   #eff4ff;
-    --blue-bd:   #bfcffb;
+    --blue:      #2460e8;
+    --blue-bg:   #eef3ff;
+    --blue-bd:   #bcceff;
+    --blue-dark: #1a4cc4;
 
-    --green:     #0d7a55;
-    --green-bg:  #edfaf4;
-    --green-bd:  #9fe8cc;
+    --green:     #0c7a52;
+    --green-bg:  #ecfaf4;
+    --green-bd:  #9de8cc;
 
-    --amber:     #92580a;
-    --amber-bg:  #fef7ec;
-    --amber-bd:  #f9d98c;
+    --amber:     #8f5608;
+    --amber-bg:  #fef6ea;
+    --amber-bd:  #f8d68a;
 
-    --red:       #c0392b;
-    --red-bg:    #fef2f2;
-    --red-bd:    #fcc9c9;
+    --red:       #be3a2a;
+    --red-bg:    #fef1f0;
+    --red-bd:    #fac4be;
 
-    --purple:    #6d3fc4;
-    --purple-bg: #f4f0fd;
-    --purple-bd: #d1bbf9;
+    --purple:    #6b3ec2;
+    --purple-bg: #f3effd;
+    --purple-bd: #cfbbf8;
 
-    --sidebar-w: 270px;
-    --font-display: Arial, Helvetica, sans-serif;
-    --font-body: Arial, Helvetica, sans-serif;
+    --teal:      #0b6b6b;
+    --teal-bg:   #ecfafa;
+    --teal-bd:   #96e2e2;
+
+    --pink:      #9c1660;
+    --pink-bg:   #fdf0f8;
+    --pink-bd:   #f8a8d6;
+
+    --orange:    #b84f08;
+    --orange-bg: #fff4ec;
+    --orange-bd: #ffc89a;
+
+    --sidebar-w: 282px;
+    --font: 'Calibri', 'Gill Sans MT', Arial, 'Helvetica Neue', sans-serif;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -48,14 +59,14 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: var(--font-body);
+    font-family: var(--font);
     font-size: 17px;
     line-height: 1.75;
     display: flex;
     min-height: 100vh;
   }
 
-  /* ═══════ SIDEBAR ═══════ */
+  /* ══════ SIDEBAR ══════ */
   .sidebar {
     width: var(--sidebar-w);
     flex-shrink: 0;
@@ -69,117 +80,135 @@
     z-index: 100;
   }
 
-  .sidebar-brand {
-    padding: 28px 24px 20px;
+  .sb-brand {
+    padding: 24px 20px 18px;
     border-bottom: 1px solid var(--border);
   }
 
-  .brand-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
+  .sb-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--blue);
     background: var(--blue-bg);
     border: 1px solid var(--blue-bd);
     border-radius: 20px;
-    padding: 4px 11px;
-    margin-bottom: 14px;
-  }
-
-  .brand-pill::before {
-    content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--blue);
+    padding: 3px 10px;
     display: inline-block;
+    margin-bottom: 10px;
   }
 
-  .sidebar-brand h2 {
-    font-family: var(--font-display);
-    font-size: 18px;
-    font-weight: 800;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+  .sb-brand h2 {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.25;
     color: var(--text);
+    margin-bottom: 4px;
   }
 
-  .sidebar-brand p {
-    font-size: 13px;
-    color: var(--muted);
-    margin-top: 5px;
-    line-height: 1.5;
-  }
+  .sb-brand p { font-size: 12px; color: var(--muted); line-height: 1.5; }
 
-  .sidebar-nav { padding: 16px 12px; flex: 1; }
+  .sb-nav { padding: 12px 10px; flex: 1; }
 
-  .nav-label {
+  .sb-group {
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--subtle);
-    padding: 0 10px;
-    margin-bottom: 6px;
-    margin-top: 16px;
+    padding: 0 8px;
+    margin: 14px 0 4px;
   }
 
-  .nav-label:first-child { margin-top: 0; }
+  .sb-group:first-child { margin-top: 0; }
 
-  .nav-item {
+  .sb-item {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px 12px;
-    border-radius: 10px;
+    gap: 9px;
+    padding: 8px 10px;
+    border-radius: 8px;
     cursor: pointer;
     text-decoration: none;
     color: var(--muted);
-    font-size: 14px;
+    font-size: 13.5px;
     font-weight: 500;
-    transition: background 0.15s, color 0.15s;
-    margin-bottom: 2px;
-    border: none;
-    background: none;
-    width: 100%;
-    text-align: left;
+    transition: background 0.14s, color 0.14s;
+    margin-bottom: 1px;
   }
 
-  .nav-item:hover { background: var(--surface2); color: var(--text); }
-  .nav-item.active { background: var(--blue-bg); color: var(--blue); }
+  .sb-item:hover { background: var(--surface2); color: var(--text); }
+  .sb-item.active { background: var(--blue-bg); color: var(--blue); }
 
-  .nav-dot {
-    width: 26px; height: 26px;
-    border-radius: 7px;
+  .sb-dot {
+    width: 24px; height: 24px;
+    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
-    font-family: var(--font-display);
     flex-shrink: 0;
   }
 
-  .nd1 { background: var(--blue-bg);   color: var(--blue); }
-  .nd2 { background: var(--green-bg);  color: var(--green); }
-  .nd3 { background: var(--amber-bg);  color: var(--amber); }
-  .nd4 { background: var(--red-bg);    color: var(--red); }
-  .nd5 { background: var(--purple-bg); color: var(--purple); }
+  .s1 { background: var(--blue-bg);   color: var(--blue); }
+  .s2 { background: var(--teal-bg);   color: var(--teal); }
+  .s3 { background: var(--purple-bg); color: var(--purple); }
+  .s4 { background: var(--green-bg);  color: var(--green); }
 
-  .nav-time { font-size: 12px; color: var(--subtle); }
+  .sb-time { font-size: 11px; color: var(--subtle); margin-left: auto; }
 
-  .sidebar-footer {
-    padding: 16px 20px;
+  /* progress bar */
+  .sb-progress {
+    padding: 14px 18px;
     border-top: 1px solid var(--border);
-    font-size: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sb-progress-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--subtle);
+    margin-bottom: 10px;
+  }
+
+  .progress-steps { display: flex; flex-direction: column; gap: 7px; }
+
+  .ps-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ps-check {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border2);
+    background: var(--surface2);
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .ps-check.done { background: var(--green); border-color: var(--green); color: #fff; }
+  .ps-text { font-size: 12px; color: var(--muted); }
+
+  .sb-footer {
+    padding: 12px 18px;
+    border-top: 1px solid var(--border);
+    font-size: 11.5px;
     color: var(--subtle);
     line-height: 1.6;
   }
 
-  /* ═══════ MAIN ═══════ */
+  /* ══════ MAIN ══════ */
   .main {
     margin-left: var(--sidebar-w);
     flex: 1;
@@ -191,227 +220,277 @@
   .topbar {
     background: var(--surface);
     border-bottom: 1px solid var(--border);
-    padding: 0 48px;
-    height: 64px;
+    padding: 0 44px;
+    height: 60px;
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
     position: sticky;
     top: 0;
     z-index: 50;
   }
 
   .topbar-title {
-    font-family: var(--font-display);
-    font-size: 15px;
+    font-size: 14.5px;
     font-weight: 700;
     color: var(--text);
     flex: 1;
   }
 
-  .timeline-bar { display: flex; gap: 5px; }
+  .session-pills { display: flex; gap: 5px; }
 
-  .tblock {
-    padding: 5px 12px;
+  .s-pill {
+    padding: 4px 12px;
     border-radius: 6px;
-    font-size: 12px;
-    font-weight: 600;
-    font-family: var(--font-display);
+    font-size: 11.5px;
+    font-weight: 700;
     white-space: nowrap;
   }
 
-  .t1 { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-bd); }
-  .t2 { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-bd); }
-  .t3 { background: var(--amber-bg);  color: var(--amber);  border: 1px solid var(--amber-bd); }
-  .t4 { background: var(--red-bg);    color: var(--red);    border: 1px solid var(--red-bd); }
-  .t5 { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-bd); }
+  .sp1 { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-bd); }
+  .sp2 { background: var(--teal-bg);   color: var(--teal);   border: 1px solid var(--teal-bd); }
+  .sp3 { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-bd); }
+  .sp4 { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-bd); }
 
-  .content { padding: 48px; flex: 1; }
+  .content { padding: 44px; flex: 1; }
 
-  /* ═══════ HERO ═══════ */
-  .hero {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 48px 52px;
-    margin-bottom: 32px;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 48px;
-    align-items: center;
+  /* ══════ HOOK BANNER ══════ */
+  .hook {
+    background: var(--text);
+    border-radius: 16px;
+    padding: 40px 48px;
+    margin-bottom: 28px;
+    color: #fff;
     animation: fadeUp 0.5s ease both;
   }
 
-  .hero h1 {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 3.2vw, 2.8rem);
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
+  .hook-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #a0b0ff;
+    margin-bottom: 14px;
+  }
+
+  .hook h1 {
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
     margin-bottom: 16px;
   }
 
-  .hero h1 em { color: var(--blue); font-style: normal; }
+  .hook h1 span { color: #7eb8ff; }
 
-  .hero-sub {
-    font-size: 17px;
-    color: var(--muted);
-    max-width: 520px;
+  .hook-sub {
+    font-size: 16.5px;
+    color: #b8bcc8;
+    max-width: 600px;
     line-height: 1.7;
     margin-bottom: 28px;
   }
 
-  .hero-stats { display: flex; gap: 28px; flex-wrap: wrap; }
-
-  .stat { text-align: center; }
-
-  .stat-num {
-    font-family: var(--font-display);
-    font-size: 30px;
-    font-weight: 800;
-    color: var(--blue);
-    line-height: 1;
+  .hook-scenario {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-left: 4px solid #7eb8ff;
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 15.5px;
+    color: #cdd4e8;
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 28px;
   }
 
-  .stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; font-weight: 500; }
+  .hook-outcome {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+  }
 
-  .hero-phases { display: flex; flex-direction: column; gap: 8px; min-width: 210px; }
+  .outcome-item {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
 
-  .hero-phase-row {
+  .outcome-icon { font-size: 20px; margin-bottom: 6px; }
+
+  .outcome-text { font-size: 13.5px; color: #c8ccd8; line-height: 1.5; font-weight: 500; }
+
+  /* skills ladder */
+  .skills-ladder {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px 14px;
-    border-radius: 10px;
-    background: var(--surface2);
-    border: 1px solid var(--border);
+    gap: 0;
+    margin-top: 24px;
+    flex-wrap: wrap;
   }
 
-  .hp-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .hp-text { font-size: 14px; font-weight: 500; color: var(--text); flex: 1; }
-  .hp-time { font-size: 13px; color: var(--muted); }
+  .ladder-step {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+  }
 
-  /* ═══════ PHASE CARDS ═══════ */
-  .phase {
+  .ladder-arrow {
+    color: rgba(255,255,255,0.3);
+    font-size: 18px;
+    padding: 0 4px;
+  }
+
+  /* ══════ SESSION CARDS ══════ */
+  .session {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 16px;
     overflow: hidden;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     animation: fadeUp 0.4s ease both;
     transition: box-shadow 0.2s;
   }
 
-  .phase:hover { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
-  .phase:nth-child(1) { animation-delay: 0.05s; }
-  .phase:nth-child(2) { animation-delay: 0.1s; }
-  .phase:nth-child(3) { animation-delay: 0.15s; }
-  .phase:nth-child(4) { animation-delay: 0.2s; }
-  .phase:nth-child(5) { animation-delay: 0.25s; }
+  .session:hover { box-shadow: 0 2px 18px rgba(0,0,0,0.055); }
 
-  .phase-header {
+  .session-header {
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 22px 28px;
+    gap: 15px;
+    padding: 20px 26px;
     cursor: pointer;
     user-select: none;
     list-style: none;
   }
 
-  .phase-header::-webkit-details-marker { display: none; }
+  .session-header::-webkit-details-marker { display: none; }
 
-  .p1 .phase-header { border-left: 4px solid var(--blue); }
-  .p2 .phase-header { border-left: 4px solid var(--green); }
-  .p3 .phase-header { border-left: 4px solid var(--amber); }
-  .p4 .phase-header { border-left: 4px solid var(--red); }
-  .p5 .phase-header { border-left: 4px solid var(--purple); }
+  .sess1 .session-header { border-left: 4px solid var(--blue); }
+  .sess2 .session-header { border-left: 4px solid var(--teal); }
+  .sess3 .session-header { border-left: 4px solid var(--purple); }
+  .sess4 .session-header { border-left: 4px solid var(--green); }
 
-  .phase-num {
+  .sess-num {
     width: 44px; height: 44px;
-    border-radius: 12px;
+    border-radius: 11px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-family: var(--font-display);
-    font-size: 18px;
-    font-weight: 800;
+    font-weight: 700;
     flex-shrink: 0;
+    line-height: 1.1;
   }
 
-  .p1 .phase-num { background: var(--blue-bg);   color: var(--blue); }
-  .p2 .phase-num { background: var(--green-bg);  color: var(--green); }
-  .p3 .phase-num { background: var(--amber-bg);  color: var(--amber); }
-  .p4 .phase-num { background: var(--red-bg);    color: var(--red); }
-  .p5 .phase-num { background: var(--purple-bg); color: var(--purple); }
+  .sess1 .sess-num { background: var(--blue-bg);   color: var(--blue); }
+  .sess2 .sess-num { background: var(--teal-bg);   color: var(--teal); }
+  .sess3 .sess-num { background: var(--purple-bg); color: var(--purple); }
+  .sess4 .sess-num { background: var(--green-bg);  color: var(--green); }
 
-  .phase-meta { flex: 1; }
+  .sess-num .num { font-size: 18px; }
+  .sess-num .lbl { font-size: 8px; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.7; }
 
-  .phase-title {
-    font-family: var(--font-display);
-    font-size: 19px;
+  .sess-meta { flex: 1; }
+
+  .sess-title {
+    font-size: 18px;
     font-weight: 700;
     color: var(--text);
     letter-spacing: -0.01em;
   }
 
-  .phase-time { font-size: 14px; color: var(--muted); margin-top: 3px; }
+  .sess-sub { font-size: 13.5px; color: var(--muted); margin-top: 2px; }
 
-  .phase-badge {
-    font-size: 12px;
-    font-weight: 600;
+  .sess-tag {
+    font-size: 11.5px;
+    font-weight: 700;
     padding: 4px 12px;
     border-radius: 20px;
+    white-space: nowrap;
   }
 
-  .p1 .phase-badge { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-bd); }
-  .p2 .phase-badge { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-bd); }
-  .p3 .phase-badge { background: var(--amber-bg);  color: var(--amber);  border: 1px solid var(--amber-bd); }
-  .p4 .phase-badge { background: var(--red-bg);    color: var(--red);    border: 1px solid var(--red-bd); }
-  .p5 .phase-badge { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-bd); }
+  .sess1 .sess-tag { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-bd); }
+  .sess2 .sess-tag { background: var(--teal-bg);   color: var(--teal);   border: 1px solid var(--teal-bd); }
+  .sess3 .sess-tag { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-bd); }
+  .sess4 .sess-tag { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-bd); }
 
-  .phase-arrow {
+  .sess-arrow {
     color: var(--subtle);
-    font-size: 13px;
-    transition: transform 0.3s ease;
-    margin-left: 8px;
-  }
-
-  details[open] .phase-arrow { transform: rotate(180deg); }
-
-  .phase-body {
-    border-top: 1px solid var(--border);
-    padding: 28px 32px 32px 32px;
-  }
-
-  /* ═══════ INNER SECTIONS ═══════ */
-  .section { margin-bottom: 26px; }
-  .section:last-child { margin-bottom: 0; }
-
-  .section-label {
     font-size: 12px;
+    transition: transform 0.3s;
+    margin-left: 6px;
+  }
+
+  details[open] .sess-arrow { transform: rotate(180deg); }
+
+  .session-body {
+    border-top: 1px solid var(--border);
+    padding: 28px 30px 32px;
+  }
+
+  /* ══════ INNER COMPONENTS ══════ */
+  .sec { margin-bottom: 26px; }
+  .sec:last-child { margin-bottom: 0; }
+
+  .sec-label {
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--subtle);
-    margin-bottom: 14px;
+    margin-bottom: 13px;
     display: flex;
     align-items: center;
     gap: 10px;
   }
 
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
+  .sec-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* facilitator note */
+  .facilitator {
+    background: var(--amber-bg);
+    border: 1px solid var(--amber-bd);
+    border-left: 4px solid var(--amber);
+    border-radius: 10px;
+    padding: 13px 17px;
+    font-size: 14.5px;
+    color: #4a2c00;
+    line-height: 1.65;
+    margin-bottom: 18px;
   }
 
-  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .facilitator strong { color: var(--amber); font-weight: 700; }
+
+  /* learning outcomes */
+  .outcomes-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+
+  .lo-card {
+    padding: 14px 16px;
+    border-radius: 11px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+  }
+
+  .lo-icon { font-size: 18px; margin-bottom: 6px; }
+  .lo-text { font-size: 13.5px; color: var(--text); line-height: 1.55; font-weight: 500; }
+
+  /* tags */
+  .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 10px; }
 
   .tag {
-    font-size: 14px;
-    padding: 5px 14px;
+    font-size: 13.5px;
+    padding: 5px 13px;
     border-radius: 20px;
     border: 1px solid var(--border2);
     color: var(--muted);
@@ -419,60 +498,410 @@
     font-weight: 500;
   }
 
-  .tag.key  { background: var(--blue-bg);   color: #1d4ed8;      border-color: var(--blue-bd); }
-  .tag.warn { background: var(--amber-bg);  color: var(--amber); border-color: var(--amber-bd); }
-  .tag.ok   { background: var(--green-bg);  color: var(--green); border-color: var(--green-bd); }
-  .tag.bad  { background: var(--red-bg);    color: var(--red);   border-color: var(--red-bd); }
+  .tag.key  { background: var(--blue-bg);   color: var(--blue-dark); border-color: var(--blue-bd); }
+  .tag.warn { background: var(--amber-bg);  color: var(--amber);     border-color: var(--amber-bd); }
+  .tag.ok   { background: var(--green-bg);  color: var(--green);     border-color: var(--green-bd); }
+  .tag.bad  { background: var(--red-bg);    color: var(--red);       border-color: var(--red-bd); }
+  .tag.ai   { background: var(--purple-bg); color: var(--purple);    border-color: var(--purple-bd); }
+  .tag.teal { background: var(--teal-bg);   color: var(--teal);      border-color: var(--teal-bd); }
 
+  /* tip */
   .tip {
-    font-size: 15.5px;
-    color: #1e3a8a;
+    font-size: 15px;
     line-height: 1.7;
-    padding: 14px 18px;
-    background: var(--blue-bg);
+    padding: 13px 17px;
     border-radius: 10px;
     border-left: 4px solid var(--blue);
-    margin-top: 12px;
+    background: var(--blue-bg);
+    color: #1a3a8a;
+    margin-top: 10px;
   }
 
-  .tip.warn    { background: var(--amber-bg); border-left-color: var(--amber); color: #4b3300; }
-  .tip.success { background: var(--green-bg); border-left-color: var(--green); color: #0a3d2a; }
+  .tip.warn    { background: var(--amber-bg); border-color: var(--amber); color: #4a2800; }
+  .tip.success { background: var(--green-bg); border-color: var(--green); color: #083a22; }
+  .tip.ai      { background: var(--purple-bg); border-color: var(--purple); color: #3a1a7a; }
 
   .div { border: none; border-top: 1px solid var(--border); margin: 22px 0; }
 
-  .principles {
+  /* before / after */
+  .before-after {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 12px;
+  }
+
+  .ba-panel { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+
+  .ba-head {
+    padding: 10px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .ba-before .ba-head { background: var(--red-bg); color: var(--red); border-bottom: 1px solid var(--red-bd); }
+  .ba-after  .ba-head { background: var(--green-bg); color: var(--green); border-bottom: 1px solid var(--green-bd); }
+
+  .ba-screen {
+    background: var(--surface2);
+    padding: 16px;
+    min-height: 160px;
+    position: relative;
+  }
+
+  /* mock UI elements for before/after */
+  .mock-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 8px;
+    font-size: 13px;
+  }
+
+  .mock-bad  { background: #fff8f8; border-color: #fcc; }
+  .mock-good { background: #f8fff8; border-color: #9de8cc; }
+
+  .ba-notes {
+    padding: 12px 16px;
+    background: var(--surface);
+  }
+
+  .ba-note-item {
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 5px;
+    display: flex;
+    gap: 7px;
+  }
+
+  .ba-before .ba-note-item::before { content: '✗'; color: var(--red); font-weight: 700; flex-shrink: 0; }
+  .ba-after  .ba-note-item::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+
+  /* diagnosis checklist */
+  .diag-list { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+
+  .diag-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 13px 16px;
+    border-radius: 10px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+
+  .diag-icon {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .diag-title { font-weight: 600; color: var(--text); }
+  .diag-desc  { font-size: 13.5px; color: var(--muted); margin-top: 2px; line-height: 1.55; }
+
+  /* prompt cards */
+  .prompt-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 14px;
+    margin-top: 12px;
+  }
+
+  .pcard {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .pcard-head {
+    padding: 11px 15px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .pc-blue   .pcard-head { background: var(--blue-bg);   color: var(--blue); }
+  .pc-teal   .pcard-head { background: var(--teal-bg);   color: var(--teal); }
+  .pc-purple .pcard-head { background: var(--purple-bg); color: var(--purple); }
+  .pc-green  .pcard-head { background: var(--green-bg);  color: var(--green); }
+  .pc-amber  .pcard-head { background: var(--amber-bg);  color: var(--amber); }
+  .pc-pink   .pcard-head { background: var(--pink-bg);   color: var(--pink); }
+  .pc-orange .pcard-head { background: var(--orange-bg); color: var(--orange); }
+
+  .pcard-body {
+    padding: 14px 16px;
+    background: var(--surface);
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.65;
+  }
+
+  .pcard-desc { color: var(--muted); font-size: 13px; margin-bottom: 10px; }
+
+  .prompt-box {
+    font-family: 'Courier New', monospace;
+    font-size: 12.5px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 13px;
+    color: var(--text);
+    line-height: 1.65;
+    white-space: pre-wrap;
+    margin-top: 6px;
+  }
+
+  /* workflow steps */
+  .workflow { display: flex; flex-direction: column; gap: 0; margin-top: 12px; }
+
+  .wf-step {
+    display: flex;
+    gap: 0;
+    position: relative;
+  }
+
+  .wf-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 44px;
+    flex-shrink: 0;
+  }
+
+  .wf-num {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+    z-index: 1;
+  }
+
+  .wf-line {
+    width: 2px;
+    background: var(--border);
+    flex: 1;
+    margin: 4px 0;
+    min-height: 16px;
+  }
+
+  .wf-step:last-child .wf-line { display: none; }
+
+  .wf-content {
+    flex: 1;
+    padding: 0 0 22px 14px;
+    margin-top: 4px;
+  }
+
+  .wf-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .wf-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 8px;
+  }
+
+  .wf-prompt {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 9px 12px;
+    color: var(--text);
+    line-height: 1.65;
+    white-space: pre-wrap;
+  }
+
+  /* do/don't */
+  .do-dont {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 12px;
     margin-top: 12px;
   }
 
-  .princ {
-    padding: 18px;
+  .dd-box { border-radius: 11px; overflow: hidden; }
+  .dd-do  { border: 1px solid var(--green-bd); }
+  .dd-dont{ border: 1px solid var(--red-bd); }
+
+  .dd-head {
+    padding: 9px 14px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .dd-do   .dd-head { background: var(--green-bg); color: var(--green); }
+  .dd-dont .dd-head { background: var(--red-bg);   color: var(--red); }
+
+  .dd-body { padding: 13px 14px; background: var(--surface2); }
+
+  .dd-item {
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.6;
+    margin-bottom: 7px;
+    display: flex;
+    gap: 8px;
+    list-style: none;
+  }
+
+  .dd-do   .dd-item::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+  .dd-dont .dd-item::before { content: '✗'; color: var(--red);   font-weight: 700; flex-shrink: 0; }
+
+  /* exercise box */
+  .exercise {
+    background: var(--purple-bg);
+    border: 1px solid var(--purple-bd);
+    border-left: 4px solid var(--purple);
+    border-radius: 11px;
+    padding: 16px 20px;
+    margin-top: 14px;
+  }
+
+  .exercise-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .exercise-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+  .exercise-desc  { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+  .exercise-steps {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .ex-step {
+    display: flex;
+    gap: 10px;
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.6;
+    align-items: flex-start;
+  }
+
+  .ex-n {
+    width: 20px; height: 20px;
+    border-radius: 5px;
+    background: var(--purple);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* discussion */
+  .discussion {
+    background: var(--orange-bg);
+    border: 1px solid var(--orange-bd);
+    border-left: 4px solid var(--orange);
+    border-radius: 11px;
+    padding: 16px 20px;
+    margin-top: 14px;
+  }
+
+  .discussion-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 8px;
+  }
+
+  .disc-q {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.65;
+    margin-bottom: 6px;
+    display: flex;
+    gap: 8px;
+  }
+
+  .disc-q::before { content: 'Q:'; font-weight: 700; color: var(--orange); flex-shrink: 0; }
+
+  /* tool grid */
+  .tool-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 11px;
+    margin-top: 12px;
+  }
+
+  .tool-card {
+    padding: 16px;
     background: var(--surface2);
     border: 1px solid var(--border);
     border-radius: 12px;
+    transition: border-color 0.15s;
   }
 
-  .princ-name {
-    font-family: var(--font-display);
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 6px;
+  .tool-card:hover { border-color: var(--border2); }
+  .tool-name { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+  .tool-role { font-size: 11.5px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 7px; }
+  .tool-desc { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+
+  .tool-badge {
+    display: inline-flex;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 20px;
+    margin-top: 9px;
   }
 
-  .princ-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
-
-  /* ═══════ RESOURCE LINKS ═══════ */
+  /* resource links */
   .res-label {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--subtle);
     margin-top: 20px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -480,113 +909,79 @@
 
   .res-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-  .resources { display: flex; flex-wrap: wrap; gap: 8px; }
+  .resources { display: flex; flex-wrap: wrap; gap: 7px; }
 
   .res-link {
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    font-size: 14px;
+    font-size: 13.5px;
     font-weight: 500;
-    padding: 9px 16px;
+    padding: 8px 14px;
     border-radius: 9px;
     text-decoration: none;
-    transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+    transition: background 0.14s, transform 0.14s;
     border: 1px solid transparent;
   }
 
-  .res-link:hover { transform: translateY(-1px); box-shadow: 0 3px 10px rgba(0,0,0,0.08); }
-
+  .res-link:hover { transform: translateY(-1px); }
   .res-link.yt   { background: #fff0f0; color: #b91c1c; border-color: #fcc9c9; }
   .res-link.yt:hover { background: #fee2e2; }
-
   .res-link.doc  { background: var(--blue-bg); color: var(--blue); border-color: var(--blue-bd); }
   .res-link.doc:hover { background: #dbeafe; }
-
   .res-link.read { background: var(--green-bg); color: var(--green); border-color: var(--green-bd); }
   .res-link.read:hover { background: #d1fae5; }
+  .res-link.ai   { background: var(--purple-bg); color: var(--purple); border-color: var(--purple-bd); }
+  .res-link.ai:hover { background: #ede9fe; }
 
-  .res-icon { font-size: 13px; }
-
-  /* golden rule */
-  .golden {
-    padding: 20px 24px;
-    background: linear-gradient(135deg, #eff4ff 0%, #f4f0fd 100%);
-    border: 1px solid var(--blue-bd);
-    border-radius: 14px;
-    margin-top: 14px;
-    font-size: 17px;
-    line-height: 1.75;
-    color: var(--text);
+  /* cheatsheet */
+  .cheatsheet {
+    background: var(--text);
+    border-radius: 16px;
+    padding: 36px 40px;
+    margin-top: 22px;
+    color: #fff;
+    animation: fadeUp 0.4s ease 0.2s both;
   }
 
-  .golden strong { color: var(--blue); font-weight: 700; }
-
-  /* checklist */
-  .checklist { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-
-  .checklist li {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    font-size: 15.5px;
-    color: #7f1d1d;
-    line-height: 1.65;
-    padding: 12px 16px;
-    background: var(--red-bg);
-    border: 1px solid var(--red-bd);
-    border-radius: 10px;
+  .cs-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
   }
 
-  .check-icon {
-    width: 22px; height: 22px;
-    border-radius: 50%;
-    background: #fee2e2;
-    border: 1.5px solid var(--red);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .cs-sub { font-size: 14px; color: #9aa0b4; margin-bottom: 24px; }
+
+  .cs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+  }
+
+  .cs-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 11px;
+    overflow: hidden;
+  }
+
+  .cs-head {
+    padding: 9px 14px;
     font-size: 11px;
     font-weight: 700;
-    color: var(--red);
-    flex-shrink: 0;
-    margin-top: 1px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
   }
 
-  code {
-    font-size: 13.5px;
-    background: rgba(0,0,0,0.07);
-    padding: 2px 7px;
-    border-radius: 5px;
+  .cs-body {
+    padding: 12px 14px;
     font-family: 'Courier New', monospace;
-    color: var(--red);
-  }
-
-  /* practice card */
-  .practice {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-top: 4px solid var(--amber);
-    border-radius: 16px;
-    padding: 32px 36px;
-    margin-top: 24px;
-    animation: fadeUp 0.4s ease 0.3s both;
-  }
-
-  .practice-title {
-    font-family: var(--font-display);
-    font-size: 20px;
-    font-weight: 800;
-    margin-bottom: 10px;
-  }
-
-  .practice-title span { color: var(--amber); }
-
-  .practice > p {
-    font-size: 16px;
-    color: var(--muted);
+    font-size: 12px;
     line-height: 1.7;
-    max-width: 700px;
+    color: #c8d0e0;
+    white-space: pre-wrap;
   }
 
   @keyframes fadeUp {
@@ -594,16 +989,25 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* ═══════ RESPONSIVE ═══════ */
+  code {
+    font-size: 13px;
+    background: rgba(0,0,0,0.07);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    color: var(--red);
+  }
+
+  /* responsive */
   @media (max-width: 960px) {
     .sidebar { display: none; }
     .main { margin-left: 0; }
     .topbar { padding: 0 20px; }
-    .timeline-bar { display: none; }
-    .content { padding: 24px 20px; }
-    .hero { grid-template-columns: 1fr; padding: 28px 24px; gap: 28px; }
-    .hero-phases { display: none; }
-    .phase-body { padding: 20px 22px; }
+    .session-pills { display: none; }
+    .content { padding: 22px 18px; }
+    .hook { padding: 28px 24px; }
+    .before-after, .do-dont { grid-template-columns: 1fr; }
+    .session-body { padding: 20px; }
   }
 </style>
 </head>
@@ -611,478 +1015,958 @@
 
 <!-- ════════ SIDEBAR ════════ -->
 <aside class="sidebar">
-  <div class="sidebar-brand">
-    <div class="brand-pill">4–5 hr session</div>
-    <h2>CSS Design<br>Learning Guide</h2>
-    <p>Freshers to mid-level · Design-first approach</p>
+  <div class="sb-brand">
+    <div class="sb-eyebrow">4 Sessions · 1hr each</div>
+    <h2>Design-Independent<br>Developer Workshop</h2>
+    <p>Mid-level devs · AI-assisted UI design</p>
   </div>
 
-  <nav class="sidebar-nav">
-    <div class="nav-label">Overview</div>
-    <a class="nav-item active" href="#hero">
-      <span class="nav-dot nd1" style="font-size:14px">⌂</span>
+  <nav class="sb-nav">
+    <!-- <div class="sb-group">Overview</div>
+    <a class="sb-item active" href="#hook">
+      <span class="sb-dot s1" style="font-size:13px">⌂</span>
       <span style="flex:1">Introduction</span>
+    </a> -->
+
+    <div class="sb-group">Sessions</div>
+    <a class="sb-item" href="#s1">
+      <span class="sb-dot s1">1</span>
+      <span style="flex:1">Design Eye Training</span>
+      <span class="sb-time">60m</span>
+    </a>
+    <a class="sb-item" href="#s2">
+      <span class="sb-dot s2">2</span>
+      <span style="flex:1">AI Tools for UI</span>
+      <span class="sb-time">60m</span>
+    </a>
+    <a class="sb-item" href="#s3">
+      <span class="sb-dot s3">3</span>
+      <span style="flex:1">Prompting for Design</span>
+      <span class="sb-time">60m</span>
+    </a>
+    <a class="sb-item" href="#s4">
+      <span class="sb-dot s4">4</span>
+      <span style="flex:1">Full App Workflow</span>
+      <span class="sb-time">60m</span>
     </a>
 
-    <div class="nav-label">Phases</div>
-    <a class="nav-item" href="#p1">
-      <span class="nav-dot nd1">1</span>
-      <span style="flex:1">Design Language</span>
-      <span class="nav-time">45m</span>
-    </a>
-    <a class="nav-item" href="#p2">
-      <span class="nav-dot nd2">2</span>
-      <span style="flex:1">CSS Core</span>
-      <span class="nav-time">60m</span>
-    </a>
-    <a class="nav-item" href="#p3">
-      <span class="nav-dot nd3">3</span>
-      <span style="flex:1">Bootstrap 5</span>
-      <span class="nav-time">60m</span>
-    </a>
-    <a class="nav-item" href="#p4">
-      <span class="nav-dot nd4">4</span>
-      <span style="flex:1">Tailwind CSS</span>
-      <span class="nav-time">75m</span>
-    </a>
-    <a class="nav-item" href="#p5">
-      <span class="nav-dot nd5">5</span>
-      <span style="flex:1">UX Rules</span>
-      <span class="nav-time">60m</span>
-    </a>
-
-    <div class="nav-label">Wrap-up</div>
-    <a class="nav-item" href="#practice">
-      <span class="nav-dot" style="background:var(--amber-bg);color:var(--amber)">✦</span>
-      <span style="flex:1">Practice Project</span>
+    <div class="sb-group">Reference</div>
+    <a class="sb-item" href="#cheatsheet">
+      <span class="sb-dot" style="background:var(--amber-bg);color:var(--amber)">✦</span>
+      <span style="flex:1">Prompt Cheatsheet</span>
     </a>
   </nav>
 
-  <div class="sidebar-footer">
-    Click any phase to expand.<br>All links open in a new tab.
-  </div>
+  <!-- <div class="sb-progress">
+    <div class="sb-progress-label">Session Progress</div>
+    <div class="progress-steps">
+      <div class="ps-row">
+        <div class="ps-check" onclick="toggleCheck(this)" title="Mark complete">✓</div>
+        <span class="ps-text">Session 1 — Design Eye</span>
+      </div>
+      <div class="ps-row">
+        <div class="ps-check" onclick="toggleCheck(this)" title="Mark complete"></div>
+        <span class="ps-text">Session 2 — AI Tools</span>
+      </div>
+      <div class="ps-row">
+        <div class="ps-check" onclick="toggleCheck(this)" title="Mark complete"></div>
+        <span class="ps-text">Session 3 — Prompting</span>
+      </div>
+      <div class="ps-row">
+        <div class="ps-check" onclick="toggleCheck(this)" title="Mark complete"></div>
+        <span class="ps-text">Session 4 — Full Workflow</span>
+      </div>
+    </div>
+  </div> -->
 </aside>
 
 <!-- ════════ MAIN ════════ -->
 <div class="main">
 
   <div class="topbar">
-    <div class="topbar-title">CSS, Bootstrap &amp; Tailwind · Design Guide</div>
-    <div class="timeline-bar">
-      <span class="tblock t1">Phase 1 · 45 min</span>
-      <span class="tblock t2">Phase 2 · 60 min</span>
-      <span class="tblock t3">Phase 3 · 60 min</span>
-      <span class="tblock t4">Phase 4 · 75 min</span>
-      <span class="tblock t5">Phase 5 · 60 min</span>
-    </div>
+    <div class="topbar-title">Design-Independent Developer — Workshop Guide</div>
+    <!-- <div class="session-pills">
+      <span class="s-pill sp1">Session 1 · 60m</span>
+      <span class="s-pill sp2">Session 2 · 60m</span>
+      <span class="s-pill sp3">Session 3 · 60m</span>
+      <span class="s-pill sp4">Session 4 · 60m</span>
+    </div> -->
   </div>
 
   <div class="content">
 
-    <!-- HERO -->
-    <div class="hero" id="hero">
-      <div>
-        <h1>CSS, Bootstrap &amp; <em>Tailwind</em><br>Design Learning Guide</h1>
-        <p class="hero-sub">A structured 4–5 hour learning path from design language fundamentals to practical CSS frameworks — built for freshers and mid-level developers who already know basic CSS.</p>
-        <div class="hero-stats">
-          <div class="stat"><div class="stat-num">5</div><div class="stat-label">Phases</div></div>
-          <div class="stat"><div class="stat-num">4–5h</div><div class="stat-label">Total time</div></div>
-          <div class="stat"><div class="stat-num">30+</div><div class="stat-label">Resources</div></div>
-          <div class="stat"><div class="stat-num">3</div><div class="stat-label">Frameworks</div></div>
+    <!-- ══════════════════════════════
+         SESSION 1
+    ══════════════════════════════ -->
+    <details class="session sess1" id="s1" open>
+      <summary class="session-header">
+        <div class="sess-num">
+          <span class="num">1</span>
+          <span class="lbl">Session</span>
         </div>
-      </div>
-      <div class="hero-phases">
-        <div class="hero-phase-row"><div class="hp-dot" style="background:var(--blue)"></div><div class="hp-text">Design Language</div><div class="hp-time">45m</div></div>
-        <div class="hero-phase-row"><div class="hp-dot" style="background:var(--green)"></div><div class="hp-text">CSS Core</div><div class="hp-time">60m</div></div>
-        <div class="hero-phase-row"><div class="hp-dot" style="background:var(--amber)"></div><div class="hp-text">Bootstrap 5</div><div class="hp-time">60m</div></div>
-        <div class="hero-phase-row"><div class="hp-dot" style="background:var(--red)"></div><div class="hp-text">Tailwind CSS</div><div class="hp-time">75m</div></div>
-        <div class="hero-phase-row"><div class="hp-dot" style="background:var(--purple)"></div><div class="hp-text">UX Rules</div><div class="hp-time">60m</div></div>
-      </div>
-    </div>
-
-    <!-- ─── PHASE 1 ─── -->
-    <details class="phase p1" id="p1" open>
-      <summary class="phase-header">
-        <div class="phase-num">1</div>
-        <div class="phase-meta">
-          <div class="phase-title">Design Language Fundamentals</div>
-          <div class="phase-time">45 min · Before writing a single line of CSS</div>
+        <div class="sess-meta">
+          <div class="sess-title">Training Your Design Eye</div>
+          <div class="sess-sub">How to look at any UI and immediately know what's wrong — and why</div>
         </div>
-        <span class="phase-badge">Start here</span>
-        <span class="phase-arrow">▼</span>
+        <span class="sess-tag">60 min</span>
+        <span class="sess-arrow">▼</span>
       </summary>
-      <div class="phase-body">
+      <div class="session-body">
 
-        <div class="section">
-          <div class="section-label">The 8 Pillars of Design Language</div>
-          <div class="tags">
-            <span class="tag key">Typography</span>
-            <span class="tag key">Color system</span>
-            <span class="tag key">Spacing scale</span>
-            <span class="tag key">Visual hierarchy</span>
-            <span class="tag">Contrast</span>
-            <span class="tag">Alignment</span>
-            <span class="tag">Proximity</span>
-            <span class="tag">Repetition</span>
-          </div>
-          <div class="tip">Study one real design system before coding: Tailwind's color palette, Google Material, or Apple HIG. Notice what they all share — a limited, repeatable set of choices, not infinite options.</div>
+        <div class="facilitator">
+          <strong>Facilitator note:</strong> Start with the "Before" examples and ask participants to describe what feels wrong <em>before</em> revealing the diagnosis. This trains the eye actively. Give them 3 minutes to look silently first.
         </div>
 
-        <hr class="div">
-
-        <div class="section">
-          <div class="section-label">Critical Questions Before Changing Any Style</div>
-          <div class="tags">
-            <span class="tag warn">Does this add noise or clarity?</span>
-            <span class="tag warn">Is contrast sufficient? (WCAG AA = 4.5:1)</span>
-            <span class="tag warn">Does it break visual hierarchy?</span>
-            <span class="tag warn">Is spacing consistent with the scale?</span>
+        <div class="sec">
+          <div class="sec-label">Learning Outcomes</div>
+          <div class="outcomes-row">
+            <div class="lo-card"><div class="lo-icon">👁</div><div class="lo-text">Diagnose UI problems without a designer</div></div>
+            <div class="lo-card"><div class="lo-icon">📐</div><div class="lo-text">Understand the 4 root causes of bad UI</div></div>
+            <div class="lo-card"><div class="lo-icon">🔧</div><div class="lo-text">Apply the 5-point UI diagnostic checklist</div></div>
           </div>
         </div>
 
         <hr class="div">
 
-        <div class="section">
-          <div class="section-label">Core Design Principles (Always Apply)</div>
-          <div class="principles">
-            <div class="princ">
-              <div class="princ-name">Hierarchy first</div>
-              <div class="princ-desc">One dominant element per screen. Heading → subheading → body. Never make everything equally loud.</div>
+        <div class="sec">
+          <div class="sec-label">Why Most Developer UIs Look "Off" — The 4 Root Causes</div>
+          <div class="diag-list">
+            <div class="diag-item">
+              <div class="diag-icon" style="background:var(--red-bg);color:var(--red)">↕</div>
+              <div>
+                <div class="diag-title">Inconsistent Spacing</div>
+                <div class="diag-desc">Random gaps between elements — some tight, some loose, no pattern. Fix: use a 4px base scale (4, 8, 12, 16, 24, 32, 48). Everything is a multiple of 4.</div>
+              </div>
             </div>
-            <div class="princ">
-              <div class="princ-name">Whitespace = breathing room</div>
-              <div class="princ-desc">Empty space isn't waste — it directs attention and reduces cognitive load.</div>
+            <div class="diag-item">
+              <div class="diag-icon" style="background:var(--amber-bg);color:var(--amber)">T</div>
+              <div>
+                <div class="diag-title">No Visual Hierarchy</div>
+                <div class="diag-desc">Everything is the same size and weight — the eye has nowhere to go. Fix: one dominant heading, one supporting subtext, one body size. Max 3 font sizes per screen.</div>
+              </div>
             </div>
-            <div class="princ">
-              <div class="princ-name">Color carries meaning</div>
-              <div class="princ-desc">Red = danger, green = success, primary = action. Never use color just for decoration.</div>
+            <div class="diag-item">
+              <div class="diag-icon" style="background:var(--blue-bg);color:var(--blue)">◉</div>
+              <div>
+                <div class="diag-title">Too Many Colors / Wrong Colors</div>
+                <div class="diag-desc">Colors added randomly for decoration, not meaning. Fix: 1 primary action color, 1 neutral, 3 semantic colors (success/warning/error). Nothing else.</div>
+              </div>
             </div>
-            <div class="princ">
-              <div class="princ-name">Consistency over creativity</div>
-              <div class="princ-desc">Same element = same style, always. One button style, one card style, one input style.</div>
+            <div class="diag-item">
+              <div class="diag-icon" style="background:var(--purple-bg);color:var(--purple)">▣</div>
+              <div>
+                <div class="diag-title">Inconsistent Components</div>
+                <div class="diag-desc">Three different button styles, two card designs, four input sizes on the same page. Fix: define one of each and use it everywhere. Consistency = trust.</div>
+              </div>
             </div>
           </div>
         </div>
 
         <hr class="div">
 
-        <div class="res-label">📚 Resources for Phase 1</div>
+        <div class="sec">
+          <div class="sec-label">Before & After — SaaS Dashboard Login (Spot the Difference)</div>
+          <div class="before-after">
+            <div class="ba-panel ba-before">
+              <div class="ba-head">✗ Typical Developer Build</div>
+              <div class="ba-screen">
+                <div style="font-size:22px;font-weight:400;margin-bottom:4px;color:#333">Login</div>
+                <div style="font-size:11px;color:#999;margin-bottom:18px">Enter your details below to access your account</div>
+                <div style="margin-bottom:6px">
+                  <div style="font-size:11px;color:#666;margin-bottom:2px">EMAIL ADDRESS</div>
+                  <div style="background:#fff;border:2px solid #aaa;border-radius:3px;padding:6px 8px;font-size:13px;color:#bbb">user@example.com</div>
+                </div>
+                <div style="margin-bottom:14px">
+                  <div style="font-size:11px;color:#666;margin-bottom:2px">PASSWORD</div>
+                  <div style="background:#fff;border:2px solid #aaa;border-radius:3px;padding:6px 8px;font-size:13px;color:#bbb">••••••••</div>
+                </div>
+                <div style="background:#2563eb;color:#fff;padding:8px;text-align:center;border-radius:3px;font-size:13px;font-weight:600;margin-bottom:8px">SIGN IN</div>
+                <div style="font-size:11px;color:#2563eb;text-align:right">Forgot Password?</div>
+              </div>
+              <div class="ba-notes">
+                <div class="ba-note-item">Font size jump: 22px heading → 11px label (too extreme)</div>
+                <div class="ba-note-item">ALL CAPS labels — aggressive, hard to scan</div>
+                <div class="ba-note-item">2px border on inputs feels heavy</div>
+                <div class="ba-note-item">No breathing room — elements are cramped</div>
+                <div class="ba-note-item">Button padding too small — looks clickable but feels tight</div>
+              </div>
+            </div>
+            <div class="ba-panel ba-after">
+              <div class="ba-head">✓ After Design Principles Applied</div>
+              <div class="ba-screen">
+                <div style="font-size:22px;font-weight:700;margin-bottom:6px;color:#1a1916;letter-spacing:-0.02em">Welcome back</div>
+                <div style="font-size:14px;color:#6a6760;margin-bottom:24px">Sign in to your account to continue</div>
+                <div style="margin-bottom:16px">
+                  <div style="font-size:13px;color:#1a1916;font-weight:600;margin-bottom:5px">Email address</div>
+                  <div style="background:#fff;border:1px solid #c8c5bc;border-radius:8px;padding:10px 12px;font-size:14px;color:#9a9790">you@company.com</div>
+                </div>
+                <div style="margin-bottom:20px">
+                  <div style="display:flex;justify-content:space-between;margin-bottom:5px"><span style="font-size:13px;color:#1a1916;font-weight:600">Password</span><span style="font-size:13px;color:#2460e8">Forgot password?</span></div>
+                  <div style="background:#fff;border:1px solid #c8c5bc;border-radius:8px;padding:10px 12px;font-size:14px;color:#9a9790">••••••••</div>
+                </div>
+                <div style="background:#2460e8;color:#fff;padding:12px;text-align:center;border-radius:8px;font-size:14px;font-weight:600">Sign in</div>
+              </div>
+              <div class="ba-notes">
+                <div class="ba-note-item">Clear hierarchy: bold heading → muted sub → label → input</div>
+                <div class="ba-note-item">Sentence case labels — natural to read</div>
+                <div class="ba-note-item">1px border — subtle, clean</div>
+                <div class="ba-note-item">Generous padding creates breathing room</div>
+                <div class="ba-note-item">Button height comfortable, matches design scale</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="div">
+
+        <div class="sec">
+          <div class="sec-label">Before & After — E-commerce Product Card</div>
+          <div class="before-after">
+            <div class="ba-panel ba-before">
+              <div class="ba-head">✗ Developer-Built Card</div>
+              <div class="ba-screen">
+                <div style="background:#fff;border:1px solid #ddd;padding:10px;width:160px;margin:0 auto">
+                  <div style="background:#e8e8e8;height:100px;margin-bottom:6px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#999">Product Image</div>
+                  <div style="font-size:13px;font-weight:bold;margin-bottom:2px">PREMIUM WIDGET PRO</div>
+                  <div style="font-size:12px;color:#666;margin-bottom:4px">This is a really great product that everyone loves and uses every single day.</div>
+                  <div style="font-size:16px;color:red;margin-bottom:6px">$49.99</div>
+                  <div style="background:blue;color:#fff;padding:5px;text-align:center;font-size:11px">ADD TO CART</div>
+                </div>
+              </div>
+              <div class="ba-notes">
+                <div class="ba-note-item">ALL CAPS product name is aggressive</div>
+                <div class="ba-note-item">Description text too long — cards need brevity</div>
+                <div class="ba-note-item">Red price without context — what does red mean?</div>
+                <div class="ba-note-item">Button is too short — poor touch target</div>
+                <div class="ba-note-item">No corner radius — feels stiff and dated</div>
+              </div>
+            </div>
+            <div class="ba-panel ba-after">
+              <div class="ba-head">✓ After Design Principles Applied</div>
+              <div class="ba-screen">
+                <div style="background:#fff;border:1px solid #e0ddd5;border-radius:12px;overflow:hidden;width:165px;margin:0 auto;box-shadow:0 1px 6px rgba(0,0,0,0.06)">
+                  <div style="background:#f0eeea;height:100px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#9a9790">Product Image</div>
+                  <div style="padding:14px">
+                    <div style="font-size:10px;font-weight:700;color:#0c7a52;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px">New arrival</div>
+                    <div style="font-size:14px;font-weight:700;color:#1c1b18;margin-bottom:4px;line-height:1.3">Premium Widget Pro</div>
+                    <div style="font-size:13px;color:#6a6760;margin-bottom:12px">Compact, durable, all-weather</div>
+                    <div style="display:flex;align-items:center;justify-content:space-between">
+                      <div style="font-size:16px;font-weight:700;color:#1c1b18">$49.99</div>
+                      <div style="background:#2460e8;color:#fff;padding:7px 14px;border-radius:7px;font-size:13px;font-weight:600">Add</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="ba-notes">
+                <div class="ba-note-item">Sentence case — natural, readable</div>
+                <div class="ba-note-item">Short tagline instead of long description</div>
+                <div class="ba-note-item">Price in neutral black — not alarming</div>
+                <div class="ba-note-item">Good touch target, rounded corners</div>
+                <div class="ba-note-item">Subtle category badge adds context</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="div">
+
+        <div class="sec">
+          <div class="sec-label">The 5-Point UI Diagnostic Checklist — Use This on Any Screen</div>
+          <div class="diag-list">
+            <div class="diag-item">
+              <div class="diag-icon" style="background:var(--blue-bg);color:var(--blue)">1</div>
+              <div>
+                <div class="diag-title">Hierarchy check — can you read the screen in 3 seconds?</div>
+                <div class="diag-desc">Cover the screen, uncover it, and look for 3 seconds. What do you read first? If you can't tell, there's no hierarchy. The heading should be obvious, the action should be obvious.</div>
+              </div>
+            </div>
+            <div class="diag-item">
+              <div class="diag-icon" style="background:var(--green-bg);color:var(--green)">2</div>
+              <div>
+                <div class="diag-title">Spacing check — squint and look for rhythm</div>
+                <div class="diag-desc">Blur your eyes. Does the whitespace feel consistent? Elements that belong together should be closer together. Related groups need more space between them than within them.</div>
+              </div>
+            </div>
+            <div class="diag-item">
+              <div class="diag-icon" style="background:var(--amber-bg);color:var(--amber)">3</div>
+              <div>
+                <div class="diag-title">Color check — does every color have a job?</div>
+                <div class="diag-desc">Point to each color and ask: what does this communicate? If the answer is "nothing" or "decoration", remove it. Red = error/danger only. Green = success only. Blue = primary actions only.</div>
+              </div>
+            </div>
+            <div class="diag-item">
+              <div class="diag-icon" style="background:var(--purple-bg);color:var(--purple)">4</div>
+              <div>
+                <div class="diag-title">Consistency check — are same elements styled the same?</div>
+                <div class="diag-desc">Find all buttons, all inputs, all cards, all headings. Do they match? One inconsistency breaks the whole design. Inconsistency signals "someone wasn't paying attention."</div>
+              </div>
+            </div>
+            <div class="diag-item">
+              <div class="diag-icon" style="background:var(--teal-bg);color:var(--teal)">5</div>
+              <div>
+                <div class="diag-title">Contrast check — is all text readable?</div>
+                <div class="diag-desc">Gray text on white background is the #1 accessibility failure. Check: body text on background (4.5:1 minimum), placeholder text, disabled states, small text. Use the WebAIM contrast checker.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <hr class="div">
+
+        <div class="exercise">
+          <div class="exercise-label">✏ Workshop Exercise 1 — 15 minutes</div>
+          <div class="exercise-title">Diagnose a Real UI</div>
+          <div class="exercise-desc">Open any app your team has built (internal tool, dashboard, form). Apply the 5-point checklist. Each person identifies 3 problems and writes down which of the 4 root causes each one falls under.</div>
+          <div class="exercise-steps">
+            <div class="ex-step"><span class="ex-n">1</span> Open your app — pick a screen with a form or a list</div>
+            <div class="ex-step"><span class="ex-n">2</span> Run all 5 checklist points silently (3 minutes)</div>
+            <div class="ex-step"><span class="ex-n">3</span> Write down 3 problems you found and which root cause each one is</div>
+            <div class="ex-step"><span class="ex-n">4</span> Share with the group — compare what different people noticed</div>
+          </div>
+        </div>
+
+        <div class="discussion">
+          <div class="discussion-label">💬 Discussion Questions</div>
+          <div class="disc-q">Which of the 4 root causes came up most often in the exercise? Why do you think developers fall into that pattern?</div>
+          <div class="disc-q">What's the fastest single change you could make right now that would most improve one of your screens?</div>
+        </div> -->
+
+        <div class="res-label">📚 Session 1 Resources</div>
         <div class="resources">
-          <a class="res-link yt" href="https://www.youtube.com/watch?v=yNDkFXs7OMo" target="_blank"><span class="res-icon">▶</span> Design Principles for Devs — Fireship</a>
-          <a class="res-link yt" href="https://www.youtube.com/watch?v=_Hp_dI0__qY" target="_blank"><span class="res-icon">▶</span> UI Design Fundamentals — Google</a>
-          <a class="res-link doc" href="https://m3.material.io/foundations/design-tokens/overview" target="_blank"><span class="res-icon">◈</span> Material Design Tokens</a>
+          <a class="res-link yt" href="https://www.youtube.com/watch?v=yNDkFXs7OMo" target="_blank"><span class="res-icon">▶</span> Design Principles for Developers — Fireship</a>
+          <a class="res-link yt" href="https://www.youtube.com/watch?v=9EPTPWKUKOV" target="_blank"><span class="res-icon">▶</span> The Hierarchy of UI Design</a>
           <a class="res-link doc" href="https://www.w3.org/WAI/WCAG21/quickref/#contrast-minimum" target="_blank"><span class="res-icon">◈</span> WCAG Contrast Guide</a>
-          <a class="res-link read" href="https://every-layout.dev/" target="_blank"><span class="res-icon">✦</span> Every Layout (free book)</a>
-        </div>
-
-      </div>
-    </details>
-
-    <!-- ─── PHASE 2 ─── -->
-    <details class="phase p2" id="p2">
-      <summary class="phase-header">
-        <div class="phase-num">2</div>
-        <div class="phase-meta">
-          <div class="phase-title">CSS Core — Design-Driven</div>
-          <div class="phase-time">60 min · Properties that actually shape user experience</div>
-        </div>
-        <span class="phase-badge">CSS</span>
-        <span class="phase-arrow">▼</span>
-      </summary>
-      <div class="phase-body">
-
-        <div class="section">
-          <div class="section-label">Typography (20 min) — Most Impactful, Most Ignored</div>
-          <div class="tags">
-            <span class="tag key">font-size + modular scale (1.25× ratio)</span>
-            <span class="tag key">line-height: 1.5–1.7 for body text</span>
-            <span class="tag key">font-weight: 400 / 500 / 700 only</span>
-            <span class="tag">letter-spacing for headings</span>
-            <span class="tag">max-width: 65ch for readability</span>
-          </div>
-          <div class="tip">Use a modular type scale: 12, 14, 16, 20, 24, 32, 48px. Never use arbitrary sizes like 17px or 23px — it breaks visual rhythm.</div>
-        </div>
-
-        <hr class="div">
-
-        <div class="section">
-          <div class="section-label">Color & Contrast (15 min)</div>
-          <div class="tags">
-            <span class="tag key">CSS custom properties (--color-primary)</span>
-            <span class="tag key">opacity vs rgba — know the difference</span>
-            <span class="tag warn">4.5:1 contrast ratio minimum (WCAG AA)</span>
-            <span class="tag">color-scheme: light dark</span>
-          </div>
-        </div>
-
-        <hr class="div">
-
-        <div class="section">
-          <div class="section-label">Spacing System (15 min) — Backbone of Clean Design</div>
-          <div class="tags">
-            <span class="tag key">4px base unit scale (4, 8, 12, 16, 24, 32, 48, 64)</span>
-            <span class="tag key">margin vs padding — purpose matters</span>
-            <span class="tag">gap over margin in flex/grid contexts</span>
-            <span class="tag">box-sizing: border-box everywhere</span>
-          </div>
-          <div class="tip">Proximity = relationship. Elements that belong together should be closer to each other than to unrelated elements. This is pure CSS margin, but it communicates meaning.</div>
-        </div>
-
-        <hr class="div">
-
-        <div class="section">
-          <div class="section-label">Layout (10 min)</div>
-          <div class="tags">
-            <span class="tag key">Flexbox for 1D layouts (row or column)</span>
-            <span class="tag key">Grid for 2D layouts (cards, full pages)</span>
-            <span class="tag">align-items / justify-content</span>
-            <span class="tag">min-width: 0 in grid children</span>
-          </div>
-        </div>
-
-        <hr class="div">
-
-        <div class="res-label">📚 Resources for Phase 2 — CSS</div>
-        <div class="resources">
-          <a class="res-link yt" href="https://www.youtube.com/watch?v=1Rs2ND1ryYc" target="_blank"><span class="res-icon">▶</span> CSS Flexbox in 20 min — Traversy</a>
-          <a class="res-link yt" href="https://www.youtube.com/watch?v=EiNiSFIPIQE" target="_blank"><span class="res-icon">▶</span> CSS Grid Crash Course — Traversy</a>
-          <a class="res-link yt" href="https://www.youtube.com/watch?v=ouncVBiye_M" target="_blank"><span class="res-icon">▶</span> CSS Typography — Kevin Powell</a>
-          <a class="res-link doc" href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout" target="_blank"><span class="res-icon">◈</span> MDN Flexbox Docs</a>
-          <a class="res-link doc" href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout" target="_blank"><span class="res-icon">◈</span> MDN Grid Layout Docs</a>
-          <a class="res-link read" href="https://type-scale.com/" target="_blank"><span class="res-icon">✦</span> Type Scale Tool</a>
-          <a class="res-link read" href="https://flexboxfroggy.com/" target="_blank"><span class="res-icon">✦</span> Flexbox Froggy (practice game)</a>
-          <a class="res-link read" href="https://cssgridgarden.com/" target="_blank"><span class="res-icon">✦</span> Grid Garden (practice game)</a>
-        </div>
-
-      </div>
-    </details>
-
-    <!-- ─── PHASE 3 ─── -->
-    <details class="phase p3" id="p3">
-      <summary class="phase-header">
-        <div class="phase-num">3</div>
-        <div class="phase-meta">
-          <div class="phase-title">Bootstrap 5 — Design System Thinking</div>
-          <div class="phase-time">60 min · Learning the system, not just the classes</div>
-        </div>
-        <span class="phase-badge">Bootstrap</span>
-        <span class="phase-arrow">▼</span>
-      </summary>
-      <div class="phase-body">
-
-        <div class="section">
-          <div class="section-label">The Design Language Bootstrap Gives You</div>
-          <div class="tags">
-            <span class="tag key">$spacer = 1rem (8-step spacing scale)</span>
-            <span class="tag key">6-level heading scale (h1–h6)</span>
-            <span class="tag key">Semantic color tokens (primary, danger, success…)</span>
-            <span class="tag">12-column grid system</span>
-            <span class="tag">5 breakpoints: sm, md, lg, xl, xxl</span>
-          </div>
-          <div class="tip success">Bootstrap's value isn't the classes — it's the pre-made design decisions: consistent 4px spacing, accessible components, mobile-first layout. Understand the decision, then use the class.</div>
-        </div>
-
-        <hr class="div">
-
-        <div class="section">
-          <div class="section-label">User-Friendly Patterns in Bootstrap</div>
-          <div class="tags">
-            <span class="tag ok">Buttons: always visible focus ring (.btn)</span>
-            <span class="tag ok">Form labels: never remove — use .form-label</span>
-            <span class="tag ok">Alerts: color + icon + text, never color alone</span>
-            <span class="tag ok">Disabled vs loading states built-in</span>
-          </div>
-        </div>
-
-        <hr class="div">
-
-        <div class="section">
-          <div class="section-label">Common Bootstrap Mistakes to Avoid</div>
-          <div class="tags">
-            <span class="tag warn">Over-using .container (not every div needs one)</span>
-            <span class="tag warn">Mixing Bootstrap colors with custom hex values</span>
-            <span class="tag bad">Using btn-danger for non-destructive actions</span>
-            <span class="tag bad">Removing outline: none without a replacement</span>
-          </div>
-        </div>
-
-        <hr class="div">
-
-        <div class="res-label">📚 Resources for Phase 3 — Bootstrap 5</div>
-        <div class="resources">
-          <a class="res-link yt" href="https://www.youtube.com/watch?v=-qfEOE4vtxE" target="_blank"><span class="res-icon">▶</span> Bootstrap 5 Crash Course — Traversy</a>
-          <a class="res-link yt" href="https://www.youtube.com/watch?v=Jyvffr3aCp0" target="_blank"><span class="res-icon">▶</span> Bootstrap 5 Full Course — freeCodeCamp</a>
-          <a class="res-link doc" href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" target="_blank"><span class="res-icon">◈</span> Bootstrap 5 Official Docs</a>
-          <a class="res-link doc" href="https://getbootstrap.com/docs/5.3/utilities/spacing/" target="_blank"><span class="res-icon">◈</span> Bootstrap Spacing Utilities</a>
-          <a class="res-link doc" href="https://getbootstrap.com/docs/5.3/layout/grid/" target="_blank"><span class="res-icon">◈</span> Bootstrap Grid System</a>
-          <a class="res-link read" href="https://bootstrap.build/app" target="_blank"><span class="res-icon">✦</span> Bootstrap Theme Builder</a>
-        </div>
-
-      </div>
-    </details>
-
-    <!-- ─── PHASE 4 ─── -->
-    <details class="phase p4" id="p4">
-      <summary class="phase-header">
-        <div class="phase-num">4</div>
-        <div class="phase-meta">
-          <div class="phase-title">Tailwind CSS — Utility-First Design Thinking</div>
-          <div class="phase-time">75 min · Composing design at the class level</div>
-        </div>
-        <span class="phase-badge">Tailwind</span>
-        <span class="phase-arrow">▼</span>
-      </summary>
-      <div class="phase-body">
-
-        <div class="section">
-          <div class="section-label">The Mental Model Shift</div>
-          <div class="tags">
-            <span class="tag key">No component classes — compose from utilities</span>
-            <span class="tag key">Design token scale built-in (text-sm, p-4, gap-6)</span>
-            <span class="tag key">Responsive prefix: sm: md: lg: xl:</span>
-            <span class="tag">State prefix: hover: focus: active: disabled:</span>
-          </div>
-          <div class="tip">Tailwind forces you to think in design tokens. <code>text-base</code> = 16px, <code>p-4</code> = 16px, <code>gap-6</code> = 24px. The scale IS the language. Never hardcode px values.</div>
-        </div>
-
-        <hr class="div">
-
-        <div class="section">
-          <div class="section-label">Typography Utilities (Design-Critical)</div>
-          <div class="tags">
-            <span class="tag key">text-sm / base / lg / xl / 2xl</span>
-            <span class="tag key">font-medium / font-semibold</span>
-            <span class="tag key">leading-relaxed / leading-tight</span>
-            <span class="tag">tracking-wide for headings</span>
-            <span class="tag">max-w-prose for body text</span>
-          </div>
-        </div>
-
-        <hr class="div">
-
-        <div class="section">
-          <div class="section-label">Color in Tailwind — Use the Palette, Not Custom Values</div>
-          <div class="tags">
-            <span class="tag key">text-gray-900 / text-gray-500 (hierarchy)</span>
-            <span class="tag key">bg-blue-50 + text-blue-700 (semantic pairing)</span>
-            <span class="tag warn">Never use text-black for body (use text-gray-800)</span>
-            <span class="tag warn">Avoid mixing Tailwind palette with custom hex</span>
-          </div>
-        </div>
-
-        <hr class="div">
-
-        <div class="section">
-          <div class="section-label">UX Patterns Unique to Tailwind</div>
-          <div class="tags">
-            <span class="tag ok">ring-* for focus (ring-2 ring-blue-500 ring-offset-2)</span>
-            <span class="tag ok">transition-all duration-200 ease-in-out</span>
-            <span class="tag ok">opacity-50 cursor-not-allowed for disabled state</span>
-            <span class="tag ok">sr-only for screen reader labels</span>
-          </div>
-        </div>
-
-        <hr class="div">
-
-        <div class="res-label">📚 Resources for Phase 4 — Tailwind CSS</div>
-        <div class="resources">
-          <a class="res-link yt" href="https://www.youtube.com/watch?v=pfaSUYaSgRo" target="_blank"><span class="res-icon">▶</span> Tailwind in 100 Seconds — Fireship</a>
-          <a class="res-link yt" href="https://www.youtube.com/watch?v=UBOj6rqRUME" target="_blank"><span class="res-icon">▶</span> Tailwind Crash Course — Traversy</a>
-          <a class="res-link yt" href="https://www.youtube.com/watch?v=lZp4salRFFc" target="_blank"><span class="res-icon">▶</span> Tailwind Best Practices — Kevin Powell</a>
-          <a class="res-link doc" href="https://tailwindcss.com/docs/utility-first" target="_blank"><span class="res-icon">◈</span> Tailwind Official Docs</a>
-          <a class="res-link doc" href="https://tailwindcss.com/docs/customizing-colors" target="_blank"><span class="res-icon">◈</span> Tailwind Color System</a>
-          <a class="res-link doc" href="https://tailwindcss.com/docs/responsive-design" target="_blank"><span class="res-icon">◈</span> Responsive Design in Tailwind</a>
-          <a class="res-link read" href="https://tailwindui.com/components" target="_blank"><span class="res-icon">✦</span> Tailwind UI (free previews)</a>
-          <a class="res-link read" href="https://play.tailwindcss.com/" target="_blank"><span class="res-icon">✦</span> Tailwind Playground</a>
-        </div>
-
-      </div>
-    </details>
-
-    <!-- ─── PHASE 5 ─── -->
-    <details class="phase p5" id="p5">
-      <summary class="phase-header">
-        <div class="phase-num">5</div>
-        <div class="phase-meta">
-          <div class="phase-title">User-Friendly Design — Rules for Every Change</div>
-          <div class="phase-time">60 min · Before you override any style, check these</div>
-        </div>
-        <span class="phase-badge">UX Rules</span>
-        <span class="phase-arrow">▼</span>
-      </summary>
-      <div class="phase-body">
-
-        <div class="section">
-          <div class="section-label">Accessibility Checklist — Non-Negotiable</div>
-          <ul class="checklist">
-            <li><span class="check-icon">!</span> Focus ring must always be visible — never use <code>outline: none</code> alone without a custom replacement</li>
-            <li><span class="check-icon">!</span> Color alone must never convey meaning — always pair with text or an icon</li>
-            <li><span class="check-icon">!</span> Minimum touch target: 44 × 44px for any interactive element on mobile</li>
-            <li><span class="check-icon">!</span> All meaningful images need descriptive alt text</li>
-            <li><span class="check-icon">!</span> Form inputs must have visible, associated labels — never rely on placeholder text alone</li>
-          </ul>
-        </div>
-
-        <hr class="div">
-
-        <div class="section">
-          <div class="section-label">Feedback & States — UX Non-Negotiables</div>
-          <div class="tags">
-            <span class="tag key">hover state (cursor change + visual feedback)</span>
-            <span class="tag key">loading state (spinner or skeleton screen)</span>
-            <span class="tag key">error state (clear message, not just red color)</span>
-            <span class="tag key">empty state (guide the user to action)</span>
-            <span class="tag ok">success state</span>
-            <span class="tag">disabled state</span>
-          </div>
-        </div>
-
-        <hr class="div">
-
-        <div class="section">
-          <div class="section-label">Performance-Related Design Choices</div>
-          <div class="tags">
-            <span class="tag ok">will-change: transform (only when animating)</span>
-            <span class="tag ok">transform over position changes in animations</span>
-            <span class="tag ok">opacity over display: none for transitions</span>
-            <span class="tag warn">Avoid animating box-shadow — use opacity instead</span>
-          </div>
-          <div class="tip warn">CSS transitions on <strong>transform</strong> and <strong>opacity</strong> run on the GPU — smooth. Transitions on width, height, top, or margin trigger layout recalculation — janky. Always prefer the GPU path.</div>
-        </div>
-
-        <hr class="div">
-
-        <div class="section">
-          <div class="section-label">The Golden Rule Before Any Style Change</div>
-          <div class="golden">
-            Ask: <strong>Who is this for?</strong> Is it solving a user problem — clarity, speed, ease — or is it just aesthetics? If you can't answer <em>"this helps the user because…"</em>, don't change it.
-          </div>
-        </div>
-
-        <hr class="div">
-
-        <div class="res-label">📚 Resources for Phase 5 — UX & Accessibility</div>
-        <div class="resources">
-          <a class="res-link yt" href="https://www.youtube.com/watch?v=1A6SrPwmGpg" target="_blank"><span class="res-icon">▶</span> Web Accessibility Intro — Google</a>
-          <a class="res-link yt" href="https://www.youtube.com/watch?v=qr0ujkLLgmE" target="_blank"><span class="res-icon">▶</span> CSS Animation Performance — Chrome</a>
-          <a class="res-link doc" href="https://web.dev/learn/accessibility/" target="_blank"><span class="res-icon">◈</span> web.dev Accessibility Course</a>
-          <a class="res-link doc" href="https://web.dev/articles/animations-guide" target="_blank"><span class="res-icon">◈</span> High Performance CSS Animations</a>
-          <a class="res-link doc" href="https://www.a11yproject.com/checklist/" target="_blank"><span class="res-icon">◈</span> A11y Project Checklist</a>
           <a class="res-link read" href="https://webaim.org/resources/contrastchecker/" target="_blank"><span class="res-icon">✦</span> Contrast Checker Tool</a>
-          <a class="res-link read" href="https://uxdesign.cc/ui-cheat-sheets-buttons-7329ed9d6112" target="_blank"><span class="res-icon">✦</span> UI States Cheat Sheet</a>
+          <a class="res-link read" href="https://goodui.org/" target="_blank"><span class="res-icon">✦</span> GoodUI — A/B Tested Patterns</a>
         </div>
 
       </div>
     </details>
 
-    <!-- PRACTICE PROJECT -->
-    <div class="practice" id="practice">
-      <div class="practice-title">🧪 Practice Project — <span>Do This After All 5 Phases</span></div>
-      <p>Build one UI component three ways: a <strong>product card</strong>. First in plain CSS, then Bootstrap, then Tailwind. Same design, three tools. You'll immediately feel the difference in workflow and design constraint — and understand why each framework makes the choices it does.</p>
-      <div class="resources" style="margin-top:16px">
-        <a class="res-link read" href="https://www.frontendmentor.io/challenges?difficulty=1" target="_blank"><span class="res-icon">✦</span> Frontend Mentor Challenges (free)</a>
-        <a class="res-link read" href="https://codepen.io/" target="_blank"><span class="res-icon">✦</span> CodePen (quick prototyping)</a>
-        <a class="res-link read" href="https://developer.mozilla.org/en-US/play" target="_blank"><span class="res-icon">✦</span> MDN Playground</a>
+    <!-- ══════════════════════════════
+         SESSION 2
+    ══════════════════════════════ -->
+    <details class="session sess2" id="s2">
+      <summary class="session-header">
+        <div class="sess-num">
+          <span class="num">2</span>
+          <span class="lbl">Session</span>
+        </div>
+        <div class="sess-meta">
+          <div class="sess-title">AI Tools for UI Design — What Each Does & When</div>
+          <div class="sess-sub">Map the AI landscape and run your first live AI UI generation</div>
+        </div>
+        <span class="sess-tag">60 min</span>
+        <span class="sess-arrow">▼</span>
+      </summary>
+      <div class="session-body">
+
+        <div class="facilitator">
+          <strong>Facilitator note:</strong> Do a live demo during this session — open Claude or ChatGPT and build a component together using the prompt templates. Participants follow along on their own machines. Real-time iteration shows the AI conversation loop in action.
+        </div>
+
+        <div class="sec">
+          <div class="sec-label">Learning Outcomes</div>
+          <div class="outcomes-row">
+            <div class="lo-card"><div class="lo-icon">🗺</div><div class="lo-text">Know which AI tool to use for which task</div></div>
+            <div class="lo-card"><div class="lo-icon">⚡</div><div class="lo-text">Generate a real UI component with AI in under 5 min</div></div>
+            <div class="lo-card"><div class="lo-icon">🔍</div><div class="lo-text">Review AI output critically for design quality</div></div>
+          </div>
+        </div>
+
+        <hr class="div">
+
+        <div class="sec">
+          <div class="sec-label">The AI Tool Map — Your Team Already Has These</div>
+          <div class="tool-grid">
+            <div class="tool-card">
+              <div class="tool-name">Claude (Anthropic)</div>
+              <div class="tool-role">Best for: Strategy + Code</div>
+              <div class="tool-desc">Excellent at understanding design context, explaining why a design decision is wrong, and generating complete component code. Great for iterating and getting UX feedback.</div>
+              <span class="tool-badge" style="background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-bd)">Claude.ai</span>
+            </div>
+            <div class="tool-card">
+              <div class="tool-name">ChatGPT (OpenAI)</div>
+              <div class="tool-role">Best for: Broad UI help</div>
+              <div class="tool-desc">Strong general-purpose UI code generation. With GPT-4o, can also analyze screenshots and suggest visual improvements. Good for layout planning and system design decisions.</div>
+              <span class="tool-badge" style="background:var(--teal-bg);color:var(--teal);border:1px solid var(--teal-bd)">ChatGPT.com</span>
+            </div>
+            <div class="tool-card">
+              <div class="tool-name">Gemini (Google)</div>
+              <div class="tool-role">Best for: Google ecosystem</div>
+              <div class="tool-desc">Integrated into Google tools. Gemini 1.5 Pro is strong for design system generation and multi-file context. Good for teams working in Angular or Google Workspace.</div>
+              <span class="tool-badge" style="background:var(--purple-bg);color:var(--purple);border:1px solid var(--purple-bd)">Gemini.google.com</span>
+            </div>
+            <div class="tool-card">
+              <div class="tool-name">GitHub Copilot / Cursor</div>
+              <div class="tool-role">Best for: Editing existing code</div>
+              <div class="tool-desc">AI that works inside your IDE. Autocompletes CSS, refactors components, adds accessibility attributes inline. Best when you have existing code to improve, not generate from scratch.</div>
+              <span class="tool-badge" style="background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)">In your editor</span>
+            </div>
+            <div class="tool-card">
+              <div class="tool-name">v0 by Vercel</div>
+              <div class="tool-role">Best for: New components fast</div>
+              <div class="tool-desc">Describe a component → get React + Tailwind code instantly. Has a visual preview. Best for scaffolding new UI from a description when you don't want to start from blank CSS.</div>
+              <span class="tool-badge" style="background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-bd)">v0.dev</span>
+            </div>
+          </div>
+        </div>
+
+        <hr class="div">
+
+        <div class="sec">
+          <div class="sec-label">Which Tool for Which Task — Quick Decision Guide</div>
+          <div class="tags">
+            <span class="tag teal">Diagnose what's wrong with existing UI → Claude or ChatGPT (share screenshot)</span>
+            <span class="tag key">Build a new component from scratch → v0 or Claude</span>
+            <span class="tag ai">Edit/improve existing CSS or component → Copilot or Cursor</span>
+            <span class="tag ok">Plan a full page layout → Claude or Gemini</span>
+            <span class="tag warn">Design system decisions → Claude (best at explaining rationale)</span>
+          </div>
+        </div>
+
+        <hr class="div">
+
+        <div class="sec">
+          <div class="sec-label">Live Demo — The AI Review Loop (Do This Together)</div>
+          <div class="tip ai">This is the most important skill: using AI not just to generate, but to <strong>review and iterate</strong>. Most developers stop at the first output. The real power is in the conversation that follows.</div>
+
+          <div class="workflow" style="margin-top:18px">
+            <div class="wf-step">
+              <div class="wf-left">
+                <div class="wf-num" style="background:var(--teal-bg);color:var(--teal)">1</div>
+                <div class="wf-line"></div>
+              </div>
+              <div class="wf-content">
+                <div class="wf-title">Generate the component</div>
+                <div class="wf-desc">Use a detailed prompt. Specify framework, style, and use case.</div>
+                <div class="wf-prompt">Build a user profile card using HTML + CSS (no framework).
+Style: clean, light theme, minimal. For a B2B SaaS app.
+Include: avatar initials, full name, role, email, and an "Edit" button.
+Accessibility: focus ring on button, semantic HTML.</div>
+              </div>
+            </div>
+            <div class="wf-step">
+              <div class="wf-left">
+                <div class="wf-num" style="background:var(--purple-bg);color:var(--purple)">2</div>
+                <div class="wf-line"></div>
+              </div>
+              <div class="wf-content">
+                <div class="wf-title">Ask AI to review its own output</div>
+                <div class="wf-desc">Don't just accept — ask the AI to evaluate what it generated.</div>
+                <div class="wf-prompt">Now review the component you just built.
+Check: contrast ratios, spacing consistency, missing states (hover, focus),
+any accessibility issues, and whether it looks professional.
+List all problems with suggested fixes.</div>
+              </div>
+            </div>
+            <div class="wf-step">
+              <div class="wf-left">
+                <div class="wf-num" style="background:var(--green-bg);color:var(--green)">3</div>
+                <div class="wf-line"></div>
+              </div>
+              <div class="wf-content">
+                <div class="wf-title">Apply targeted fixes</div>
+                <div class="wf-desc">Give specific, named changes. Don't say "make it better."</div>
+                <div class="wf-prompt">Fix only these issues:
+1. Increase card padding from 12px to 20px
+2. The Edit button needs a hover state with a slight background change
+3. Make the role text muted (gray, not black)
+4. Add a subtle box-shadow: 0 1px 4px rgba(0,0,0,0.08)
+Keep everything else identical.</div>
+              </div>
+            </div>
+            <div class="wf-step">
+              <div class="wf-left">
+                <div class="wf-num" style="background:var(--blue-bg);color:var(--blue)">4</div>
+              </div>
+              <div class="wf-content">
+                <div class="wf-title">Apply the 5-point diagnostic from Session 1</div>
+                <div class="wf-desc">Run your own eyes over it before calling it done. Hierarchy, spacing, color, consistency, contrast.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <hr class="div">
+
+        <div class="exercise">
+          <div class="exercise-label">✏ Workshop Exercise 2 — 20 minutes</div>
+          <div class="exercise-title">Generate & Review a Component (Pairs)</div>
+          <div class="exercise-desc">In pairs, use Claude or ChatGPT to build a form component — a simple contact form. Then swap: your partner reviews your generated output using the 5-point checklist from Session 1 and identifies 3 improvements.</div>
+          <div class="exercise-steps">
+            <div class="ex-step"><span class="ex-n">1</span> Person A writes the generation prompt (5 min)</div>
+            <div class="ex-step"><span class="ex-n">2</span> Person B reviews the output with the 5-point checklist (5 min)</div>
+            <div class="ex-step"><span class="ex-n">3</span> Together, write the iteration prompt to fix the 3 problems (5 min)</div>
+            <div class="ex-step"><span class="ex-n">4</span> Share the before/after with the group — what changed? (5 min)</div>
+          </div>
+        </div>
+
+        <div class="discussion">
+          <div class="discussion-label">💬 Discussion Questions</div>
+          <div class="disc-q">What was different about the first AI output vs. the iterated version? What kind of changes had the biggest visual impact?</div>
+          <div class="disc-q">Which AI tool felt most natural for this kind of work? What would make you more likely to use it daily?</div>
+        </div> -->
+
+        <div class="res-label">📚 Session 2 Resources</div>
+        <div class="resources">
+          <a class="res-link yt" href="https://www.youtube.com/watch?v=3n2JkjXhOaY" target="_blank"><span class="res-icon">▶</span> v0 by Vercel — Full Demo</a>
+          <a class="res-link yt" href="https://www.youtube.com/watch?v=1yJ6pB6K7c4" target="_blank"><span class="res-icon">▶</span> Cursor AI Editor Guide</a>
+          <a class="res-link ai" href="https://claude.ai" target="_blank"><span class="res-icon">✦</span> Claude.ai</a>
+          <a class="res-link ai" href="https://v0.dev" target="_blank"><span class="res-icon">✦</span> v0.dev</a>
+          <a class="res-link ai" href="https://cursor.com" target="_blank"><span class="res-icon">✦</span> Cursor Editor</a>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- ══════════════════════════════
+         SESSION 3
+    ══════════════════════════════ -->
+    <details class="session sess3" id="s3">
+      <summary class="session-header">
+        <div class="sess-num">
+          <span class="num">3</span>
+          <span class="lbl">Session</span>
+        </div>
+        <div class="sess-meta">
+          <div class="sess-title">Prompting AI for Design — The Art of Getting Great Output</div>
+          <div class="sess-sub">From generic to production-quality: how you write the prompt changes everything</div>
+        </div>
+        <span class="sess-tag">60 min</span>
+        <span class="sess-arrow">▼</span>
+      </summary>
+      <div class="session-body">
+
+        <div class="facilitator">
+          <strong>Facilitator note:</strong> Run the weak vs. strong prompt comparison live. Use the same AI tool for both and project the results side by side. The visual difference makes a stronger argument than any explanation.
+        </div>
+
+        <div class="sec">
+          <div class="sec-label">The 5 Elements of a High-Quality UI Prompt</div>
+          <div class="diag-list">
+            <div class="diag-item">
+              <div class="diag-icon" style="background:var(--blue-bg);color:var(--blue)">1</div>
+              <div><div class="diag-title">Context — what is this, who uses it?</div><div class="diag-desc">"A login form for a B2B finance SaaS" produces better output than "a login form". AI needs to know the product category, user type, and tone.</div></div>
+            </div>
+            <div class="diag-item">
+              <div class="diag-icon" style="background:var(--teal-bg);color:var(--teal)">2</div>
+              <div><div class="diag-title">Framework — be exact, not vague</div><div class="diag-desc">"React + Tailwind CSS" not "React". "HTML + vanilla CSS (no frameworks)" not "HTML". Exact framework = exact output format.</div></div>
+            </div>
+            <div class="diag-item">
+              <div class="diag-icon" style="background:var(--purple-bg);color:var(--purple)">3</div>
+              <div><div class="diag-title">Visual style — give it a reference point</div><div class="diag-desc">"Clean, minimal, light theme, no gradients, flat design" or "Reference: Linear.app's UI style". AI has seen millions of UIs — give it a direction.</div></div>
+            </div>
+            <div class="diag-item">
+              <div class="diag-icon" style="background:var(--green-bg);color:var(--green)">4</div>
+              <div><div class="diag-title">Required states — list them explicitly</div><div class="diag-desc">Default, hover, focus, loading, error, disabled, success. AI will skip states you don't mention. Always list the ones you need.</div></div>
+            </div>
+            <div class="diag-item">
+              <div class="diag-icon" style="background:var(--amber-bg);color:var(--amber)">5</div>
+              <div><div class="diag-title">Constraints — what NOT to do</div><div class="diag-desc">"No external libraries", "no gradients", "no animations", "no shadows". Negative constraints are as important as positive ones — they prevent AI from defaulting to generic patterns.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="div">
+
+        <div class="sec">
+          <div class="sec-label">Prompt Templates — Copy, Adapt, Use</div>
+          <div class="prompt-grid">
+
+            <div class="pcard pc-blue">
+              <div class="pcard-head">🧱 New Component</div>
+              <div class="pcard-body">
+                <div class="pcard-desc">Use when building any individual UI component from scratch.</div>
+                <div class="prompt-box">Build a [component] using [React/HTML] + [Tailwind/CSS].
+Context: [app type], users are [who].
+Style: [clean/minimal/dark/colorful], [light/dark] theme.
+Include states: default, hover, focus, loading, error.
+Constraints: no external libs, accessible, mobile-first.
+Color: primary #[hex], border-radius: [value].</div>
+              </div>
+            </div>
+
+            <div class="pcard pc-teal">
+              <div class="pcard-head">🖥 Full Page Layout</div>
+              <div class="pcard-body">
+                <div class="pcard-desc">Use when designing an entire screen or view.</div>
+                <div class="prompt-box">Design a [page name] for a [app type] app.
+Users: [who, what they're trying to do].
+Key sections: [list sections — header, sidebar, main, etc].
+Framework: [React/HTML + Tailwind/Bootstrap].
+Layout: [grid/sidebar/full-width/split-panel].
+Tone: [professional/minimal/friendly].
+Mobile-first. No lorem ipsum — use realistic data.</div>
+              </div>
+            </div>
+
+            <div class="pcard pc-purple">
+              <div class="pcard-head">🔍 AI Design Review</div>
+              <div class="pcard-body">
+                <div class="pcard-desc">Paste your existing code and ask AI to audit it for design issues.</div>
+                <div class="prompt-box">Review this UI code for design quality issues.
+Check and report on:
+- Visual hierarchy (heading → subtext → body)
+- Spacing consistency (4px scale)
+- Color usage (each color has a semantic purpose)
+- Component consistency (buttons, inputs match)
+- Contrast ratios (WCAG AA: 4.5:1)
+- Missing interaction states
+List issues in order of visual impact. Suggest exact fixes.</div>
+              </div>
+            </div>
+
+            <div class="pcard pc-green">
+              <div class="pcard-head">♿ Accessibility Add-on</div>
+              <div class="pcard-body">
+                <div class="pcard-desc">Append this to any prompt to guarantee accessible output.</div>
+                <div class="prompt-box">Ensure full accessibility:
+- Visible focus ring on all interactive elements
+- Form inputs have <label> elements (not just placeholder)
+- Error messages use role="alert"
+- Contrast: body text 4.5:1, large text 3:1
+- Buttons have descriptive aria-label where icon-only
+- No info conveyed by color alone (add icon/text)
+- Touch targets minimum 44x44px</div>
+              </div>
+            </div>
+
+            <div class="pcard pc-amber">
+              <div class="pcard-head">🔄 Targeted Iteration</div>
+              <div class="pcard-body">
+                <div class="pcard-desc">Use after first generation to make specific, surgical improvements.</div>
+                <div class="prompt-box">Modify only these specific things in the code above:
+1. [Element]: change [property] from [old] to [new]
+2. [Element]: add [state/behavior]
+3. [Element]: increase/reduce [padding/size/weight]
+4. [Element]: replace [color] with [color or token]
+
+Do NOT change anything else. Keep all other styles identical.</div>
+              </div>
+            </div>
+
+            <div class="pcard pc-pink">
+              <div class="pcard-head">📱 Responsive Add-on</div>
+              <div class="pcard-body">
+                <div class="pcard-desc">Add to any prompt for proper responsive behavior.</div>
+                <div class="prompt-box">Make this fully responsive and mobile-first:
+- Mobile (default): single column, stack all elements
+- Tablet (md: 768px+): 2-column grid
+- Desktop (lg: 1024px+): [final layout]
+Navigation: hamburger on mobile, full nav on desktop.
+All buttons: min-height 44px on mobile.
+Font sizes: do not go below 14px on any breakpoint.</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <hr class="div">
+
+        <div class="sec">
+          <div class="sec-label">Do's and Don'ts — Prompting for UI</div>
+          <div class="do-dont">
+            <div class="dd-box dd-do">
+              <div class="dd-head">✓ Do This</div>
+              <div class="dd-body">
+                <ul>
+                  <li class="dd-item">Specify exact framework and CSS approach</li>
+                  <li class="dd-item">Describe who the users are and the app context</li>
+                  <li class="dd-item">List all states you need explicitly</li>
+                  <li class="dd-item">Build one component at a time, then iterate</li>
+                  <li class="dd-item">Reference real apps: "Like Linear.app style"</li>
+                  <li class="dd-item">Ask AI to explain design choices — learn from it</li>
+                  <li class="dd-item">Always run the 5-point checklist on AI output</li>
+                </ul>
+              </div>
+            </div>
+            <div class="dd-box dd-dont">
+              <div class="dd-head">✗ Avoid This</div>
+              <div class="dd-body">
+                <ul>
+                  <li class="dd-item">Vague style: "make it look modern/nice/clean"</li>
+                  <li class="dd-item">Asking for an entire app in one prompt</li>
+                  <li class="dd-item">Accepting first output without reviewing it</li>
+                  <li class="dd-item">Skipping accessibility requirements</li>
+                  <li class="dd-item">Using output without understanding what it does</li>
+                  <li class="dd-item">Asking AI "what's wrong?" without sharing the code</li>
+                  <li class="dd-item">Overriding an AI fix without asking why it was done</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <hr class="div">
+
+        <div class="exercise">
+          <div class="exercise-label">✏ Workshop Exercise 3 — 20 minutes</div>
+          <div class="exercise-title">The Weak Prompt vs. Strong Prompt Challenge</div>
+          <div class="exercise-desc">Each person writes both a weak and a strong prompt for the same component — a data table with sorting. Generate both with Claude or ChatGPT. Compare the outputs side by side. Then write the iteration prompt to get it to production quality.</div>
+          <div class="exercise-steps">
+            <div class="ex-step"><span class="ex-n">1</span> Write a weak prompt (under 10 words) → generate (2 min)</div>
+            <div class="ex-step"><span class="ex-n">2</span> Write a strong prompt using the 5-element template → generate (5 min)</div>
+            <div class="ex-step"><span class="ex-n">3</span> Compare outputs — what changed? (3 min)</div>
+            <div class="ex-step"><span class="ex-n">4</span> Write an iteration prompt to fix the top 2 remaining issues (5 min)</div>
+            <div class="ex-step"><span class="ex-n">5</span> Share your strongest iteration prompt with the group (5 min)</div>
+          </div>
+        </div>
+
+        <div class="discussion">
+          <div class="discussion-label">💬 Discussion Questions</div>
+          <div class="disc-q">Which of the 5 prompt elements had the biggest impact on output quality in your experience?</div>
+          <div class="disc-q">How would you integrate this prompting workflow into your existing daily development process?</div>
+        </div> -->
+
+        <div class="res-label">📚 Session 3 Resources</div>
+        <div class="resources">
+          <a class="res-link doc" href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank"><span class="res-icon">◈</span> Claude Prompt Engineering Guide</a>
+          <a class="res-link doc" href="https://platform.openai.com/docs/guides/prompt-engineering" target="_blank"><span class="res-icon">◈</span> OpenAI Prompt Engineering</a>
+          <a class="res-link yt" href="https://www.youtube.com/watch?v=_ZL_moNDKUM" target="_blank"><span class="res-icon">▶</span> Prompt Engineering for Developers</a>
+          <a class="res-link ai" href="https://v0.dev" target="_blank"><span class="res-icon">✦</span> Practice on v0.dev</a>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- ══════════════════════════════
+         SESSION 4
+    ══════════════════════════════ -->
+    <details class="session sess4" id="s4">
+      <summary class="session-header">
+        <div class="sess-num">
+          <span class="num">4</span>
+          <span class="lbl">Session</span>
+        </div>
+        <div class="sess-meta">
+          <div class="sess-title">Designing a Full App with AI — The Complete Workflow</div>
+          <div class="sess-sub">A repeatable 6-step process from blank page to production-quality UI, solo</div>
+        </div>
+        <span class="sess-tag">60 min</span>
+        <span class="sess-arrow">▼</span>
+      </summary>
+      <div class="session-body">
+
+        <div class="facilitator">
+          <strong>Facilitator note:</strong> Walk through the 6 steps live on a real example — a task management dashboard. Have participants build their own version simultaneously. The exercise at the end ties together all 4 sessions.
+        </div>
+
+        <div class="sec">
+          <div class="sec-label">The 6-Step Design-Independent Workflow</div>
+          <div class="workflow">
+            <div class="wf-step">
+              <div class="wf-left">
+                <div class="wf-num" style="background:var(--blue-bg);color:var(--blue)">1</div>
+                <div class="wf-line"></div>
+              </div>
+              <div class="wf-content">
+                <div class="wf-title">Define — screens, users, core action</div>
+                <div class="wf-desc">Before any code or prompt, write down: what app, who uses it, what is the one thing they do most. AI amplifies your thinking — it can't replace it.</div>
+                <div class="wf-prompt">I'm building a [app type] for [users].
+Their primary goal is [main action].
+Help me identify the 3–5 screens this app needs
+and what each screen must accomplish.
+Output as a simple list.</div>
+              </div>
+            </div>
+            <div class="wf-step">
+              <div class="wf-left">
+                <div class="wf-num" style="background:var(--teal-bg);color:var(--teal)">2</div>
+                <div class="wf-line"></div>
+              </div>
+              <div class="wf-content">
+                <div class="wf-title">Design system — tokens before components</div>
+                <div class="wf-desc">Get consistent spacing, colors, and typography defined first. This is the one prompt that prevents all future inconsistency.</div>
+                <div class="wf-prompt">Create a CSS design token system for a [app type].
+Define: primary/secondary/neutral color palette,
+6-level type scale (px values), spacing scale (4px base),
+border-radius values, shadow definitions.
+Style: [minimal/professional/friendly].
+Output as CSS custom properties (:root { --color-... }).</div>
+              </div>
+            </div>
+            <div class="wf-step">
+              <div class="wf-left">
+                <div class="wf-num" style="background:var(--amber-bg);color:var(--amber)">3</div>
+                <div class="wf-line"></div>
+              </div>
+              <div class="wf-content">
+                <div class="wf-title">Layout shell — structure before content</div>
+                <div class="wf-desc">Build the skeleton of each page with empty placeholder containers before adding any real components or content.</div>
+                <div class="wf-prompt">Create the layout shell for the [page name] page.
+Layout: [top nav + sidebar + main content / other].
+Framework: [React/HTML + Tailwind/CSS custom properties from step 2].
+No real content yet — just named placeholder divs.
+Labels: .layout-header, .layout-sidebar, .layout-main, etc.
+Must be responsive: single column on mobile.</div>
+              </div>
+            </div>
+            <div class="wf-step">
+              <div class="wf-left">
+                <div class="wf-num" style="background:var(--purple-bg);color:var(--purple)">4</div>
+                <div class="wf-line"></div>
+              </div>
+              <div class="wf-content">
+                <div class="wf-title">Components — one at a time, always</div>
+                <div class="wf-desc">Never ask AI to build an entire page in one prompt. One component, one prompt, then review before moving to the next. This is how you stay in control.</div>
+                <div class="wf-prompt">Build a [component] using the design tokens from step 2.
+States: default, hover, focus, loading, error, disabled.
+Props: [list].
+Accessibility: visible focus ring, aria-labels, semantic HTML.
+Use the CSS variables I defined (--color-primary, etc).
+Output only the component — no page wrapper.</div>
+              </div>
+            </div>
+            <div class="wf-step">
+              <div class="wf-left">
+                <div class="wf-num" style="background:var(--green-bg);color:var(--green)">5</div>
+                <div class="wf-line"></div>
+              </div>
+              <div class="wf-content">
+                <div class="wf-title">Review — apply the 5-point checklist every time</div>
+                <div class="wf-desc">After each component, run your eyes through hierarchy, spacing, color, consistency, contrast. Fix before moving on. Don't build on top of broken foundations.</div>
+                <div class="wf-prompt">Review the component above using these 5 checks:
+1. Hierarchy: is reading order clear in 3 seconds?
+2. Spacing: are gaps consistent with a 4px scale?
+3. Color: does every color have a semantic purpose?
+4. Consistency: does it match the other components?
+5. Contrast: are all text/background combos at 4.5:1+?
+List issues with exact fixes. Be specific.</div>
+              </div>
+            </div>
+            <div class="wf-step">
+              <div class="wf-left">
+                <div class="wf-num" style="background:var(--pink-bg);color:var(--pink)">6</div>
+              </div>
+              <div class="wf-content">
+                <div class="wf-title">Audit — consistency pass across the whole app</div>
+                <div class="wf-desc">Once all screens are assembled, do one final scan for consistency. This is where good design systems pay off — if step 2 was done well, this pass is quick.</div>
+                <div class="wf-prompt">Audit these [N] screens for consistency:
+[paste or describe each screen briefly]
+Check for:
+- Mixed button styles or padding
+- Inconsistent heading sizes between pages
+- Different card border-radius values
+- Spacing that doesn't follow the 4px scale
+- Any new colors not in the original design tokens
+Prioritized list of fixes, most impactful first.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="div">
+
+        <div class="sec">
+          <div class="sec-label">When AI Output Is Bad — Fix It, Don't Restart</div>
+          <div class="tags">
+            <span class="tag bad">Output is generic → add reference apps and more style context to the prompt</span>
+            <span class="tag bad">Inconsistent spacing → paste your design tokens and say "use only these values"</span>
+            <span class="tag bad">Breaks on mobile → add the responsive add-on template from Session 3</span>
+            <span class="tag bad">Accessibility missing → append the accessibility add-on template</span>
+            <span class="tag bad">Code is too long / complex → ask for one piece at a time</span>
+            <span class="tag warn">Never regenerate from scratch if targeted iteration can fix it — you lose context</span>
+          </div>
+        </div>
+
+        <hr class="div">
+
+        <div class="exercise">
+          <div class="exercise-label">✏ Workshop Exercise 4 — 30 minutes (Capstone)</div>
+          <div class="exercise-title">Build a Screen End-to-End Using the Full Workflow</div>
+          <div class="exercise-desc">Using the 6-step workflow, build a single screen from scratch with Claude, ChatGPT, or Gemini. Choose your own app type. Apply Session 1's diagnostic before calling it done.</div>
+          <div class="exercise-steps">
+            <div class="ex-step"><span class="ex-n">1</span> Step 1–2: Define the screen + generate design tokens (5 min)</div>
+            <div class="ex-step"><span class="ex-n">2</span> Step 3: Generate the layout shell (5 min)</div>
+            <div class="ex-step"><span class="ex-n">3</span> Step 4: Build 2–3 key components one at a time (10 min)</div>
+            <div class="ex-step"><span class="ex-n">4</span> Step 5: Run the 5-point diagnostic and iterate (5 min)</div>
+            <div class="ex-step"><span class="ex-n">5</span> Share your final screen + one thing AI got wrong that you had to fix (5 min)</div>
+          </div>
+        </div>
+
+        <!-- <div class="discussion">
+          <div class="discussion-label">💬 Discussion Questions</div>
+          <div class="disc-q">Which step in the workflow gave you the most confidence? Which felt most uncertain?</div>
+          <div class="disc-q">How would you introduce this workflow to a teammate who's never used AI tools before? What's the one-sentence pitch?</div>
+          <div class="disc-q">What's one UI task in your current project you'll try this workflow on this week?</div>
+        </div> -->
+
+        <div class="res-label">📚 Session 4 Resources</div>
+        <div class="resources">
+          <a class="res-link yt" href="https://www.youtube.com/watch?v=zA3DFUQJqyE" target="_blank"><span class="res-icon">▶</span> Build a Full App with AI</a>
+          <a class="res-link yt" href="https://www.youtube.com/watch?v=rvoUFkSaFaQ" target="_blank"><span class="res-icon">▶</span> AI Workflow for UI Devs — Fireship</a>
+          <a class="res-link doc" href="https://web.dev/learn/accessibility/" target="_blank"><span class="res-icon">◈</span> web.dev Accessibility Course</a>
+          <a class="res-link read" href="https://www.frontendmentor.io/challenges?difficulty=1" target="_blank"><span class="res-icon">✦</span> Frontend Mentor (practice designs)</a>
+          <a class="res-link ai" href="https://bolt.new" target="_blank"><span class="res-icon">✦</span> Bolt.new — AI App Builder</a>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- ══ CHEATSHEET ══ -->
+    <div class="cheatsheet" id="cheatsheet">
+      <div class="cs-title">⚡ Quick Reference — Keep This Open While You Work</div>
+      <div class="cs-sub">The 6 most important prompts and checks, condensed for daily use</div>
+      <div class="cs-grid">
+        <div class="cs-card">
+          <div class="cs-head" style="color:#7eb8ff">5-Point UI Diagnostic</div>
+          <div class="cs-body">1. Hierarchy — readable in 3 sec?
+2. Spacing — consistent 4px rhythm?
+3. Color — every color has a job?
+4. Consistency — same = same?
+5. Contrast — 4.5:1 minimum?</div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-head" style="color:#7de8c8">Generate Component</div>
+          <div class="cs-body">Build a [component] using [framework].
+Context: [app], users: [who].
+Style: [minimal/clean], [light/dark].
+States: default, hover, focus,
+loading, error, disabled.
+Constraints: [no libs, accessible].</div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-head" style="color:#c8a8ff">AI Design Review</div>
+          <div class="cs-body">Review this UI for:
+- Visual hierarchy
+- Spacing (4px scale)
+- Color semantic purpose
+- Component consistency
+- WCAG AA contrast
+List issues, most impactful first.</div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-head" style="color:#a8e8b8">Targeted Iteration</div>
+          <div class="cs-body">Fix only these:
+1. [Element]: [change]
+2. [Element]: [change]
+3. [Element]: [change]
+
+Don't change anything else.</div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-head" style="color:#ffd080">Design Tokens First</div>
+          <div class="cs-body">Output as CSS :root {
+  --color-primary: #...;
+  --color-text: #...;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --radius-md: 8px;
+}</div>
+        </div>
+        <div class="cs-card">
+          <div class="cs-head" style="color:#ff9eb0">4 Root Causes of Bad UI</div>
+          <div class="cs-body">1. Inconsistent spacing
+   → 4px scale: 4,8,12,16,24,32
+2. No visual hierarchy
+   → max 3 font sizes/weights
+3. Too many colors
+   → 1 primary + 3 semantic
+4. Inconsistent components
+   → one style, use everywhere</div>
+        </div>
       </div>
     </div>
 
@@ -1090,11 +1974,16 @@
 </div>
 
 <script>
+  function toggleCheck(el) {
+    el.classList.toggle('done');
+    el.textContent = el.classList.contains('done') ? '✓' : '';
+  }
+
   const sections = document.querySelectorAll('[id]');
-  const navItems = document.querySelectorAll('.nav-item');
+  const navItems = document.querySelectorAll('.sb-item');
 
   function onScroll() {
-    let current = 'hero';
+    let current = 'hook';
     sections.forEach(s => {
       if (window.scrollY >= s.offsetTop - 100) current = s.id;
     });
