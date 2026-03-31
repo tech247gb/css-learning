@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Design Learning Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #f5f4f0;
+    --surface:   #ffffff;
+    --surface2:  #f0eeea;
+    --border:    #e2dfd8;
+    --border2:   #ccc9c0;
+    --text:      #1a1916;
+    --muted:     #6b6860;
+    --subtle:    #9b9890;
+
+    --blue:      #2563eb;
+    --blue-bg:   #eff4ff;
+    --blue-bd:   #bfcffb;
+
+    --green:     #0d7a55;
+    --green-bg:  #edfaf4;
+    --green-bd:  #9fe8cc;
+
+    --amber:     #92580a;
+    --amber-bg:  #fef7ec;
+    --amber-bd:  #f9d98c;
+
+    --red:       #c0392b;
+    --red-bg:    #fef2f2;
+    --red-bd:    #fcc9c9;
+
+    --purple:    #6d3fc4;
+    --purple-bg: #f4f0fd;
+    --purple-bd: #d1bbf9;
+
+    --sidebar-w: 270px;
+    --font-display: 'Syne', sans-serif;
+    --font-body:    'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.75;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* ═══════ SIDEBAR ═══════ */
+  .sidebar {
+    width: var(--sidebar-w);
+    flex-shrink: 0;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    z-index: 100;
+  }
+
+  .sidebar-brand {
+    padding: 28px 24px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .brand-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue);
+    background: var(--blue-bg);
+    border: 1px solid var(--blue-bd);
+    border-radius: 20px;
+    padding: 4px 11px;
+    margin-bottom: 14px;
+  }
+
+  .brand-pill::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--blue);
+    display: inline-block;
+  }
+
+  .sidebar-brand h2 {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .sidebar-brand p {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 5px;
+    line-height: 1.5;
+  }
+
+  .sidebar-nav { padding: 16px 12px; flex: 1; }
+
+  .nav-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--subtle);
+    padding: 0 10px;
+    margin-bottom: 6px;
+    margin-top: 16px;
+  }
+
+  .nav-label:first-child { margin-top: 0; }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.15s, color 0.15s;
+    margin-bottom: 2px;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+  }
+
+  .nav-item:hover { background: var(--surface2); color: var(--text); }
+  .nav-item.active { background: var(--blue-bg); color: var(--blue); }
+
+  .nav-dot {
+    width: 26px; height: 26px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: var(--font-display);
+    flex-shrink: 0;
+  }
+
+  .nd1 { background: var(--blue-bg);   color: var(--blue); }
+  .nd2 { background: var(--green-bg);  color: var(--green); }
+  .nd3 { background: var(--amber-bg);  color: var(--amber); }
+  .nd4 { background: var(--red-bg);    color: var(--red); }
+  .nd5 { background: var(--purple-bg); color: var(--purple); }
+
+  .nav-time { font-size: 12px; color: var(--subtle); }
+
+  .sidebar-footer {
+    padding: 16px 20px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--subtle);
+    line-height: 1.6;
+  }
+
+  /* ═══════ MAIN ═══════ */
+  .main {
+    margin-left: var(--sidebar-w);
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .topbar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .topbar-title {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    flex: 1;
+  }
+
+  .timeline-bar { display: flex; gap: 5px; }
+
+  .tblock {
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: var(--font-display);
+    white-space: nowrap;
+  }
+
+  .t1 { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-bd); }
+  .t2 { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-bd); }
+  .t3 { background: var(--amber-bg);  color: var(--amber);  border: 1px solid var(--amber-bd); }
+  .t4 { background: var(--red-bg);    color: var(--red);    border: 1px solid var(--red-bd); }
+  .t5 { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-bd); }
+
+  .content { padding: 48px; flex: 1; }
+
+  /* ═══════ HERO ═══════ */
+  .hero {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 48px 52px;
+    margin-bottom: 32px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 48px;
+    align-items: center;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.2vw, 2.8rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 em { color: var(--blue); font-style: normal; }
+
+  .hero-sub {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+
+  .hero-stats { display: flex; gap: 28px; flex-wrap: wrap; }
+
+  .stat { text-align: center; }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--blue);
+    line-height: 1;
+  }
+
+  .stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; font-weight: 500; }
+
+  .hero-phases { display: flex; flex-direction: column; gap: 8px; min-width: 210px; }
+
+  .hero-phase-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+  }
+
+  .hp-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .hp-text { font-size: 14px; font-weight: 500; color: var(--text); flex: 1; }
+  .hp-time { font-size: 13px; color: var(--muted); }
+
+  /* ═══════ PHASE CARDS ═══════ */
+  .phase {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    animation: fadeUp 0.4s ease both;
+    transition: box-shadow 0.2s;
+  }
+
+  .phase:hover { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+  .phase:nth-child(1) { animation-delay: 0.05s; }
+  .phase:nth-child(2) { animation-delay: 0.1s; }
+  .phase:nth-child(3) { animation-delay: 0.15s; }
+  .phase:nth-child(4) { animation-delay: 0.2s; }
+  .phase:nth-child(5) { animation-delay: 0.25s; }
+
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 22px 28px;
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+  }
+
+  .phase-header::-webkit-details-marker { display: none; }
+
+  .p1 .phase-header { border-left: 4px solid var(--blue); }
+  .p2 .phase-header { border-left: 4px solid var(--green); }
+  .p3 .phase-header { border-left: 4px solid var(--amber); }
+  .p4 .phase-header { border-left: 4px solid var(--red); }
+  .p5 .phase-header { border-left: 4px solid var(--purple); }
+
+  .phase-num {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  .p1 .phase-num { background: var(--blue-bg);   color: var(--blue); }
+  .p2 .phase-num { background: var(--green-bg);  color: var(--green); }
+  .p3 .phase-num { background: var(--amber-bg);  color: var(--amber); }
+  .p4 .phase-num { background: var(--red-bg);    color: var(--red); }
+  .p5 .phase-num { background: var(--purple-bg); color: var(--purple); }
+
+  .phase-meta { flex: 1; }
+
+  .phase-title {
+    font-family: var(--font-display);
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  .phase-time { font-size: 14px; color: var(--muted); margin-top: 3px; }
+
+  .phase-badge {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  .p1 .phase-badge { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-bd); }
+  .p2 .phase-badge { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-bd); }
+  .p3 .phase-badge { background: var(--amber-bg);  color: var(--amber);  border: 1px solid var(--amber-bd); }
+  .p4 .phase-badge { background: var(--red-bg);    color: var(--red);    border: 1px solid var(--red-bd); }
+  .p5 .phase-badge { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-bd); }
+
+  .phase-arrow {
+    color: var(--subtle);
+    font-size: 13px;
+    transition: transform 0.3s ease;
+    margin-left: 8px;
+  }
+
+  details[open] .phase-arrow { transform: rotate(180deg); }
+
+  .phase-body {
+    border-top: 1px solid var(--border);
+    padding: 28px 32px 32px 32px;
+  }
+
+  /* ═══════ INNER SECTIONS ═══════ */
+  .section { margin-bottom: 26px; }
+  .section:last-child { margin-bottom: 0; }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--subtle);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+
+  .tag {
+    font-size: 14px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border2);
+    color: var(--muted);
+    background: var(--surface2);
+    font-weight: 500;
+  }
+
+  .tag.key  { background: var(--blue-bg);   color: #1d4ed8;      border-color: var(--blue-bd); }
+  .tag.warn { background: var(--amber-bg);  color: var(--amber); border-color: var(--amber-bd); }
+  .tag.ok   { background: var(--green-bg);  color: var(--green); border-color: var(--green-bd); }
+  .tag.bad  { background: var(--red-bg);    color: var(--red);   border-color: var(--red-bd); }
+
+  .tip {
+    font-size: 15.5px;
+    color: #1e3a8a;
+    line-height: 1.7;
+    padding: 14px 18px;
+    background: var(--blue-bg);
+    border-radius: 10px;
+    border-left: 4px solid var(--blue);
+    margin-top: 12px;
+  }
+
+  .tip.warn    { background: var(--amber-bg); border-left-color: var(--amber); color: #4b3300; }
+  .tip.success { background: var(--green-bg); border-left-color: var(--green); color: #0a3d2a; }
+
+  .div { border: none; border-top: 1px solid var(--border); margin: 22px 0; }
+
+  .principles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .princ {
+    padding: 18px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+
+  .princ-name {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .princ-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  /* ═══════ RESOURCE LINKS ═══════ */
+  .res-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--subtle);
+    margin-top: 20px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .res-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .resources { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .res-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 9px 16px;
+    border-radius: 9px;
+    text-decoration: none;
+    transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+    border: 1px solid transparent;
+  }
+
+  .res-link:hover { transform: translateY(-1px); box-shadow: 0 3px 10px rgba(0,0,0,0.08); }
+
+  .res-link.yt   { background: #fff0f0; color: #b91c1c; border-color: #fcc9c9; }
+  .res-link.yt:hover { background: #fee2e2; }
+
+  .res-link.doc  { background: var(--blue-bg); color: var(--blue); border-color: var(--blue-bd); }
+  .res-link.doc:hover { background: #dbeafe; }
+
+  .res-link.read { background: var(--green-bg); color: var(--green); border-color: var(--green-bd); }
+  .res-link.read:hover { background: #d1fae5; }
+
+  .res-icon { font-size: 13px; }
+
+  /* golden rule */
+  .golden {
+    padding: 20px 24px;
+    background: linear-gradient(135deg, #eff4ff 0%, #f4f0fd 100%);
+    border: 1px solid var(--blue-bd);
+    border-radius: 14px;
+    margin-top: 14px;
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--text);
+  }
+
+  .golden strong { color: var(--blue); font-weight: 700; }
+
+  /* checklist */
+  .checklist { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 15.5px;
+    color: #7f1d1d;
+    line-height: 1.65;
+    padding: 12px 16px;
+    background: var(--red-bg);
+    border: 1px solid var(--red-bd);
+    border-radius: 10px;
+  }
+
+  .check-icon {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: #fee2e2;
+    border: 1.5px solid var(--red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--red);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  code {
+    font-size: 13.5px;
+    background: rgba(0,0,0,0.07);
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-family: 'Courier New', monospace;
+    color: var(--red);
+  }
+
+  /* practice card */
+  .practice {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--amber);
+    border-radius: 16px;
+    padding: 32px 36px;
+    margin-top: 24px;
+    animation: fadeUp 0.4s ease 0.3s both;
+  }
+
+  .practice-title {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+
+  .practice-title span { color: var(--amber); }
+
+  .practice > p {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 700px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ═══════ RESPONSIVE ═══════ */
+  @media (max-width: 960px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; }
+    .topbar { padding: 0 20px; }
+    .timeline-bar { display: none; }
+    .content { padding: 24px 20px; }
+    .hero { grid-template-columns: 1fr; padding: 28px 24px; gap: 28px; }
+    .hero-phases { display: none; }
+    .phase-body { padding: 20px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════ SIDEBAR ════════ -->
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-pill">4–5 hr session</div>
+    <h2>CSS Design<br>Learning Guide</h2>
+    <p>Freshers to mid-level · Design-first approach</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-label">Overview</div>
+    <a class="nav-item active" href="#hero">
+      <span class="nav-dot nd1" style="font-size:14px">⌂</span>
+      <span style="flex:1">Introduction</span>
+    </a>
+
+    <div class="nav-label">Phases</div>
+    <a class="nav-item" href="#p1">
+      <span class="nav-dot nd1">1</span>
+      <span style="flex:1">Design Language</span>
+      <span class="nav-time">45m</span>
+    </a>
+    <a class="nav-item" href="#p2">
+      <span class="nav-dot nd2">2</span>
+      <span style="flex:1">CSS Core</span>
+      <span class="nav-time">60m</span>
+    </a>
+    <a class="nav-item" href="#p3">
+      <span class="nav-dot nd3">3</span>
+      <span style="flex:1">Bootstrap 5</span>
+      <span class="nav-time">60m</span>
+    </a>
+    <a class="nav-item" href="#p4">
+      <span class="nav-dot nd4">4</span>
+      <span style="flex:1">Tailwind CSS</span>
+      <span class="nav-time">75m</span>
+    </a>
+    <a class="nav-item" href="#p5">
+      <span class="nav-dot nd5">5</span>
+      <span style="flex:1">UX Rules</span>
+      <span class="nav-time">60m</span>
+    </a>
+
+    <div class="nav-label">Wrap-up</div>
+    <a class="nav-item" href="#practice">
+      <span class="nav-dot" style="background:var(--amber-bg);color:var(--amber)">✦</span>
+      <span style="flex:1">Practice Project</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    Click any phase to expand.<br>All links open in a new tab.
+  </div>
+</aside>
+
+<!-- ════════ MAIN ════════ -->
+<div class="main">
+
+  <div class="topbar">
+    <div class="topbar-title">CSS, Bootstrap &amp; Tailwind · Design Guide</div>
+    <div class="timeline-bar">
+      <span class="tblock t1">Phase 1 · 45 min</span>
+      <span class="tblock t2">Phase 2 · 60 min</span>
+      <span class="tblock t3">Phase 3 · 60 min</span>
+      <span class="tblock t4">Phase 4 · 75 min</span>
+      <span class="tblock t5">Phase 5 · 60 min</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- HERO -->
+    <div class="hero" id="hero">
+      <div>
+        <h1>CSS, Bootstrap &amp; <em>Tailwind</em><br>Design Learning Guide</h1>
+        <p class="hero-sub">A structured 4–5 hour learning path from design language fundamentals to practical CSS frameworks — built for freshers and mid-level developers who already know basic CSS.</p>
+        <div class="hero-stats">
+          <div class="stat"><div class="stat-num">5</div><div class="stat-label">Phases</div></div>
+          <div class="stat"><div class="stat-num">4–5h</div><div class="stat-label">Total time</div></div>
+          <div class="stat"><div class="stat-num">30+</div><div class="stat-label">Resources</div></div>
+          <div class="stat"><div class="stat-num">3</div><div class="stat-label">Frameworks</div></div>
+        </div>
+      </div>
+      <div class="hero-phases">
+        <div class="hero-phase-row"><div class="hp-dot" style="background:var(--blue)"></div><div class="hp-text">Design Language</div><div class="hp-time">45m</div></div>
+        <div class="hero-phase-row"><div class="hp-dot" style="background:var(--green)"></div><div class="hp-text">CSS Core</div><div class="hp-time">60m</div></div>
+        <div class="hero-phase-row"><div class="hp-dot" style="background:var(--amber)"></div><div class="hp-text">Bootstrap 5</div><div class="hp-time">60m</div></div>
+        <div class="hero-phase-row"><div class="hp-dot" style="background:var(--red)"></div><div class="hp-text">Tailwind CSS</div><div class="hp-time">75m</div></div>
+        <div class="hero-phase-row"><div class="hp-dot" style="background:var(--purple)"></div><div class="hp-text">UX Rules</div><div class="hp-time">60m</div></div>
+      </div>
+    </div>
+
+    <!-- ─── PHASE 1 ─── -->
+    <details class="phase p1" id="p1" open>
+      <summary class="phase-header">
+        <div class="phase-num">1</div>
+        <div class="phase-meta">
+          <div class="phase-title">Design Language Fundamentals</div>
+          <div class="phase-time">45 min · Before writing a single line of CSS</div>
+        </div>
+        <span class="phase-badge">Start here</span>
+        <span class="phase-arrow">▼</span>
+      </summary>
+      <div class="phase-body">
+
+        <div class="section">
+          <div class="section-label">The 8 Pillars of Design Language</div>
+          <div class="tags">
+            <span class="tag key">Typography</span>
+            <span class="tag key">Color system</span>
+            <span class="tag key">Spacing scale</span>
+            <span class="tag key">Visual hierarchy</span>
+            <span class="tag">Contrast</span>
+            <span class="tag">Alignment</span>
+            <span class="tag">Proximity</span>
+            <span class="tag">Repetition</span>
+          </div>
+          <div class="tip">Study one real design system before coding: Tailwind's color palette, Google Material, or Apple HIG. Notice what they all share — a limited, repeatable set of choices, not infinite options.</div>
+        </div>
+
+        <hr class="div">
+
+        <div class="section">
+          <div class="section-label">Critical Questions Before Changing Any Style</div>
+          <div class="tags">
+            <span class="tag warn">Does this add noise or clarity?</span>
+            <span class="tag warn">Is contrast sufficient? (WCAG AA = 4.5:1)</span>
+            <span class="tag warn">Does it break visual hierarchy?</span>
+            <span class="tag warn">Is spacing consistent with the scale?</span>
+          </div>
+        </div>
+
+        <hr class="div">
+
+        <div class="section">
+          <div class="section-label">Core Design Principles (Always Apply)</div>
+          <div class="principles">
+            <div class="princ">
+              <div class="princ-name">Hierarchy first</div>
+              <div class="princ-desc">One dominant element per screen. Heading → subheading → body. Never make everything equally loud.</div>
+            </div>
+            <div class="princ">
+              <div class="princ-name">Whitespace = breathing room</div>
+              <div class="princ-desc">Empty space isn't waste — it directs attention and reduces cognitive load.</div>
+            </div>
+            <div class="princ">
+              <div class="princ-name">Color carries meaning</div>
+              <div class="princ-desc">Red = danger, green = success, primary = action. Never use color just for decoration.</div>
+            </div>
+            <div class="princ">
+              <div class="princ-name">Consistency over creativity</div>
+              <div class="princ-desc">Same element = same style, always. One button style, one card style, one input style.</div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="div">
+
+        <div class="res-label">📚 Resources for Phase 1</div>
+        <div class="resources">
+          <a class="res-link yt" href="https://www.youtube.com/watch?v=yNDkFXs7OMo" target="_blank"><span class="res-icon">▶</span> Design Principles for Devs — Fireship</a>
+          <a class="res-link yt" href="https://www.youtube.com/watch?v=_Hp_dI0__qY" target="_blank"><span class="res-icon">▶</span> UI Design Fundamentals — Google</a>
+          <a class="res-link doc" href="https://m3.material.io/foundations/design-tokens/overview" target="_blank"><span class="res-icon">◈</span> Material Design Tokens</a>
+          <a class="res-link doc" href="https://www.w3.org/WAI/WCAG21/quickref/#contrast-minimum" target="_blank"><span class="res-icon">◈</span> WCAG Contrast Guide</a>
+          <a class="res-link read" href="https://every-layout.dev/" target="_blank"><span class="res-icon">✦</span> Every Layout (free book)</a>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- ─── PHASE 2 ─── -->
+    <details class="phase p2" id="p2">
+      <summary class="phase-header">
+        <div class="phase-num">2</div>
+        <div class="phase-meta">
+          <div class="phase-title">CSS Core — Design-Driven</div>
+          <div class="phase-time">60 min · Properties that actually shape user experience</div>
+        </div>
+        <span class="phase-badge">CSS</span>
+        <span class="phase-arrow">▼</span>
+      </summary>
+      <div class="phase-body">
+
+        <div class="section">
+          <div class="section-label">Typography (20 min) — Most Impactful, Most Ignored</div>
+          <div class="tags">
+            <span class="tag key">font-size + modular scale (1.25× ratio)</span>
+            <span class="tag key">line-height: 1.5–1.7 for body text</span>
+            <span class="tag key">font-weight: 400 / 500 / 700 only</span>
+            <span class="tag">letter-spacing for headings</span>
+            <span class="tag">max-width: 65ch for readability</span>
+          </div>
+          <div class="tip">Use a modular type scale: 12, 14, 16, 20, 24, 32, 48px. Never use arbitrary sizes like 17px or 23px — it breaks visual rhythm.</div>
+        </div>
+
+        <hr class="div">
+
+        <div class="section">
+          <div class="section-label">Color & Contrast (15 min)</div>
+          <div class="tags">
+            <span class="tag key">CSS custom properties (--color-primary)</span>
+            <span class="tag key">opacity vs rgba — know the difference</span>
+            <span class="tag warn">4.5:1 contrast ratio minimum (WCAG AA)</span>
+            <span class="tag">color-scheme: light dark</span>
+          </div>
+        </div>
+
+        <hr class="div">
+
+        <div class="section">
+          <div class="section-label">Spacing System (15 min) — Backbone of Clean Design</div>
+          <div class="tags">
+            <span class="tag key">4px base unit scale (4, 8, 12, 16, 24, 32, 48, 64)</span>
+            <span class="tag key">margin vs padding — purpose matters</span>
+            <span class="tag">gap over margin in flex/grid contexts</span>
+            <span class="tag">box-sizing: border-box everywhere</span>
+          </div>
+          <div class="tip">Proximity = relationship. Elements that belong together should be closer to each other than to unrelated elements. This is pure CSS margin, but it communicates meaning.</div>
+        </div>
+
+        <hr class="div">
+
+        <div class="section">
+          <div class="section-label">Layout (10 min)</div>
+          <div class="tags">
+            <span class="tag key">Flexbox for 1D layouts (row or column)</span>
+            <span class="tag key">Grid for 2D layouts (cards, full pages)</span>
+            <span class="tag">align-items / justify-content</span>
+            <span class="tag">min-width: 0 in grid children</span>
+          </div>
+        </div>
+
+        <hr class="div">
+
+        <div class="res-label">📚 Resources for Phase 2 — CSS</div>
+        <div class="resources">
+          <a class="res-link yt" href="https://www.youtube.com/watch?v=1Rs2ND1ryYc" target="_blank"><span class="res-icon">▶</span> CSS Flexbox in 20 min — Traversy</a>
+          <a class="res-link yt" href="https://www.youtube.com/watch?v=EiNiSFIPIQE" target="_blank"><span class="res-icon">▶</span> CSS Grid Crash Course — Traversy</a>
+          <a class="res-link yt" href="https://www.youtube.com/watch?v=ouncVBiye_M" target="_blank"><span class="res-icon">▶</span> CSS Typography — Kevin Powell</a>
+          <a class="res-link doc" href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout" target="_blank"><span class="res-icon">◈</span> MDN Flexbox Docs</a>
+          <a class="res-link doc" href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout" target="_blank"><span class="res-icon">◈</span> MDN Grid Layout Docs</a>
+          <a class="res-link read" href="https://type-scale.com/" target="_blank"><span class="res-icon">✦</span> Type Scale Tool</a>
+          <a class="res-link read" href="https://flexboxfroggy.com/" target="_blank"><span class="res-icon">✦</span> Flexbox Froggy (practice game)</a>
+          <a class="res-link read" href="https://cssgridgarden.com/" target="_blank"><span class="res-icon">✦</span> Grid Garden (practice game)</a>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- ─── PHASE 3 ─── -->
+    <details class="phase p3" id="p3">
+      <summary class="phase-header">
+        <div class="phase-num">3</div>
+        <div class="phase-meta">
+          <div class="phase-title">Bootstrap 5 — Design System Thinking</div>
+          <div class="phase-time">60 min · Learning the system, not just the classes</div>
+        </div>
+        <span class="phase-badge">Bootstrap</span>
+        <span class="phase-arrow">▼</span>
+      </summary>
+      <div class="phase-body">
+
+        <div class="section">
+          <div class="section-label">The Design Language Bootstrap Gives You</div>
+          <div class="tags">
+            <span class="tag key">$spacer = 1rem (8-step spacing scale)</span>
+            <span class="tag key">6-level heading scale (h1–h6)</span>
+            <span class="tag key">Semantic color tokens (primary, danger, success…)</span>
+            <span class="tag">12-column grid system</span>
+            <span class="tag">5 breakpoints: sm, md, lg, xl, xxl</span>
+          </div>
+          <div class="tip success">Bootstrap's value isn't the classes — it's the pre-made design decisions: consistent 4px spacing, accessible components, mobile-first layout. Understand the decision, then use the class.</div>
+        </div>
+
+        <hr class="div">
+
+        <div class="section">
+          <div class="section-label">User-Friendly Patterns in Bootstrap</div>
+          <div class="tags">
+            <span class="tag ok">Buttons: always visible focus ring (.btn)</span>
+            <span class="tag ok">Form labels: never remove — use .form-label</span>
+            <span class="tag ok">Alerts: color + icon + text, never color alone</span>
+            <span class="tag ok">Disabled vs loading states built-in</span>
+          </div>
+        </div>
+
+        <hr class="div">
+
+        <div class="section">
+          <div class="section-label">Common Bootstrap Mistakes to Avoid</div>
+          <div class="tags">
+            <span class="tag warn">Over-using .container (not every div needs one)</span>
+            <span class="tag warn">Mixing Bootstrap colors with custom hex values</span>
+            <span class="tag bad">Using btn-danger for non-destructive actions</span>
+            <span class="tag bad">Removing outline: none without a replacement</span>
+          </div>
+        </div>
+
+        <hr class="div">
+
+        <div class="res-label">📚 Resources for Phase 3 — Bootstrap 5</div>
+        <div class="resources">
+          <a class="res-link yt" href="https://www.youtube.com/watch?v=-qfEOE4vtxE" target="_blank"><span class="res-icon">▶</span> Bootstrap 5 Crash Course — Traversy</a>
+          <a class="res-link yt" href="https://www.youtube.com/watch?v=Jyvffr3aCp0" target="_blank"><span class="res-icon">▶</span> Bootstrap 5 Full Course — freeCodeCamp</a>
+          <a class="res-link doc" href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" target="_blank"><span class="res-icon">◈</span> Bootstrap 5 Official Docs</a>
+          <a class="res-link doc" href="https://getbootstrap.com/docs/5.3/utilities/spacing/" target="_blank"><span class="res-icon">◈</span> Bootstrap Spacing Utilities</a>
+          <a class="res-link doc" href="https://getbootstrap.com/docs/5.3/layout/grid/" target="_blank"><span class="res-icon">◈</span> Bootstrap Grid System</a>
+          <a class="res-link read" href="https://bootstrap.build/app" target="_blank"><span class="res-icon">✦</span> Bootstrap Theme Builder</a>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- ─── PHASE 4 ─── -->
+    <details class="phase p4" id="p4">
+      <summary class="phase-header">
+        <div class="phase-num">4</div>
+        <div class="phase-meta">
+          <div class="phase-title">Tailwind CSS — Utility-First Design Thinking</div>
+          <div class="phase-time">75 min · Composing design at the class level</div>
+        </div>
+        <span class="phase-badge">Tailwind</span>
+        <span class="phase-arrow">▼</span>
+      </summary>
+      <div class="phase-body">
+
+        <div class="section">
+          <div class="section-label">The Mental Model Shift</div>
+          <div class="tags">
+            <span class="tag key">No component classes — compose from utilities</span>
+            <span class="tag key">Design token scale built-in (text-sm, p-4, gap-6)</span>
+            <span class="tag key">Responsive prefix: sm: md: lg: xl:</span>
+            <span class="tag">State prefix: hover: focus: active: disabled:</span>
+          </div>
+          <div class="tip">Tailwind forces you to think in design tokens. <code>text-base</code> = 16px, <code>p-4</code> = 16px, <code>gap-6</code> = 24px. The scale IS the language. Never hardcode px values.</div>
+        </div>
+
+        <hr class="div">
+
+        <div class="section">
+          <div class="section-label">Typography Utilities (Design-Critical)</div>
+          <div class="tags">
+            <span class="tag key">text-sm / base / lg / xl / 2xl</span>
+            <span class="tag key">font-medium / font-semibold</span>
+            <span class="tag key">leading-relaxed / leading-tight</span>
+            <span class="tag">tracking-wide for headings</span>
+            <span class="tag">max-w-prose for body text</span>
+          </div>
+        </div>
+
+        <hr class="div">
+
+        <div class="section">
+          <div class="section-label">Color in Tailwind — Use the Palette, Not Custom Values</div>
+          <div class="tags">
+            <span class="tag key">text-gray-900 / text-gray-500 (hierarchy)</span>
+            <span class="tag key">bg-blue-50 + text-blue-700 (semantic pairing)</span>
+            <span class="tag warn">Never use text-black for body (use text-gray-800)</span>
+            <span class="tag warn">Avoid mixing Tailwind palette with custom hex</span>
+          </div>
+        </div>
+
+        <hr class="div">
+
+        <div class="section">
+          <div class="section-label">UX Patterns Unique to Tailwind</div>
+          <div class="tags">
+            <span class="tag ok">ring-* for focus (ring-2 ring-blue-500 ring-offset-2)</span>
+            <span class="tag ok">transition-all duration-200 ease-in-out</span>
+            <span class="tag ok">opacity-50 cursor-not-allowed for disabled state</span>
+            <span class="tag ok">sr-only for screen reader labels</span>
+          </div>
+        </div>
+
+        <hr class="div">
+
+        <div class="res-label">📚 Resources for Phase 4 — Tailwind CSS</div>
+        <div class="resources">
+          <a class="res-link yt" href="https://www.youtube.com/watch?v=pfaSUYaSgRo" target="_blank"><span class="res-icon">▶</span> Tailwind in 100 Seconds — Fireship</a>
+          <a class="res-link yt" href="https://www.youtube.com/watch?v=UBOj6rqRUME" target="_blank"><span class="res-icon">▶</span> Tailwind Crash Course — Traversy</a>
+          <a class="res-link yt" href="https://www.youtube.com/watch?v=lZp4salRFFc" target="_blank"><span class="res-icon">▶</span> Tailwind Best Practices — Kevin Powell</a>
+          <a class="res-link doc" href="https://tailwindcss.com/docs/utility-first" target="_blank"><span class="res-icon">◈</span> Tailwind Official Docs</a>
+          <a class="res-link doc" href="https://tailwindcss.com/docs/customizing-colors" target="_blank"><span class="res-icon">◈</span> Tailwind Color System</a>
+          <a class="res-link doc" href="https://tailwindcss.com/docs/responsive-design" target="_blank"><span class="res-icon">◈</span> Responsive Design in Tailwind</a>
+          <a class="res-link read" href="https://tailwindui.com/components" target="_blank"><span class="res-icon">✦</span> Tailwind UI (free previews)</a>
+          <a class="res-link read" href="https://play.tailwindcss.com/" target="_blank"><span class="res-icon">✦</span> Tailwind Playground</a>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- ─── PHASE 5 ─── -->
+    <details class="phase p5" id="p5">
+      <summary class="phase-header">
+        <div class="phase-num">5</div>
+        <div class="phase-meta">
+          <div class="phase-title">User-Friendly Design — Rules for Every Change</div>
+          <div class="phase-time">60 min · Before you override any style, check these</div>
+        </div>
+        <span class="phase-badge">UX Rules</span>
+        <span class="phase-arrow">▼</span>
+      </summary>
+      <div class="phase-body">
+
+        <div class="section">
+          <div class="section-label">Accessibility Checklist — Non-Negotiable</div>
+          <ul class="checklist">
+            <li><span class="check-icon">!</span> Focus ring must always be visible — never use <code>outline: none</code> alone without a custom replacement</li>
+            <li><span class="check-icon">!</span> Color alone must never convey meaning — always pair with text or an icon</li>
+            <li><span class="check-icon">!</span> Minimum touch target: 44 × 44px for any interactive element on mobile</li>
+            <li><span class="check-icon">!</span> All meaningful images need descriptive alt text</li>
+            <li><span class="check-icon">!</span> Form inputs must have visible, associated labels — never rely on placeholder text alone</li>
+          </ul>
+        </div>
+
+        <hr class="div">
+
+        <div class="section">
+          <div class="section-label">Feedback & States — UX Non-Negotiables</div>
+          <div class="tags">
+            <span class="tag key">hover state (cursor change + visual feedback)</span>
+            <span class="tag key">loading state (spinner or skeleton screen)</span>
+            <span class="tag key">error state (clear message, not just red color)</span>
+            <span class="tag key">empty state (guide the user to action)</span>
+            <span class="tag ok">success state</span>
+            <span class="tag">disabled state</span>
+          </div>
+        </div>
+
+        <hr class="div">
+
+        <div class="section">
+          <div class="section-label">Performance-Related Design Choices</div>
+          <div class="tags">
+            <span class="tag ok">will-change: transform (only when animating)</span>
+            <span class="tag ok">transform over position changes in animations</span>
+            <span class="tag ok">opacity over display: none for transitions</span>
+            <span class="tag warn">Avoid animating box-shadow — use opacity instead</span>
+          </div>
+          <div class="tip warn">CSS transitions on <strong>transform</strong> and <strong>opacity</strong> run on the GPU — smooth. Transitions on width, height, top, or margin trigger layout recalculation — janky. Always prefer the GPU path.</div>
+        </div>
+
+        <hr class="div">
+
+        <div class="section">
+          <div class="section-label">The Golden Rule Before Any Style Change</div>
+          <div class="golden">
+            Ask: <strong>Who is this for?</strong> Is it solving a user problem — clarity, speed, ease — or is it just aesthetics? If you can't answer <em>"this helps the user because…"</em>, don't change it.
+          </div>
+        </div>
+
+        <hr class="div">
+
+        <div class="res-label">📚 Resources for Phase 5 — UX & Accessibility</div>
+        <div class="resources">
+          <a class="res-link yt" href="https://www.youtube.com/watch?v=1A6SrPwmGpg" target="_blank"><span class="res-icon">▶</span> Web Accessibility Intro — Google</a>
+          <a class="res-link yt" href="https://www.youtube.com/watch?v=qr0ujkLLgmE" target="_blank"><span class="res-icon">▶</span> CSS Animation Performance — Chrome</a>
+          <a class="res-link doc" href="https://web.dev/learn/accessibility/" target="_blank"><span class="res-icon">◈</span> web.dev Accessibility Course</a>
+          <a class="res-link doc" href="https://web.dev/articles/animations-guide" target="_blank"><span class="res-icon">◈</span> High Performance CSS Animations</a>
+          <a class="res-link doc" href="https://www.a11yproject.com/checklist/" target="_blank"><span class="res-icon">◈</span> A11y Project Checklist</a>
+          <a class="res-link read" href="https://webaim.org/resources/contrastchecker/" target="_blank"><span class="res-icon">✦</span> Contrast Checker Tool</a>
+          <a class="res-link read" href="https://uxdesign.cc/ui-cheat-sheets-buttons-7329ed9d6112" target="_blank"><span class="res-icon">✦</span> UI States Cheat Sheet</a>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- PRACTICE PROJECT -->
+    <div class="practice" id="practice">
+      <div class="practice-title">🧪 Practice Project — <span>Do This After All 5 Phases</span></div>
+      <p>Build one UI component three ways: a <strong>product card</strong>. First in plain CSS, then Bootstrap, then Tailwind. Same design, three tools. You'll immediately feel the difference in workflow and design constraint — and understand why each framework makes the choices it does.</p>
+      <div class="resources" style="margin-top:16px">
+        <a class="res-link read" href="https://www.frontendmentor.io/challenges?difficulty=1" target="_blank"><span class="res-icon">✦</span> Frontend Mentor Challenges (free)</a>
+        <a class="res-link read" href="https://codepen.io/" target="_blank"><span class="res-icon">✦</span> CodePen (quick prototyping)</a>
+        <a class="res-link read" href="https://developer.mozilla.org/en-US/play" target="_blank"><span class="res-icon">✦</span> MDN Playground</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const sections = document.querySelectorAll('[id]');
+  const navItems = document.querySelectorAll('.nav-item');
+
+  function onScroll() {
+    let current = 'hero';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navItems.forEach(n => {
+      n.classList.toggle('active', n.getAttribute('href') === '#' + current);
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  navItems.forEach(link => {
+    link.addEventListener('click', e => {
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
