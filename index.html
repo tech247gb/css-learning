@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Design-Independent Developer — Workshop Guide</title>
+<title>Design-Independent Developer</title>
 <style>
   :root {
     --bg:        #f7f6f2;
@@ -612,6 +612,76 @@
   .diag-title { font-weight: 600; color: var(--text); }
   .diag-desc  { font-size: 13.5px; color: var(--muted); margin-top: 2px; line-height: 1.55; }
 
+  /* root cause expanded cards */
+  .root-cause {
+    border-radius: 13px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .root-cause:last-child { margin-bottom: 0; }
+
+  .rc-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 18px;
+    background: var(--surface2);
+  }
+
+  .rc-red   .rc-header { border-left: 4px solid var(--red); }
+  .rc-amber .rc-header { border-left: 4px solid var(--amber); }
+  .rc-blue  .rc-header { border-left: 4px solid var(--blue); }
+  .rc-purple .rc-header { border-left: 4px solid var(--purple); }
+
+  .rc-red    { border-color: var(--red-bd); }
+  .rc-amber  { border-color: var(--amber-bd); }
+  .rc-blue   { border-color: var(--blue-bd); }
+  .rc-purple { border-color: var(--purple-bd); }
+
+  .rc-icon {
+    width: 34px; height: 34px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .rc-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .rc-desc  { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+
+  .rc-examples {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--border);
+  }
+
+  .rc-ex { padding: 16px 18px; }
+  .rc-ex-bad  { border-right: 1px solid var(--border); background: #fffbfb; }
+  .rc-ex-good { background: #fbfffb; }
+
+  .rc-ex-label {
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-bottom: 10px;
+  }
+
+  .rc-ex-bad  .rc-ex-label { color: var(--red); }
+  .rc-ex-good .rc-ex-label { color: var(--green); }
+
+  .rc-ex-body { font-size: 13px; }
+
+  @media (max-width: 700px) {
+    .rc-examples { grid-template-columns: 1fr; }
+    .rc-ex-bad { border-right: none; border-bottom: 1px solid var(--border); }
+  }
+
   /* prompt cards */
   .prompt-grid {
     display: grid;
@@ -1018,16 +1088,9 @@
   <div class="sb-brand">
     <div class="sb-eyebrow">4 Sessions · 1hr each</div>
     <h2>Design-Independent<br>Developer Workshop</h2>
-    <p>Mid-level devs · AI-assisted UI design</p>
   </div>
 
   <nav class="sb-nav">
-    <!-- <div class="sb-group">Overview</div>
-    <a class="sb-item active" href="#hook">
-      <span class="sb-dot s1" style="font-size:13px">⌂</span>
-      <span style="flex:1">Introduction</span>
-    </a> -->
-
     <div class="sb-group">Sessions</div>
     <a class="sb-item" href="#s1">
       <span class="sb-dot s1">1</span>
@@ -1056,45 +1119,11 @@
       <span style="flex:1">Prompt Cheatsheet</span>
     </a>
   </nav>
-
-  <!-- <div class="sb-progress">
-    <div class="sb-progress-label">Session Progress</div>
-    <div class="progress-steps">
-      <div class="ps-row">
-        <div class="ps-check" onclick="toggleCheck(this)" title="Mark complete">✓</div>
-        <span class="ps-text">Session 1 — Design Eye</span>
-      </div>
-      <div class="ps-row">
-        <div class="ps-check" onclick="toggleCheck(this)" title="Mark complete"></div>
-        <span class="ps-text">Session 2 — AI Tools</span>
-      </div>
-      <div class="ps-row">
-        <div class="ps-check" onclick="toggleCheck(this)" title="Mark complete"></div>
-        <span class="ps-text">Session 3 — Prompting</span>
-      </div>
-      <div class="ps-row">
-        <div class="ps-check" onclick="toggleCheck(this)" title="Mark complete"></div>
-        <span class="ps-text">Session 4 — Full Workflow</span>
-      </div>
-    </div>
-  </div> -->
 </aside>
 
 <!-- ════════ MAIN ════════ -->
 <div class="main">
-
-  <div class="topbar">
-    <div class="topbar-title">Design-Independent Developer — Workshop Guide</div>
-    <!-- <div class="session-pills">
-      <span class="s-pill sp1">Session 1 · 60m</span>
-      <span class="s-pill sp2">Session 2 · 60m</span>
-      <span class="s-pill sp3">Session 3 · 60m</span>
-      <span class="s-pill sp4">Session 4 · 60m</span>
-    </div> -->
-  </div>
-
   <div class="content">
-
     <!-- ══════════════════════════════
          SESSION 1
     ══════════════════════════════ -->
@@ -1113,10 +1142,6 @@
       </summary>
       <div class="session-body">
 
-        <div class="facilitator">
-          <strong>Facilitator note:</strong> Start with the "Before" examples and ask participants to describe what feels wrong <em>before</em> revealing the diagnosis. This trains the eye actively. Give them 3 minutes to look silently first.
-        </div>
-
         <div class="sec">
           <div class="sec-label">Learning Outcomes</div>
           <div class="outcomes-row">
@@ -1130,33 +1155,274 @@
 
         <div class="sec">
           <div class="sec-label">Why Most Developer UIs Look "Off" — The 4 Root Causes</div>
-          <div class="diag-list">
-            <div class="diag-item">
-              <div class="diag-icon" style="background:var(--red-bg);color:var(--red)">↕</div>
+
+          <!-- ROOT CAUSE 1 -->
+          <div class="root-cause rc-red">
+            <div class="rc-header">
+              <div class="rc-icon" style="background:var(--red-bg);color:var(--red)">↕</div>
               <div>
-                <div class="diag-title">Inconsistent Spacing</div>
-                <div class="diag-desc">Random gaps between elements — some tight, some loose, no pattern. Fix: use a 4px base scale (4, 8, 12, 16, 24, 32, 48). Everything is a multiple of 4.</div>
+                <div class="rc-title">1 — Inconsistent Spacing</div>
+                <div class="rc-desc">Random gaps between elements — some tight, some loose, no pattern. Fix: use a 4px base scale (4, 8, 12, 16, 24, 32, 48). Everything is a multiple of 4.</div>
               </div>
             </div>
-            <div class="diag-item">
-              <div class="diag-icon" style="background:var(--amber-bg);color:var(--amber)">T</div>
-              <div>
-                <div class="diag-title">No Visual Hierarchy</div>
-                <div class="diag-desc">Everything is the same size and weight — the eye has nowhere to go. Fix: one dominant heading, one supporting subtext, one body size. Max 3 font sizes per screen.</div>
+            <div class="rc-examples">
+              <div class="rc-ex rc-ex-bad">
+                <div class="rc-ex-label">✗ Bad — Random spacing</div>
+                <div class="rc-ex-body">
+                  <div style="background:#fff;border:1px solid #e5e5e5;border-radius:8px;padding:14px;font-family:Calibri,Arial,sans-serif">
+                    <div style="font-size:15px;font-weight:700;color:#1a1916;margin-bottom:3px">Dashboard</div>
+                    <div style="font-size:13px;color:#666;margin-bottom:17px">Welcome back, Sarah</div>
+                    <div style="display:flex;gap:5px;margin-bottom:22px">
+                      <div style="background:#f5f5f5;border-radius:4px;padding:8px 10px;flex:1;text-align:center">
+                        <div style="font-size:18px;font-weight:700;color:#1a1916">142</div>
+                        <div style="font-size:10px;color:#999;margin-top:1px">Orders</div>
+                      </div>
+                      <div style="background:#f5f5f5;border-radius:4px;padding:8px 10px;flex:1;text-align:center">
+                        <div style="font-size:18px;font-weight:700;color:#1a1916">$8.4k</div>
+                        <div style="font-size:10px;color:#999;margin-top:1px">Revenue</div>
+                      </div>
+                      <div style="background:#f5f5f5;border-radius:4px;padding:8px 10px;flex:1;text-align:center">
+                        <div style="font-size:18px;font-weight:700;color:#1a1916">98%</div>
+                        <div style="font-size:10px;color:#999;margin-top:1px">CSAT</div>
+                      </div>
+                    </div>
+                    <div style="font-size:13px;font-weight:600;color:#1a1916;margin-bottom:6px">Recent orders</div>
+                    <div style="font-size:12px;color:#444;padding:4px 0;border-bottom:1px solid #eee">Order #1042 — Processing</div>
+                    <div style="font-size:12px;color:#444;padding:11px 0;border-bottom:1px solid #eee">Order #1041 — Shipped</div>
+                    <div style="font-size:12px;color:#444;padding:2px 0">Order #1040 — Delivered</div>
+                  </div>
+                  <div style="margin-top:9px;font-size:12px;color:var(--red);line-height:1.6">
+                    <strong>Issues spotted:</strong><br>
+                    • Stats gap: 5px — cards look merged<br>
+                    • After stats: 22px — inconsistent jump<br>
+                    • Row padding: 4px / 11px / 2px — completely random<br>
+                    • Nothing follows a scale
+                  </div>
+                </div>
+              </div>
+              <div class="rc-ex rc-ex-good">
+                <div class="rc-ex-label">✓ Good — 4px scale applied</div>
+                <div class="rc-ex-body">
+                  <div style="background:#fff;border:1px solid #e5e5e5;border-radius:8px;padding:16px;font-family:Calibri,Arial,sans-serif">
+                    <div style="font-size:15px;font-weight:700;color:#1a1916;margin-bottom:4px">Dashboard</div>
+                    <div style="font-size:13px;color:#6a6760;margin-bottom:16px">Welcome back, Sarah</div>
+                    <div style="display:flex;gap:12px;margin-bottom:24px">
+                      <div style="background:#f7f6f2;border-radius:8px;padding:12px;flex:1;text-align:center">
+                        <div style="font-size:18px;font-weight:700;color:#1a1916">142</div>
+                        <div style="font-size:11px;color:#6a6760;margin-top:4px">Orders</div>
+                      </div>
+                      <div style="background:#f7f6f2;border-radius:8px;padding:12px;flex:1;text-align:center">
+                        <div style="font-size:18px;font-weight:700;color:#1a1916">$8.4k</div>
+                        <div style="font-size:11px;color:#6a6760;margin-top:4px">Revenue</div>
+                      </div>
+                      <div style="background:#f7f6f2;border-radius:8px;padding:12px;flex:1;text-align:center">
+                        <div style="font-size:18px;font-weight:700;color:#1a1916">98%</div>
+                        <div style="font-size:11px;color:#6a6760;margin-top:4px">CSAT</div>
+                      </div>
+                    </div>
+                    <div style="font-size:13px;font-weight:600;color:#1a1916;margin-bottom:8px">Recent orders</div>
+                    <div style="font-size:12px;color:#444;padding:8px 0;border-bottom:1px solid #eee">Order #1042 — Processing</div>
+                    <div style="font-size:12px;color:#444;padding:8px 0;border-bottom:1px solid #eee">Order #1041 — Shipped</div>
+                    <div style="font-size:12px;color:#444;padding:8px 0">Order #1040 — Delivered</div>
+                  </div>
+                  <div style="margin-top:9px;font-size:12px;color:var(--green);line-height:1.6">
+                    <strong>What changed:</strong><br>
+                    • Stats gap: 12px — clear separation<br>
+                    • After stats: 24px — proportional rhythm<br>
+                    • All rows: 8px top + 8px bottom — consistent<br>
+                    • Every value is a multiple of 4
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="diag-item">
-              <div class="diag-icon" style="background:var(--blue-bg);color:var(--blue)">◉</div>
+          </div>
+
+          <!-- ROOT CAUSE 2 -->
+          <div class="root-cause rc-amber">
+            <div class="rc-header">
+              <div class="rc-icon" style="background:var(--amber-bg);color:var(--amber)">T</div>
               <div>
-                <div class="diag-title">Too Many Colors / Wrong Colors</div>
-                <div class="diag-desc">Colors added randomly for decoration, not meaning. Fix: 1 primary action color, 1 neutral, 3 semantic colors (success/warning/error). Nothing else.</div>
+                <div class="rc-title">2 — No Visual Hierarchy</div>
+                <div class="rc-desc">Everything is the same size and weight — the eye has nowhere to go. Fix: one dominant heading, one supporting subtext, one body size. Max 3 font sizes per screen.</div>
               </div>
             </div>
-            <div class="diag-item">
-              <div class="diag-icon" style="background:var(--purple-bg);color:var(--purple)">▣</div>
+            <div class="rc-examples">
+              <div class="rc-ex rc-ex-bad">
+                <div class="rc-ex-label">✗ Bad — Everything looks the same</div>
+                <div class="rc-ex-body">
+                  <div style="background:#fff;border:1px solid #e5e5e5;border-radius:8px;padding:16px;font-family:Calibri,Arial,sans-serif">
+                    <div style="font-size:14px;color:#333;margin-bottom:8px;font-weight:400">User Profile</div>
+                    <div style="font-size:13px;color:#333;margin-bottom:8px;font-weight:400">Sarah Johnson</div>
+                    <div style="font-size:13px;color:#333;margin-bottom:8px;font-weight:400">Product Designer at Acme Corp</div>
+                    <div style="font-size:13px;color:#333;margin-bottom:8px;font-weight:400">sarah@acme.com</div>
+                    <div style="font-size:13px;color:#333;margin-bottom:8px;font-weight:400">San Francisco, CA</div>
+                    <div style="font-size:13px;color:#2460e8;margin-bottom:0;font-weight:400">Edit profile</div>
+                  </div>
+                  <div style="margin-top:9px;font-size:12px;color:var(--red);line-height:1.6">
+                    <strong>Issues spotted:</strong><br>
+                    • All text is 13–14px, weight 400<br>
+                    • Name and section title look identical<br>
+                    • Eye doesn't know where to start<br>
+                    • Nothing signals "this is the most important thing"
+                  </div>
+                </div>
+              </div>
+              <div class="rc-ex rc-ex-good">
+                <div class="rc-ex-label">✓ Good — Clear 3-level hierarchy</div>
+                <div class="rc-ex-body">
+                  <div style="background:#fff;border:1px solid #e5e5e5;border-radius:8px;padding:16px;font-family:Calibri,Arial,sans-serif">
+                    <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#9a9790;margin-bottom:10px">User Profile</div>
+                    <div style="font-size:20px;font-weight:700;color:#1a1916;margin-bottom:2px;letter-spacing:-0.01em">Sarah Johnson</div>
+                    <div style="font-size:14px;color:#6a6760;margin-bottom:14px">Product Designer at Acme Corp</div>
+                    <div style="font-size:13px;color:#6a6760;margin-bottom:6px">sarah@acme.com</div>
+                    <div style="font-size:13px;color:#6a6760;margin-bottom:16px">San Francisco, CA</div>
+                    <div style="display:inline-block;font-size:13px;font-weight:600;color:#2460e8;border:1px solid #bcceff;background:#eef3ff;border-radius:7px;padding:6px 14px">Edit profile</div>
+                  </div>
+                  <div style="margin-top:9px;font-size:12px;color:var(--green);line-height:1.6">
+                    <strong>What changed:</strong><br>
+                    • Label: 11px uppercase — quiet, structural<br>
+                    • Name: 20px bold — dominates, first read<br>
+                    • Role: 14px muted — supporting info<br>
+                    • Details: 13px muted — smallest, last read
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ROOT CAUSE 3 -->
+          <div class="root-cause rc-blue">
+            <div class="rc-header">
+              <div class="rc-icon" style="background:var(--blue-bg);color:var(--blue)">◉</div>
               <div>
-                <div class="diag-title">Inconsistent Components</div>
-                <div class="diag-desc">Three different button styles, two card designs, four input sizes on the same page. Fix: define one of each and use it everywhere. Consistency = trust.</div>
+                <div class="rc-title">3 — Too Many Colors / Wrong Colors</div>
+                <div class="rc-desc">Colors added randomly for decoration, not meaning. Fix: 1 primary action color, 1 neutral, 3 semantic colors (success/warning/error). Nothing else.</div>
+              </div>
+            </div>
+            <div class="rc-examples">
+              <div class="rc-ex rc-ex-bad">
+                <div class="rc-ex-label">✗ Bad — Color for decoration</div>
+                <div class="rc-ex-body">
+                  <div style="background:#fff;border:1px solid #e5e5e5;border-radius:8px;padding:16px;font-family:Calibri,Arial,sans-serif">
+                    <div style="font-size:15px;font-weight:700;color:#7c3aed;margin-bottom:12px">Notifications</div>
+                    <div style="display:flex;flex-direction:column;gap:8px">
+                      <div style="background:#fef3c7;border-left:3px solid #f59e0b;border-radius:4px;padding:8px 10px;font-size:12px;color:#333">Your order has been confirmed</div>
+                      <div style="background:#dbeafe;border-left:3px solid #3b82f6;border-radius:4px;padding:8px 10px;font-size:12px;color:#333">New message from Alex</div>
+                      <div style="background:#fce7f3;border-left:3px solid #ec4899;border-radius:4px;padding:8px 10px;font-size:12px;color:#333">Your subscription renews in 3 days</div>
+                      <div style="background:#d1fae5;border-left:3px solid #10b981;border-radius:4px;padding:8px 10px;font-size:12px;color:#333">Profile updated successfully</div>
+                      <div style="background:#ede9fe;border-left:3px solid #8b5cf6;border-radius:4px;padding:8px 10px;font-size:12px;color:#333">New feature available</div>
+                    </div>
+                  </div>
+                  <div style="margin-top:9px;font-size:12px;color:var(--red);line-height:1.6">
+                    <strong>Issues spotted:</strong><br>
+                    • 5 different colors, none with clear meaning<br>
+                    • Yellow = confirmed? Blue = message? Pink = renewal?<br>
+                    • User must decode colors each time<br>
+                    • Heading purple adds a 6th random color
+                  </div>
+                </div>
+              </div>
+              <div class="rc-ex rc-ex-good">
+                <div class="rc-ex-label">✓ Good — Color communicates meaning</div>
+                <div class="rc-ex-body">
+                  <div style="background:#fff;border:1px solid #e5e5e5;border-radius:8px;padding:16px;font-family:Calibri,Arial,sans-serif">
+                    <div style="font-size:15px;font-weight:700;color:#1a1916;margin-bottom:12px">Notifications</div>
+                    <div style="display:flex;flex-direction:column;gap:8px">
+                      <div style="background:#ecfaf4;border-left:3px solid #0c7a52;border-radius:4px;padding:8px 10px;font-size:12px;color:#1a1916;display:flex;align-items:center;gap:8px"><span style="color:#0c7a52;font-weight:700;font-size:13px">✓</span> Your order has been confirmed</div>
+                      <div style="background:#f7f6f2;border-left:3px solid #9a9790;border-radius:4px;padding:8px 10px;font-size:12px;color:#1a1916;display:flex;align-items:center;gap:8px"><span style="font-size:13px">💬</span> New message from Alex</div>
+                      <div style="background:#fef6ea;border-left:3px solid #8f5608;border-radius:4px;padding:8px 10px;font-size:12px;color:#1a1916;display:flex;align-items:center;gap:8px"><span style="color:#8f5608;font-weight:700;font-size:13px">⚠</span> Subscription renews in 3 days</div>
+                      <div style="background:#ecfaf4;border-left:3px solid #0c7a52;border-radius:4px;padding:8px 10px;font-size:12px;color:#1a1916;display:flex;align-items:center;gap:8px"><span style="color:#0c7a52;font-weight:700;font-size:13px">✓</span> Profile updated successfully</div>
+                      <div style="background:#f7f6f2;border-left:3px solid #9a9790;border-radius:4px;padding:8px 10px;font-size:12px;color:#1a1916;display:flex;align-items:center;gap:8px"><span style="font-size:13px">🔔</span> New feature available</div>
+                    </div>
+                  </div>
+                  <div style="margin-top:9px;font-size:12px;color:var(--green);line-height:1.6">
+                    <strong>What changed:</strong><br>
+                    • Green = success (confirmed, updated)<br>
+                    • Amber = warning (action needed)<br>
+                    • Gray = neutral info (message, feature)<br>
+                    • Icon + color together — accessible, clear
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ROOT CAUSE 4 -->
+          <div class="root-cause rc-purple">
+            <div class="rc-header">
+              <div class="rc-icon" style="background:var(--purple-bg);color:var(--purple)">▣</div>
+              <div>
+                <div class="rc-title">4 — Inconsistent Components</div>
+                <div class="rc-desc">Three different button styles, two card designs, four input sizes on the same page. Fix: define one of each and use it everywhere. Consistency = trust.</div>
+              </div>
+            </div>
+            <div class="rc-examples">
+              <div class="rc-ex rc-ex-bad">
+                <div class="rc-ex-label">✗ Bad — Every button is different</div>
+                <div class="rc-ex-body">
+                  <div style="background:#fff;border:1px solid #e5e5e5;border-radius:8px;padding:16px;font-family:Calibri,Arial,sans-serif">
+                    <div style="font-size:13px;font-weight:600;color:#333;margin-bottom:10px">Actions on this page:</div>
+                    <div style="display:flex;flex-direction:column;gap:10px">
+                      <div style="display:flex;align-items:center;gap:8px">
+                        <span style="font-size:12px;color:#666;width:90px">Save changes</span>
+                        <button style="background:#2563eb;color:#fff;border:none;padding:6px 12px;font-size:12px;border-radius:3px;cursor:pointer;font-family:inherit">Save</button>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:8px">
+                        <span style="font-size:12px;color:#666;width:90px">Delete item</span>
+                        <button style="background:transparent;color:red;border:2px solid red;padding:10px 20px;font-size:14px;border-radius:20px;cursor:pointer;font-family:inherit;font-weight:700">DELETE</button>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:8px">
+                        <span style="font-size:12px;color:#666;width:90px">Export data</span>
+                        <button style="background:#22c55e;color:#fff;border:none;padding:4px 8px;font-size:11px;border-radius:0;cursor:pointer;font-family:inherit">Export</button>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:8px">
+                        <span style="font-size:12px;color:#666;width:90px">Cancel</span>
+                        <button style="background:#9ca3af;color:#fff;border:none;padding:8px 16px;font-size:13px;border-radius:6px;cursor:pointer;font-family:inherit">Cancel</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="margin-top:9px;font-size:12px;color:var(--red);line-height:1.6">
+                    <strong>Issues spotted:</strong><br>
+                    • 4 buttons — 4 different sizes, radii, colors<br>
+                    • No visual language: which is primary?<br>
+                    • DELETE is the most visually dominant — wrong<br>
+                    • Feels like different devs built each section
+                  </div>
+                </div>
+              </div>
+              <div class="rc-ex rc-ex-good">
+                <div class="rc-ex-label">✓ Good — One system, clear intent</div>
+                <div class="rc-ex-body">
+                  <div style="background:#fff;border:1px solid #e5e5e5;border-radius:8px;padding:16px;font-family:Calibri,Arial,sans-serif">
+                    <div style="font-size:13px;font-weight:600;color:#333;margin-bottom:10px">Actions on this page:</div>
+                    <div style="display:flex;flex-direction:column;gap:10px">
+                      <div style="display:flex;align-items:center;gap:8px">
+                        <span style="font-size:12px;color:#666;width:90px">Save changes</span>
+                        <button style="background:#2460e8;color:#fff;border:none;padding:8px 16px;font-size:13px;border-radius:8px;cursor:pointer;font-family:inherit;font-weight:600">Save changes</button>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:8px">
+                        <span style="font-size:12px;color:#666;width:90px">Delete item</span>
+                        <button style="background:transparent;color:#be3a2a;border:1px solid #fac4be;padding:8px 16px;font-size:13px;border-radius:8px;cursor:pointer;font-family:inherit;font-weight:600">Delete</button>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:8px">
+                        <span style="font-size:12px;color:#666;width:90px">Export data</span>
+                        <button style="background:transparent;color:#1a1916;border:1px solid #c8c5bc;padding:8px 16px;font-size:13px;border-radius:8px;cursor:pointer;font-family:inherit;font-weight:600">Export</button>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:8px">
+                        <span style="font-size:12px;color:#666;width:90px">Cancel</span>
+                        <button style="background:transparent;color:#6a6760;border:none;padding:8px 16px;font-size:13px;border-radius:8px;cursor:pointer;font-family:inherit">Cancel</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="margin-top:9px;font-size:12px;color:var(--green);line-height:1.6">
+                    <strong>What changed:</strong><br>
+                    • Same padding/size/radius on all buttons<br>
+                    • Primary: solid blue — most important<br>
+                    • Destructive: outlined red — serious but not screaming<br>
+                    • Secondary: outlined gray — available but not promoted<br>
+                    • Ghost: no border — least important
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1174,7 +1440,7 @@
                 <div style="font-size:11px;color:#999;margin-bottom:18px">Enter your details below to access your account</div>
                 <div style="margin-bottom:6px">
                   <div style="font-size:11px;color:#666;margin-bottom:2px">EMAIL ADDRESS</div>
-                  <div style="background:#fff;border:2px solid #aaa;border-radius:3px;padding:6px 8px;font-size:13px;color:#bbb">user@example.com</div>
+                  <div style="background:#fff;border:2px solid #aaa;border-radius:3px;padding:6px 8px;font-size:13px;color:#bbb"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ec999f899eac89948d819c8089c28f8381">[email&#160;protected]</a></div>
                 </div>
                 <div style="margin-bottom:14px">
                   <div style="font-size:11px;color:#666;margin-bottom:2px">PASSWORD</div>
@@ -1198,7 +1464,7 @@
                 <div style="font-size:14px;color:#6a6760;margin-bottom:24px">Sign in to your account to continue</div>
                 <div style="margin-bottom:16px">
                   <div style="font-size:13px;color:#1a1916;font-weight:600;margin-bottom:5px">Email address</div>
-                  <div style="background:#fff;border:1px solid #c8c5bc;border-radius:8px;padding:10px 12px;font-size:14px;color:#9a9790">you@company.com</div>
+                  <div style="background:#fff;border:1px solid #c8c5bc;border-radius:8px;padding:10px 12px;font-size:14px;color:#9a9790"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3a43554f7a5955574a5b544314595557">[email&#160;protected]</a></div>
                 </div>
                 <div style="margin-bottom:20px">
                   <div style="display:flex;justify-content:space-between;margin-bottom:5px"><span style="font-size:13px;color:#1a1916;font-weight:600">Password</span><span style="font-size:13px;color:#2460e8">Forgot password?</span></div>
@@ -1311,33 +1577,16 @@
           </div>
         </div>
 
-        <!-- <hr class="div">
-
-        <div class="exercise">
-          <div class="exercise-label">✏ Workshop Exercise 1 — 15 minutes</div>
-          <div class="exercise-title">Diagnose a Real UI</div>
-          <div class="exercise-desc">Open any app your team has built (internal tool, dashboard, form). Apply the 5-point checklist. Each person identifies 3 problems and writes down which of the 4 root causes each one falls under.</div>
-          <div class="exercise-steps">
-            <div class="ex-step"><span class="ex-n">1</span> Open your app — pick a screen with a form or a list</div>
-            <div class="ex-step"><span class="ex-n">2</span> Run all 5 checklist points silently (3 minutes)</div>
-            <div class="ex-step"><span class="ex-n">3</span> Write down 3 problems you found and which root cause each one is</div>
-            <div class="ex-step"><span class="ex-n">4</span> Share with the group — compare what different people noticed</div>
-          </div>
-        </div>
-
-        <div class="discussion">
-          <div class="discussion-label">💬 Discussion Questions</div>
-          <div class="disc-q">Which of the 4 root causes came up most often in the exercise? Why do you think developers fall into that pattern?</div>
-          <div class="disc-q">What's the fastest single change you could make right now that would most improve one of your screens?</div>
-        </div> -->
-
         <div class="res-label">📚 Session 1 Resources</div>
         <div class="resources">
-          <a class="res-link yt" href="https://www.youtube.com/watch?v=yNDkFXs7OMo" target="_blank"><span class="res-icon">▶</span> Design Principles for Developers — Fireship</a>
-          <a class="res-link yt" href="https://www.youtube.com/watch?v=9EPTPWKUKOV" target="_blank"><span class="res-icon">▶</span> The Hierarchy of UI Design</a>
+          <a class="res-link yt" href="https://www.youtube.com/@Fireship" target="_blank"><span class="res-icon">▶</span> Fireship — Channel (UI & Dev Shorts)</a>
+          <a class="res-link yt" href="https://www.youtube.com/@kevinpowell" target="_blank"><span class="res-icon">▶</span> Kevin Powell — CSS Channel (King of CSS)</a>
+          <a class="res-link yt" href="https://www.youtube.com/@DesignCourse" target="_blank"><span class="res-icon">▶</span> DesignCourse — Design + CSS for Devs</a>
           <a class="res-link doc" href="https://www.w3.org/WAI/WCAG21/quickref/#contrast-minimum" target="_blank"><span class="res-icon">◈</span> WCAG Contrast Guide</a>
-          <a class="res-link read" href="https://webaim.org/resources/contrastchecker/" target="_blank"><span class="res-icon">✦</span> Contrast Checker Tool</a>
-          <a class="res-link read" href="https://goodui.org/" target="_blank"><span class="res-icon">✦</span> GoodUI — A/B Tested Patterns</a>
+          <a class="res-link doc" href="https://web.dev/learn/accessibility" target="_blank"><span class="res-icon">◈</span> web.dev — Learn Accessibility (free course)</a>
+          <a class="res-link read" href="https://webaim.org/resources/contrastchecker/" target="_blank"><span class="res-icon">✦</span> WebAIM Contrast Checker</a>
+          <a class="res-link read" href="https://goodui.org/" target="_blank"><span class="res-icon">✦</span> GoodUI — A/B Tested UI Patterns</a>
+          <a class="res-link read" href="https://www.refactoringui.com/" target="_blank"><span class="res-icon">✦</span> Refactoring UI — Book by Tailwind creators</a>
         </div>
 
       </div>
@@ -1360,10 +1609,6 @@
         <span class="sess-arrow">▼</span>
       </summary>
       <div class="session-body">
-
-        <div class="facilitator">
-          <strong>Facilitator note:</strong> Do a live demo during this session — open Claude or ChatGPT and build a component together using the prompt templates. Participants follow along on their own machines. Real-time iteration shows the AI conversation loop in action.
-        </div>
 
         <div class="sec">
           <div class="sec-label">Learning Outcomes</div>
@@ -1488,7 +1733,7 @@ Keep everything else identical.</div>
           </div>
         </div>
 
-        <!-- <hr class="div">
+        <hr class="div">
 
         <div class="exercise">
           <div class="exercise-label">✏ Workshop Exercise 2 — 20 minutes</div>
@@ -1506,12 +1751,13 @@ Keep everything else identical.</div>
           <div class="discussion-label">💬 Discussion Questions</div>
           <div class="disc-q">What was different about the first AI output vs. the iterated version? What kind of changes had the biggest visual impact?</div>
           <div class="disc-q">Which AI tool felt most natural for this kind of work? What would make you more likely to use it daily?</div>
-        </div> -->
+        </div>
 
         <div class="res-label">📚 Session 2 Resources</div>
         <div class="resources">
-          <a class="res-link yt" href="https://www.youtube.com/watch?v=3n2JkjXhOaY" target="_blank"><span class="res-icon">▶</span> v0 by Vercel — Full Demo</a>
-          <a class="res-link yt" href="https://www.youtube.com/watch?v=1yJ6pB6K7c4" target="_blank"><span class="res-icon">▶</span> Cursor AI Editor Guide</a>
+          <a class="res-link yt" href="https://www.youtube.com/@Fireship" target="_blank"><span class="res-icon">▶</span> Fireship — Short AI tool demos</a>
+          <a class="res-link yt" href="https://www.youtube.com/@TraversyMedia" target="_blank"><span class="res-icon">▶</span> Traversy Media — CSS & Framework tutorials</a>
+          <a class="res-link yt" href="https://www.youtube.com/@kevinpowell" target="_blank"><span class="res-icon">▶</span> Kevin Powell — CSS deep dives</a>
           <a class="res-link ai" href="https://claude.ai" target="_blank"><span class="res-icon">✦</span> Claude.ai</a>
           <a class="res-link ai" href="https://v0.dev" target="_blank"><span class="res-icon">✦</span> v0.dev</a>
           <a class="res-link ai" href="https://cursor.com" target="_blank"><span class="res-icon">✦</span> Cursor Editor</a>
@@ -1537,10 +1783,6 @@ Keep everything else identical.</div>
         <span class="sess-arrow">▼</span>
       </summary>
       <div class="session-body">
-
-        <div class="facilitator">
-          <strong>Facilitator note:</strong> Run the weak vs. strong prompt comparison live. Use the same AI tool for both and project the results side by side. The visual difference makes a stronger argument than any explanation.
-        </div>
 
         <div class="sec">
           <div class="sec-label">The 5 Elements of a High-Quality UI Prompt</div>
@@ -1699,7 +1941,7 @@ Font sizes: do not go below 14px on any breakpoint.</div>
           </div>
         </div>
 
-        <!-- <hr class="div">
+        <hr class="div">
 
         <div class="exercise">
           <div class="exercise-label">✏ Workshop Exercise 3 — 20 minutes</div>
@@ -1718,13 +1960,14 @@ Font sizes: do not go below 14px on any breakpoint.</div>
           <div class="discussion-label">💬 Discussion Questions</div>
           <div class="disc-q">Which of the 5 prompt elements had the biggest impact on output quality in your experience?</div>
           <div class="disc-q">How would you integrate this prompting workflow into your existing daily development process?</div>
-        </div> -->
+        </div>
 
         <div class="res-label">📚 Session 3 Resources</div>
         <div class="resources">
           <a class="res-link doc" href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank"><span class="res-icon">◈</span> Claude Prompt Engineering Guide</a>
-          <a class="res-link doc" href="https://platform.openai.com/docs/guides/prompt-engineering" target="_blank"><span class="res-icon">◈</span> OpenAI Prompt Engineering</a>
-          <a class="res-link yt" href="https://www.youtube.com/watch?v=_ZL_moNDKUM" target="_blank"><span class="res-icon">▶</span> Prompt Engineering for Developers</a>
+          <a class="res-link doc" href="https://platform.openai.com/docs/guides/prompt-engineering" target="_blank"><span class="res-icon">◈</span> OpenAI Prompt Engineering Guide</a>
+          <a class="res-link yt" href="https://www.youtube.com/@LearnPrompting" target="_blank"><span class="res-icon">▶</span> Learn Prompting — YouTube Channel</a>
+          <a class="res-link read" href="https://learnprompting.org/" target="_blank"><span class="res-icon">✦</span> LearnPrompting.org — Free Guide</a>
           <a class="res-link ai" href="https://v0.dev" target="_blank"><span class="res-icon">✦</span> Practice on v0.dev</a>
         </div>
 
@@ -1748,10 +1991,6 @@ Font sizes: do not go below 14px on any breakpoint.</div>
         <span class="sess-arrow">▼</span>
       </summary>
       <div class="session-body">
-
-        <div class="facilitator">
-          <strong>Facilitator note:</strong> Walk through the 6 steps live on a real example — a task management dashboard. Have participants build their own version simultaneously. The exercise at the end ties together all 4 sessions.
-        </div>
 
         <div class="sec">
           <div class="sec-label">The 6-Step Design-Independent Workflow</div>
@@ -1886,20 +2125,22 @@ Prioritized list of fixes, most impactful first.</div>
           </div>
         </div>
 
-        <!-- <div class="discussion">
+        <div class="discussion">
           <div class="discussion-label">💬 Discussion Questions</div>
           <div class="disc-q">Which step in the workflow gave you the most confidence? Which felt most uncertain?</div>
           <div class="disc-q">How would you introduce this workflow to a teammate who's never used AI tools before? What's the one-sentence pitch?</div>
           <div class="disc-q">What's one UI task in your current project you'll try this workflow on this week?</div>
-        </div> -->
+        </div>
 
         <div class="res-label">📚 Session 4 Resources</div>
         <div class="resources">
-          <a class="res-link yt" href="https://www.youtube.com/watch?v=zA3DFUQJqyE" target="_blank"><span class="res-icon">▶</span> Build a Full App with AI</a>
-          <a class="res-link yt" href="https://www.youtube.com/watch?v=rvoUFkSaFaQ" target="_blank"><span class="res-icon">▶</span> AI Workflow for UI Devs — Fireship</a>
-          <a class="res-link doc" href="https://web.dev/learn/accessibility/" target="_blank"><span class="res-icon">◈</span> web.dev Accessibility Course</a>
-          <a class="res-link read" href="https://www.frontendmentor.io/challenges?difficulty=1" target="_blank"><span class="res-icon">✦</span> Frontend Mentor (practice designs)</a>
+          <a class="res-link yt" href="https://www.youtube.com/@Fireship" target="_blank"><span class="res-icon">▶</span> Fireship — AI + Web Dev Shorts</a>
+          <a class="res-link yt" href="https://www.youtube.com/@TraversyMedia" target="_blank"><span class="res-icon">▶</span> Traversy Media — Full App Builds</a>
+          <a class="res-link doc" href="https://web.dev/learn/accessibility" target="_blank"><span class="res-icon">◈</span> web.dev Learn Accessibility (free)</a>
+          <a class="res-link doc" href="https://www.a11yproject.com/checklist/" target="_blank"><span class="res-icon">◈</span> A11y Project Checklist</a>
+          <a class="res-link read" href="https://www.frontendmentor.io/challenges?difficulty=1" target="_blank"><span class="res-icon">✦</span> Frontend Mentor — Practice Designs</a>
           <a class="res-link ai" href="https://bolt.new" target="_blank"><span class="res-icon">✦</span> Bolt.new — AI App Builder</a>
+          <a class="res-link ai" href="https://lovable.dev" target="_blank"><span class="res-icon">✦</span> Lovable.dev — AI App Builder</a>
         </div>
 
       </div>
@@ -1973,7 +2214,7 @@ Don't change anything else.</div>
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   function toggleCheck(el) {
     el.classList.toggle('done');
     el.textContent = el.classList.contains('done') ? '✓' : '';
@@ -1995,17 +2236,4 @@ Don't change anything else.</div>
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  navItems.forEach(link => {
-    link.addEventListener('click', e => {
-      const href = link.getAttribute('href');
-      if (href && href.startsWith('#')) {
-        e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
-</script>
-
-</body>
-</html>
+  navItems.forEach(link => 
