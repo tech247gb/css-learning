@@ -156,6 +156,7 @@
   .s2 { background: var(--teal-bg);   color: var(--teal); }
   .s3 { background: var(--purple-bg); color: var(--purple); }
   .s4 { background: var(--green-bg);  color: var(--green); }
+  .s5 { background: var(--orange-bg); color: var(--orange); }
 
   .sb-time { font-size: 11px; color: var(--subtle); margin-left: auto; }
 
@@ -281,6 +282,7 @@
   .sp2 { background: var(--teal-bg);   color: var(--teal);   border: 1px solid var(--teal-bd); }
   .sp3 { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-bd); }
   .sp4 { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-bd); }
+  .sp5 { background: var(--orange-bg); color: var(--orange); border: 1px solid var(--orange-bd); }
 
   .content { padding: 44px; flex: 1; }
 
@@ -405,6 +407,7 @@
   .sess2 .session-header { border-left: 4px solid var(--teal); }
   .sess3 .session-header { border-left: 4px solid var(--purple); }
   .sess4 .session-header { border-left: 4px solid var(--green); }
+  .sess5 .session-header { border-left: 4px solid var(--orange); }
 
   .sess-num {
     width: 44px; height: 44px;
@@ -422,6 +425,7 @@
   .sess2 .sess-num { background: var(--teal-bg);   color: var(--teal); }
   .sess3 .sess-num { background: var(--purple-bg); color: var(--purple); }
   .sess4 .sess-num { background: var(--green-bg);  color: var(--green); }
+  .sess5 .sess-num { background: var(--orange-bg); color: var(--orange); }
 
   .sess-num .num { font-size: 18px; }
   .sess-num .lbl { font-size: 8px; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.7; }
@@ -449,6 +453,7 @@
   .sess2 .sess-tag { background: var(--teal-bg);   color: var(--teal);   border: 1px solid var(--teal-bd); }
   .sess3 .sess-tag { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-bd); }
   .sess4 .sess-tag { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-bd); }
+  .sess5 .sess-tag { background: var(--orange-bg); color: var(--orange); border: 1px solid var(--orange-bd); }
 
   .sess-arrow {
     color: var(--subtle);
@@ -1117,7 +1122,7 @@
 <button id="sidebar-toggle" onclick="document.body.classList.toggle('sidebar-hidden'); this.textContent = document.body.classList.contains('sidebar-hidden') ? '▶' : '◀';" title="Toggle sidebar">◀</button>
 <aside class="sidebar">
   <div class="sb-brand">
-    <div class="sb-eyebrow">4 Sessions · 1hr each</div>
+    <div class="sb-eyebrow">5 Sessions · 1hr each</div>
     <h2>Design-Independent<br>Developer Workshop</h2>
   </div>
 
@@ -1141,6 +1146,11 @@
     <a class="sb-item" href="#s4">
       <span class="sb-dot s4">4</span>
       <span style="flex:1">Full App Workflow</span>
+      <span class="sb-time">60m</span>
+    </a>
+    <a class="sb-item" href="#s5">
+      <span class="sb-dot s5">5</span>
+      <span style="flex:1">Live App Case Study</span>
       <span class="sb-time">60m</span>
     </a>
 
@@ -2172,6 +2182,538 @@ Prioritized list of fixes, most impactful first.</div>
           <a class="res-link read" href="https://www.frontendmentor.io/challenges?difficulty=1" target="_blank"><span class="res-icon">✦</span> Frontend Mentor — Practice Designs</a>
           <a class="res-link ai" href="https://bolt.new" target="_blank"><span class="res-icon">✦</span> Bolt.new — AI App Builder</a>
           <a class="res-link ai" href="https://lovable.dev" target="_blank"><span class="res-icon">✦</span> Lovable.dev — AI App Builder</a>
+        </div>
+
+      </div>
+    </details>
+
+    <!-- ══════════════════════════════
+         SESSION 5
+    ══════════════════════════════ -->
+    <details class="session sess5" id="s5">
+      <summary class="session-header">
+        <div class="sess-num">
+          <span class="num">5</span>
+          <span class="lbl">Session</span>
+        </div>
+        <div class="sess-meta">
+          <div class="sess-title">Live App Case Study — Task Manager, Start to Ship</div>
+          <div class="sess-sub">A real worked example: building a production-quality app with AI from blank page to deployed product</div>
+        </div>
+        <span class="sess-tag">60 min</span>
+        <span class="sess-arrow">▼</span>
+      </summary>
+      <div class="session-body">
+
+        <div class="facilitator">
+          <strong>Facilitator note:</strong> This session is a live walkthrough. Open Claude or ChatGPT on a projected screen. You will run every prompt live and show unedited AI output — including the bad parts. The point is to demonstrate the full loop: define → generate → review → fix → ship. Students follow along on their own devices.
+        </div>
+
+        <div class="sec">
+          <div class="sec-label">Learning Outcomes</div>
+          <div class="outcomes-row">
+            <div class="lo-card"><div class="lo-icon">🏗️</div><div class="lo-text">Apply the 6-step workflow to a real app from scratch</div></div>
+            <div class="lo-card"><div class="lo-icon">🔁</div><div class="lo-text">Experience the full define → generate → review → fix → ship loop</div></div>
+            <div class="lo-card"><div class="lo-icon">⚠️</div><div class="lo-text">See where AI fails and how to recover without restarting</div></div>
+            <div class="lo-card"><div class="lo-icon">🚀</div><div class="lo-text">Understand what "good enough to ship" means when working with AI</div></div>
+          </div>
+        </div>
+
+        <hr class="div">
+
+        <!-- THE APP -->
+        <div class="sec">
+          <div class="sec-label">The App We're Building</div>
+          <div class="tip ai">
+            <strong>Today's project:</strong> A minimal Task Manager web app — dashboard, task list, add/edit modal, and empty state. Simple enough to finish in a session, complex enough to reveal every AI failure mode. We'll use HTML + CSS custom properties (no framework), deployed to GitHub Pages.
+          </div>
+
+          <div style="margin-top:14px">
+            <div class="tags">
+              <span class="tag key">4 Screens</span>
+              <span class="tag teal">HTML + CSS custom properties</span>
+              <span class="tag">No framework</span>
+              <span class="tag ok">GitHub Pages deploy</span>
+              <span class="tag ai">AI-generated throughout</span>
+            </div>
+          </div>
+
+          <div style="margin-top:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">
+            <div class="lo-card">
+              <div class="lo-icon">📋</div>
+              <div class="lo-text"><strong>Screen 1</strong> — Dashboard with stats (total, done, overdue)</div>
+            </div>
+            <div class="lo-card">
+              <div class="lo-icon">✅</div>
+              <div class="lo-text"><strong>Screen 2</strong> — Task list with filter tabs + row actions</div>
+            </div>
+            <div class="lo-card">
+              <div class="lo-icon">✏️</div>
+              <div class="lo-text"><strong>Screen 3</strong> — Add / edit task modal with form fields</div>
+            </div>
+            <div class="lo-card">
+              <div class="lo-icon">🌫️</div>
+              <div class="lo-text"><strong>Screen 4</strong> — Empty state (no tasks yet)</div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="div">
+
+        <!-- STEP-BY-STEP WALKTHROUGH -->
+        <div class="sec">
+          <div class="sec-label">Live Walkthrough — Every Prompt, Exactly As Sent</div>
+
+          <div class="workflow">
+
+            <!-- STEP 1: DEFINE -->
+            <div class="wf-step">
+              <div class="wf-left">
+                <div class="wf-num" style="background:var(--blue-bg);color:var(--blue)">1</div>
+                <div class="wf-line"></div>
+              </div>
+              <div class="wf-content">
+                <div class="wf-title">Define — Screens, Users, Core Action</div>
+                <div class="wf-desc">We send this first. We commit to no code until the structure is clear. Notice the output usually gives us 5–7 screens — we cut it down to 4 before moving on.</div>
+                <div class="wf-prompt">I'm building a minimal task manager web app for solo developers who track their own to-dos.
+Primary goal: quickly add, view, and complete tasks with due dates.
+Help me identify the 3–5 screens this app needs and what each must accomplish.
+Keep it simple — no team features, no projects, just tasks.
+Output as a numbered list. One sentence per screen.</div>
+                <div class="tip" style="margin-top:10px">
+                  <strong>What AI gets right:</strong> It usually nails the core screens. <strong>What to cut:</strong> It often adds "settings," "notifications," and "onboarding" — none of which you need for v1. Cut mercilessly.
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 2: DESIGN TOKENS -->
+            <div class="wf-step">
+              <div class="wf-left">
+                <div class="wf-num" style="background:var(--teal-bg);color:var(--teal)">2</div>
+                <div class="wf-line"></div>
+              </div>
+              <div class="wf-content">
+                <div class="wf-title">Design System — Generate the Token File</div>
+                <div class="wf-desc">One prompt, one CSS file. This becomes the source of truth for every future component. We paste the output into <code style="background:var(--surface2);padding:1px 5px;border-radius:4px;font-size:12px">tokens.css</code> and import it everywhere.</div>
+                <div class="wf-prompt">Create a CSS design token system for a minimal task manager web app.
+Style: clean, focused, professional — like Linear or Things 3.
+Target: light mode only, desktop-first.
+Output only a :root { } block with:
+— color-primary, color-primary-dark, color-primary-light (blue family)
+— color-success, color-warning, color-danger (semantic)
+— color-bg, color-surface, color-surface-2, color-border (neutrals)
+— color-text, color-text-muted, color-text-subtle
+— space-1 through space-8 (4px base scale: 4, 8, 12, 16, 24, 32, 48, 64)
+— radius-sm, radius-md, radius-lg
+— shadow-sm, shadow-md
+— font-sans (system stack), font-mono
+No explanations. Pure CSS only.</div>
+
+                <div style="margin-top:12px">
+                  <div class="before-after">
+                    <div class="ba-panel ba-before">
+                      <div class="ba-head">✗ Common AI mistake</div>
+                      <div class="ba-screen" style="padding:12px">
+                        <div style="font-family:'Courier New',monospace;font-size:11.5px;color:var(--red);line-height:1.7">
+                          :root {<br>
+                          &nbsp;&nbsp;--primary: #007bff; /* Bootstrap blue */<br>
+                          &nbsp;&nbsp;--bg: white;<br>
+                          &nbsp;&nbsp;--text: #333;<br>
+                          &nbsp;&nbsp;--padding: 10px; /* not a scale */<br>
+                          }
+                        </div>
+                      </div>
+                      <div class="ba-notes">
+                        <div class="ba-note-item">Generic Bootstrap palette — not custom</div>
+                        <div class="ba-note-item">No spacing scale — one arbitrary value</div>
+                        <div class="ba-note-item">Missing semantic colors entirely</div>
+                      </div>
+                    </div>
+                    <div class="ba-panel ba-after">
+                      <div class="ba-head">✓ What you want</div>
+                      <div class="ba-screen" style="padding:12px">
+                        <div style="font-family:'Courier New',monospace;font-size:11.5px;color:var(--green);line-height:1.7">
+                          :root {<br>
+                          &nbsp;&nbsp;--color-primary: #2460e8;<br>
+                          &nbsp;&nbsp;--color-success: #0c7a52;<br>
+                          &nbsp;&nbsp;--color-bg: #f7f6f2;<br>
+                          &nbsp;&nbsp;--space-1: 4px; --space-2: 8px;<br>
+                          &nbsp;&nbsp;--space-3: 12px; --space-4: 16px;<br>
+                          &nbsp;&nbsp;--radius-md: 8px;<br>
+                          }
+                        </div>
+                      </div>
+                      <div class="ba-notes">
+                        <div class="ba-note-item">Custom, intentional palette</div>
+                        <div class="ba-note-item">Full 4px scale — consistent forever</div>
+                        <div class="ba-note-item">All semantic roles covered</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 3: LAYOUT SHELL -->
+            <div class="wf-step">
+              <div class="wf-left">
+                <div class="wf-num" style="background:var(--purple-bg);color:var(--purple)">3</div>
+                <div class="wf-line"></div>
+              </div>
+              <div class="wf-content">
+                <div class="wf-title">Layout Shell — Skeleton Before Content</div>
+                <div class="wf-desc">We build the page frame first. Empty boxes with labels. No real content. This separates structural decisions from visual ones — two very different AI conversations.</div>
+                <div class="wf-prompt">Build the layout shell for the Task Manager app.
+Layout: fixed left sidebar (220px) + top header bar (60px) + main scrollable content area.
+Use only the CSS variables from the :root block I'll paste below.
+No real content — just named placeholder divs with visible borders and labels:
+.layout-sidebar, .layout-header, .layout-main, .layout-content
+Make it responsive: sidebar collapses on screens below 768px (hamburger button placeholder only).
+Output: single HTML file with embedded CSS. No JS yet.
+
+[paste tokens.css :root block here]</div>
+                <div class="tip warn" style="margin-top:10px">
+                  <strong>Watch for this:</strong> AI frequently ignores the "no content yet" instruction and immediately starts adding nav items, buttons, and dummy text. If it does — don't regenerate. Send a targeted fix: <em>"Remove all content from the shell. Replace with commented placeholder divs only."</em>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 4: COMPONENTS -->
+            <div class="wf-step">
+              <div class="wf-left">
+                <div class="wf-num" style="background:var(--amber-bg);color:var(--amber)">4</div>
+                <div class="wf-line"></div>
+              </div>
+              <div class="wf-content">
+                <div class="wf-title">Components — Build the 5 Core UI Pieces One at a Time</div>
+                <div class="wf-desc">We send 5 separate prompts. One component. One review. One fix. Then next. This is the slowest-feeling but fastest-actually part of the process.</div>
+
+                <div class="prompt-grid" style="margin-top:12px">
+
+                  <div class="pcard pc-blue">
+                    <div class="pcard-head">Component 1 — Stat Cards</div>
+                    <div class="pcard-body">
+                      <div class="pcard-desc">Dashboard row of 3 summary cards: Total, Completed, Overdue.</div>
+                      <div class="prompt-box">Build a stat cards row component for a task manager.
+3 cards side by side, equal width, flex row.
+Each card: icon (emoji ok), number (large, bold), label (small, muted).
+Card variants: default (--color-surface), success (--color-success tinted), danger (--color-danger tinted).
+Use only my CSS variables. No new colors.
+Output: standalone HTML + CSS snippet. No page wrapper.</div>
+                    </div>
+                  </div>
+
+                  <div class="pcard pc-teal">
+                    <div class="pcard-head">Component 2 — Task Row</div>
+                    <div class="pcard-body">
+                      <div class="pcard-desc">A single task row with checkbox, title, due date, priority badge, and action buttons.</div>
+                      <div class="prompt-box">Build a task list row component.
+Left: checkbox (custom styled). Center: task title + due date below in muted text. Right: priority badge (Low/Med/High with semantic colors) + Edit + Delete icon buttons.
+States: default, hover (subtle background), completed (title strikethrough, opacity 60%).
+Accessibility: visible focus ring, aria-label on icon buttons.
+Use only CSS variables from my :root. Output: standalone snippet only.</div>
+                    </div>
+                  </div>
+
+                  <div class="pcard pc-purple">
+                    <div class="pcard-head">Component 3 — Filter Tabs</div>
+                    <div class="pcard-body">
+                      <div class="pcard-desc">Tab strip above the task list: All / Active / Completed / Overdue, with count badges.</div>
+                      <div class="prompt-box">Build a filter tab strip for the task list.
+Tabs: All (count badge), Active, Completed, Overdue.
+Active tab: --color-primary underline + bold text.
+Count badge: small pill, --color-surface-2 background.
+Keyboard navigable (arrow keys between tabs, role="tablist").
+No JS — use CSS :target or class toggling placeholder.
+Output: standalone HTML + CSS snippet.</div>
+                    </div>
+                  </div>
+
+                  <div class="pcard pc-amber">
+                    <div class="pcard-head">Component 4 — Add/Edit Modal</div>
+                    <div class="pcard-body">
+                      <div class="pcard-desc">A centered modal dialog with form fields for task title, due date, priority, and notes.</div>
+                      <div class="prompt-box">Build an add/edit task modal dialog.
+Fields: Title (text input, required), Due Date (date input), Priority (select: Low/Med/High), Notes (textarea, optional).
+Layout: modal overlay (semi-transparent), centered card (max-width 480px), header with title + close ×, form body, footer with Cancel + Save buttons.
+Error state: red border + message under Title if empty on save.
+Accessible: role="dialog", aria-modal="true", focus trap placeholder comment.
+Use only my CSS variables. Output: standalone snippet.</div>
+                    </div>
+                  </div>
+
+                  <div class="pcard pc-green">
+                    <div class="pcard-head">Component 5 — Empty State</div>
+                    <div class="pcard-body">
+                      <div class="pcard-desc">Centered illustration + message shown when the task list is empty.</div>
+                      <div class="prompt-box">Build an empty state component for when the task list has no items.
+Center-aligned vertically and horizontally in the content area.
+Large emoji or simple SVG icon (clipboard or checkmark).
+Heading: "No tasks yet" — large, bold.
+Subtext: "Add your first task to get started." — muted.
+CTA button: "Add Task" — primary style.
+Do not use any external images or icon libraries.
+Use only my CSS variables. Output: standalone snippet.</div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 5: REVIEW -->
+            <div class="wf-step">
+              <div class="wf-left">
+                <div class="wf-num" style="background:var(--green-bg);color:var(--green)">5</div>
+                <div class="wf-line"></div>
+              </div>
+              <div class="wf-content">
+                <div class="wf-title">Review — The 5-Point Diagnostic on Every Component</div>
+                <div class="wf-desc">After each component is generated, we paste this review prompt. AI acts as a second pair of eyes. Then we send one targeted fix prompt per issue found — never a full regenerate.</div>
+                <div class="wf-prompt">Review the component above using the 5-point UI diagnostic:
+1. Hierarchy — is reading order instantly clear? (3-second test)
+2. Spacing — does every gap follow a 4px scale?
+3. Color — does every color serve a semantic purpose?
+4. Consistency — does this match the other components we've built?
+5. Contrast — are all text/bg combos at WCAG AA (4.5:1) minimum?
+List each issue as: [Check #] [Element] — [Problem] → [Exact fix].
+Be specific. If something passes, say "Pass". Don't explain what the checks mean.</div>
+
+                <div style="margin-top:12px">
+                  <div class="sec-label" style="font-size:10px;margin-bottom:8px">Real AI Review Output — Task Row Component</div>
+                  <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;font-size:13.5px;line-height:1.75;color:var(--text)">
+                    <strong>[1] Hierarchy</strong> — Pass. Title dominates; due date and priority badge are correctly subordinate.<br>
+                    <strong>[2] Spacing</strong> — Checkbox margin-right: 10px → fix to 12px (var(--space-3)). Row padding: 14px → fix to 16px (var(--space-4)).<br>
+                    <strong>[3] Color</strong> — "High" priority badge uses #e53e3e hardcoded → replace with var(--color-danger). No other issues.<br>
+                    <strong>[4] Consistency</strong> — Border-radius on badge is 4px; stat cards use var(--radius-sm) which is also 4px → Pass, but confirm value matches.<br>
+                    <strong>[5] Contrast</strong> — Muted due date text (#9a9790 on #f7f6f2) = 3.1:1 ratio → fails AA. Fix: use #6a6760 → 4.6:1, passes.
+                  </div>
+                  <div class="tip success" style="margin-top:8px">This output gives you 4 specific fixes. Send each as a targeted iteration prompt: <em>"Fix only: change due date color from #9a9790 to #6a6760. Don't change anything else."</em></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 6: ASSEMBLE & AUDIT -->
+            <div class="wf-step">
+              <div class="wf-left">
+                <div class="wf-num" style="background:var(--pink-bg);color:var(--pink)">6</div>
+                <div class="wf-line"></div>
+              </div>
+              <div class="wf-content">
+                <div class="wf-title">Assemble + Audit — Stitch It Together and Do a Final Pass</div>
+                <div class="wf-desc">Drop all components into the layout shell, run the consistency audit prompt, fix the 2–3 remaining cross-component issues, then ship. This step takes 10 minutes if steps 1–5 were clean.</div>
+                <div class="wf-prompt">I've assembled these 5 components into one page:
+stat cards row, task list with filter tabs, task row, add/edit modal, empty state.
+
+Audit for consistency across all of them:
+— Are button heights the same (should be 36px or 40px — pick one)?
+— Is border-radius consistent (sm for badges, md for cards)?
+— Do all input fields have the same height, border, and focus ring style?
+— Is there any hardcoded color not from my :root?
+— Any spacing value not on the 4px scale?
+
+Prioritized fix list. Most impactful first. Specific element + exact CSS value for each fix.</div>
+
+                <div class="do-dont" style="margin-top:12px">
+                  <div class="dd-box dd-do">
+                    <div class="dd-head">✓ Ship when…</div>
+                    <div class="dd-body">
+                      <ul>
+                        <li class="dd-item">All 5 diagnostic checks pass on every component</li>
+                        <li class="dd-item">No hardcoded colors outside :root</li>
+                        <li class="dd-item">Keyboard navigable (tab, enter, escape on modal)</li>
+                        <li class="dd-item">Tested at 320px, 768px, 1280px widths</li>
+                        <li class="dd-item">Empty state renders correctly with 0 tasks</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="dd-box dd-dont">
+                    <div class="dd-head">✗ Don't ship when…</div>
+                    <div class="dd-body">
+                      <ul>
+                        <li class="dd-item">Any text fails WCAG AA contrast ratio</li>
+                        <li class="dd-item">Modal has no close-on-escape behavior</li>
+                        <li class="dd-item">Buttons have different heights across screens</li>
+                        <li class="dd-item">You haven't tested on a real mobile device</li>
+                        <li class="dd-item">AI-generated code you don't understand is in production</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /workflow -->
+        </div>
+
+        <hr class="div">
+
+        <!-- WHERE AI FAILED IN THIS SESSION -->
+        <div class="sec">
+          <div class="sec-label">Where AI Failed — And How We Recovered</div>
+          <div class="diag-list">
+            <div class="diag-item">
+              <div class="diag-icon" style="background:var(--red-bg);color:var(--red)">✗</div>
+              <div>
+                <div class="diag-title">Step 1: AI gave us 8 screens instead of 5</div>
+                <div class="diag-desc">It added "Profile settings," "Notification preferences," and "Onboarding wizard." We deleted those from the list before continuing. Lesson: AI optimizes for completeness, you optimize for shipping.</div>
+              </div>
+            </div>
+            <div class="diag-item">
+              <div class="diag-icon" style="background:var(--red-bg);color:var(--red)">✗</div>
+              <div>
+                <div class="diag-title">Step 2: Tokens file included 14 breakpoint variables we never asked for</div>
+                <div class="diag-desc">We deleted them. Never let AI bloat your token file — only what you explicitly ask for stays.</div>
+              </div>
+            </div>
+            <div class="diag-item">
+              <div class="diag-icon" style="background:var(--red-bg);color:var(--red)">✗</div>
+              <div>
+                <div class="diag-title">Step 4: Modal used Bootstrap classes despite explicit "no frameworks" instruction</div>
+                <div class="diag-desc">Recovery prompt: <em>"Rewrite only the modal CSS. Remove all Bootstrap classes. Use only var(--...) properties from my :root. Do not change the HTML structure."</em> Worked first try.</div>
+              </div>
+            </div>
+            <div class="diag-item">
+              <div class="diag-icon" style="background:var(--red-bg);color:var(--red)">✗</div>
+              <div>
+                <div class="diag-title">Step 5: Stat card contrast failed — AI disagreed with the diagnosis</div>
+                <div class="diag-desc">AI said contrast "looks fine." We checked with the WebAIM contrast checker — it was 2.8:1, a clear fail. Lesson: never trust AI to judge contrast. Always use a contrast tool.</div>
+              </div>
+            </div>
+            <div class="diag-item">
+              <div class="diag-icon" style="background:var(--amber-bg);color:var(--amber)">⚠</div>
+              <div>
+                <div class="diag-title">Step 6: Audit found 3 different button heights across components</div>
+                <div class="diag-desc">36px, 38px, and 40px — all generated by the same model. This is why the audit step is mandatory. A single targeted fix prompt resolved all three in one pass.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="div">
+
+        <!-- AI TOOLS COMPARISON FOR APP BUILDING -->
+        <div class="sec">
+          <div class="sec-label">Which AI Tool for Which Task?</div>
+          <div class="prompt-grid">
+            <div class="pcard pc-blue">
+              <div class="pcard-head">Claude (Anthropic)</div>
+              <div class="pcard-body">
+                <div class="pcard-desc">Best for: structured prompting, complex components, following constraints.</div>
+                <div class="prompt-box">Strength: Follows "use only these CSS variables" consistently.
+Best for: design tokens, complex forms, accessibility requirements.
+Weakness: Sometimes verbose — ask for "output only, no explanation."
+Tip: Paste your full :root in every prompt for best consistency.</div>
+              </div>
+            </div>
+            <div class="pcard pc-teal">
+              <div class="pcard-head">ChatGPT (OpenAI)</div>
+              <div class="pcard-body">
+                <div class="pcard-desc">Best for: iterative conversation, explaining design decisions, debugging.</div>
+                <div class="prompt-box">Strength: Excellent at "why did you do X?" follow-up questions.
+Best for: layout structure, understanding AI choices, fix debugging.
+Weakness: Tends to add frameworks (Bootstrap, Tailwind) unless stopped.
+Tip: Add "vanilla CSS only, no CDN imports" to every component prompt.</div>
+              </div>
+            </div>
+            <div class="pcard pc-purple">
+              <div class="pcard-head">v0.dev (Vercel)</div>
+              <div class="pcard-body">
+                <div class="pcard-desc">Best for: React + Tailwind components, rapid visual prototypes.</div>
+                <div class="prompt-box">Strength: Renders preview live — you see the component immediately.
+Best for: complex interactive UI, data tables, dashboards.
+Weakness: Locked into React + Tailwind — not for vanilla HTML projects.
+Tip: Use for visual reference even if you don't use the output code.</div>
+              </div>
+            </div>
+            <div class="pcard pc-orange">
+              <div class="pcard-head">Bolt.new / Lovable</div>
+              <div class="pcard-body">
+                <div class="pcard-desc">Best for: full app scaffolding, when you want to start with structure.</div>
+                <div class="prompt-box">Strength: Generates entire multi-file apps with routing and state.
+Best for: step 1 only — use to get a starting skeleton, then customize.
+Weakness: Output is complex; hard to maintain without framework knowledge.
+Tip: Extract only the design system and layout; rebuild components manually.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="div">
+
+        <!-- DEPLOY: GITHUB PAGES -->
+        <div class="sec">
+          <div class="sec-label">Ship It — Deploy to GitHub Pages in 5 Minutes</div>
+          <div class="tip ai" style="margin-bottom:14px">
+            Use this exact prompt to generate a deploy-ready file structure and a GitHub Actions workflow. Then just push to main.
+          </div>
+          <div class="prompt-grid">
+            <div class="pcard pc-green">
+              <div class="pcard-head">Deploy Prompt</div>
+              <div class="pcard-body">
+                <div class="pcard-desc">Send this after your final audit to produce a clean, deployable file.</div>
+                <div class="prompt-box">Combine all my components and layout into a single index.html file.
+Requirements:
+— All CSS in a &lt;style&gt; tag in &lt;head&gt;
+— No external CSS or JS CDN links
+— Inline SVG for any icons
+— All :root CSS variables at top of style block
+— Valid HTML5 with lang="en" and proper meta tags
+— Works as a static file (no server required)
+Output only the complete HTML file. No explanation.</div>
+              </div>
+            </div>
+            <div class="pcard pc-amber">
+              <div class="pcard-head">GitHub Pages Checklist</div>
+              <div class="pcard-body">
+                <div class="pcard-desc">5 steps from local file to live URL:</div>
+                <div class="prompt-box">1. Create new GitHub repo (public)
+2. Add index.html to root of repo
+3. Settings → Pages → Source: Deploy from main branch
+4. Wait ~60 seconds
+5. Visit: https://[username].github.io/[repo-name]
+
+No build step. No CI. No config files.
+Your app is live.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="div">
+
+        <div class="exercise">
+          <div class="exercise-label">✏ Workshop Exercise 5 — 45 minutes (Final Project)</div>
+          <div class="exercise-title">Build Your Own App with the Full Workflow</div>
+          <div class="exercise-desc">Choose a simple app idea (a habit tracker, a reading list, a bookmark manager, a daily journal). Apply all 6 steps. You must have a deployed link by the end of the session. This is your portfolio piece.</div>
+          <div class="exercise-steps">
+            <div class="ex-step"><span class="ex-n">1</span> Step 1: Define your 3–4 screens (5 min)</div>
+            <div class="ex-step"><span class="ex-n">2</span> Step 2: Generate your design token file (5 min)</div>
+            <div class="ex-step"><span class="ex-n">3</span> Step 3: Build the layout shell (5 min)</div>
+            <div class="ex-step"><span class="ex-n">4</span> Steps 4–5: Build + review 2 core components (15 min)</div>
+            <div class="ex-step"><span class="ex-n">5</span> Step 6: Assemble, audit, and fix (5 min)</div>
+            <div class="ex-step"><span class="ex-n">6</span> Deploy to GitHub Pages + share your URL (5 min)</div>
+            <div class="ex-step"><span class="ex-n">7</span> Code review swap: review one other person's app with the 5-point diagnostic (5 min)</div>
+          </div>
+        </div>
+
+        <div class="discussion">
+          <div class="discussion-label">💬 Discussion Questions</div>
+          <div class="disc-q">What was the biggest time-saver from using AI in this workflow? What was the biggest time-waster?</div>
+          <div class="disc-q">Which failure mode (AI ignoring constraints, bad contrast, inconsistent spacing) surprised you most?</div>
+          <div class="disc-q">How would you adapt this workflow for a team of 3 where two people aren't using AI yet?</div>
+          <div class="disc-q">What's one part of your current project you could improve today using what you learned in this session?</div>
+        </div>
+
+        <div class="res-label">📚 Session 5 Resources</div>
+        <div class="resources">
+          <a class="res-link ai" href="https://claude.ai" target="_blank"><span class="res-icon">✦</span> Claude — Primary AI tool for this workflow</a>
+          <a class="res-link ai" href="https://v0.dev" target="_blank"><span class="res-icon">✦</span> v0.dev — Visual component prototyping</a>
+          <a class="res-link ai" href="https://bolt.new" target="_blank"><span class="res-icon">✦</span> Bolt.new — Full app scaffolding</a>
+          <a class="res-link doc" href="https://webaim.org/resources/contrastchecker/" target="_blank"><span class="res-icon">◈</span> WebAIM Contrast Checker — Essential for accessibility</a>
+          <a class="res-link doc" href="https://pages.github.com/" target="_blank"><span class="res-icon">◈</span> GitHub Pages — Free static hosting</a>
+          <a class="res-link yt" href="https://www.youtube.com/@KevinPowell" target="_blank"><span class="res-icon">▶</span> Kevin Powell — CSS mastery for developers</a>
+          <a class="res-link read" href="https://www.refactoringui.com/" target="_blank"><span class="res-icon">✦</span> Refactoring UI — The book behind this workshop</a>
         </div>
 
       </div>
